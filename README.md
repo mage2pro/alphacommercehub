@@ -1,6 +1,8 @@
 The extension integrates your Magento 2 store with the **[AlphaCommerceHub](http://alphacommercehub.com.au)** payment service (Australia).  
 
 ## How to install
+The extension will be released before 2017-11-06.
+
 ### 1. Free installation service
 Just order my [free installation service](https://mage2.pro/t/3585).
 
