@@ -7,7 +7,6 @@
 		<df_payment>
 			<alpha_commerce_hub>
 				<requireBillingAddress>0</requireBillingAddress>
-				<payment_action>authorize_capture</payment_action>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
 			</alpha_commerce_hub>
