@@ -1,1 +1,1 @@
-define(['Df_Payment/loader'], function(l) {return l('Dfe_AlphaCommerceHub', 'dfe_alpha_commerce_hub');});
+define(['Df_Payment/loader'], function(l) {return l('Dfe_AlphaCommerceHub');});
