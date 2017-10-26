@@ -14,6 +14,7 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * Will the «Pay Pages» paths be preserved after switching the merchant's account
 	 * from test/sandox mode to the production one? https://mage2.pro/t/4776
 	 * 2017-10-26
+	 * Note 1.
 	 * «Merchants communicate with the AlphaHPP by means of submission of hidden parameters in a HTTPS POST.
 	 * These parameters retrieve the necessary configuration for the merchant paypage
 	 * and seed necessary information for the transaction for example the currency and amount.
@@ -25,6 +26,9 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * Similar to the request hidden parameters are posted
 	 * that inform the merchant of the result of the payment transaction.»
 	 * http://alpha.pwstaging.com.au/docs/alphahpp#technical-integration-requirements
+	 * Note 2.
+	 * [AlphaCommerceHub] What is the difference between the «Test» and «Sandbox» environments?
+	 * https://mage2.pro/t/4745
 	 * @override
 	 * @see \Df\Payment\Init\Action::redirectUrl()
 	 * @used-by \Df\Payment\Init\Action::action()
