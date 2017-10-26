@@ -13,6 +13,18 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * Note 3.
 	 * Will the «Pay Pages» paths be preserved after switching the merchant's account
 	 * from test/sandox mode to the production one? https://mage2.pro/t/4776
+	 * 2017-10-26
+	 * «Merchants communicate with the AlphaHPP by means of submission of hidden parameters in a HTTPS POST.
+	 * These parameters retrieve the necessary configuration for the merchant paypage
+	 * and seed necessary information for the transaction for example the currency and amount.
+	 * The customer is then redirected to the hosted payment page
+	 * or in the case of an iFrame deployment, the iFrame is displayed on the merchants site
+	 * (under the merchants control).
+	 * The results of the payment request are returned to a url
+	 * configured by the merchant as the result page.
+	 * Similar to the request hidden parameters are posted
+	 * that inform the merchant of the result of the payment transaction.»
+	 * http://alpha.pwstaging.com.au/docs/alphahpp#technical-integration-requirements
 	 * @override
 	 * @see \Df\Payment\Init\Action::redirectUrl()
 	 * @used-by \Df\Payment\Init\Action::action()
