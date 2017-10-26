@@ -8,6 +8,9 @@ The extension integrates your Magento 2 store with the **[AlphaCommerceHub](http
 [computerworld.com.au/article/626082/aus-post-partners-fintech-ecommerce-hub](https://www.computerworld.com.au/article/626082/aus-post-partners-fintech-ecommerce-hub)
 [twitter.com/AlphaFintech/status/897827890728972288](https://twitter.com/AlphaFintech/status/897827890728972288)
 
+## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
+- [A bank card payment form in the AlphaHPP case](https://mage2.pro/t/4782)
+
 ## How to install
 The extension will be released before 2017-11-06.
 
