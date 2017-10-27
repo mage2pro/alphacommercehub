@@ -77,6 +77,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * https://mage2.pro/t/4798
 	 * Note 4. [AlphaCommerceHub] Where can a merchant find his `MerchantID` and `UserID` values?
 	 * https://mage2.pro/t/4799
+	 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Signature()
 	 * @used-by \Df\PaypalClone\Charge::p()
@@ -92,5 +93,22 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @return array(string => mixed)
 	 */
 	protected function pCharge() {return [
+		/**
+		 * 2017-10-27
+		 * «The payment method to be used, default to `CC`.
+		 * `ALL` will display all configured payment methods.
+		 * Merchant can select a subset by delimiting.
+		 * E.g. `CC,ID,AL` would display cards, iDeal, Alipay if supported by AlphaHPP.»
+		 * String(14), required.
+		 */
+		'Method' => 'ALL'
+		/**
+		 * 2017-10-27
+		 * «The date and time of the transaction.
+		 * If not provided defaults to ACH system timestamp (UTC).
+		 * Format: DDMMYYYYHHMMSS»
+		 * String(14), optional.
+		 */
+		,'TransactionTimestamp' => null
 	];}
 }
