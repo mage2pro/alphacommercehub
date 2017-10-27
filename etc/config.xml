@@ -7,6 +7,12 @@
 		<df_payment>
 			<alpha_commerce_hub>
 				<currency>base</currency>
+<!-- 2017-10-27
+[AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?
+https://mage2.pro/t/4779
+«Supported special characters are / and .»
+-->
+				<identification>increment_id</identification>
 				<requireBillingAddress>0</requireBillingAddress>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
