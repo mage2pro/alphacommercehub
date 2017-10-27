@@ -98,6 +98,16 @@ So the `sortOrder` value is 1920. -->
 					<validate>required-entry</validate>
 				</field>
 				<field
+					id='currency'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='25'
+					translate='label'
+					type='Df\Directory\FE\Currency'
+				>
+					<label>Payment Currency</label>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
 					id='requireBillingAddress'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'

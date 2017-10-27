@@ -6,6 +6,7 @@
     <default>
 		<df_payment>
 			<alpha_commerce_hub>
+				<currency>base</currency>
 				<requireBillingAddress>0</requireBillingAddress>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
