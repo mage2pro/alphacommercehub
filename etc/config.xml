@@ -13,6 +13,13 @@ https://mage2.pro/t/4779
 «Supported special characters are / and .»
 -->
 				<identification>increment_id</identification>
+				<identification_rules>
+					<regex>
+						<message><![CDATA[AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>» and «<code>.</code>» characters in the payment identifiers]]></message>
+						<pattern><![CDATA[#^[a-z0-9./]+$#i]]></pattern>
+					</regex>
+					<max_length>20</max_length>
+				</identification_rules>
 				<requireBillingAddress>0</requireBillingAddress>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
