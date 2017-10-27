@@ -95,11 +95,17 @@ final class Charge extends \Df\PaypalClone\Charge {
 	protected function pCharge() {return [
 		/**
 		 * 2017-10-27
+		 * Note 1.
 		 * «The payment method to be used, default to `CC`.
 		 * `ALL` will display all configured payment methods.
 		 * Merchant can select a subset by delimiting.
 		 * E.g. `CC,ID,AL` would display cards, iDeal, Alipay if supported by AlphaHPP.»
 		 * String(14), required.
+		 * Note 2. [AlphaCommerceHub] The payment method codes: https://mage2.pro/t/4809
+		 * Note 3.
+		 * [AlphaCommerceHub] Which codes are used for the
+		 * Visa Checkout, UnionPay Online Payments, and ApplePay payment options?
+		 * https://mage2.pro/t/4811
 		 */
 		'Method' => 'ALL'
 		/**
