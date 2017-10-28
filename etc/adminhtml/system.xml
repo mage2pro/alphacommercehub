@@ -139,6 +139,101 @@ contain some other symbols.</p>
 ]]></comment>
 					<depends><field id='enable'>1</field></depends>
 				</field>
+<field
+					id='optionsLocation'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='16'
+					translate='label'
+					type='select'
+				>
+					<label>Where to ask for a payment option?</label>
+					<source_model>Df\Payment\Source\Options\Location</source_model>
+					<comment><![CDATA[]]></comment>
+					<depends><field id='enable'>1</field></depends>
+				</field>
+				<field
+					id='optionsPrompt'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='17'
+					translate='label'
+					type='textarea'
+				>
+					<label>Options Prompt</label>
+					<comment><![CDATA[A text above the AlphaCommerceHub payment options on the Magento checkout page.<br/>You can use the HTML tags. Also you set the prompt empty to hide it.]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='optionsLocation'>magento</field>
+					</depends>
+				</field>
+				<field
+					id='optionsDisplayMode'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='18'
+					translate='label'
+					type='select'
+				>
+					<label>Payment options display mode</label>
+					<comment><![CDATA[See the screenshots:<ul class='df-note'><li><a href='https://mage2.pro/t/4562' target='_blank'>the «<b>images</b>» mode</a></li><li><a href='https://mage2.pro/t/4559' target='_blank'>the «<b>text</b>» mode</a></li></ul>]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='optionsLocation'>magento</field>
+					</depends>
+					<source_model>Df\Payment\Source\Options\DisplayMode</source_model>
+				</field>
+				<field
+					dfRows='3'
+					id='optionsDescription'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='19'
+					translate='label'
+					type='Df\Framework\Form\Element\Textarea'
+				>
+					<label>Options Description</label>
+					<comment><![CDATA[A text to be shown on the Magento checkout page instead of the payment options dialog (as you have chosen to show the payment options on the AlphaCommerceHub side, the options dialog will not be shown on the Magento checkout screen).
+<br/>You can:
+<ul class='df-note'>
+<li>Use the HTML tags.</li>
+<li>Use the <code>{options}</code> variable. It will be substituted with the available payment options.</li>
+<li>Set the description empty to hide it.</li>
+</ul>]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='optionsLocation'>psp</field>
+					</depends>
+				</field>
+				<field
+					id='optionsLimit'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='20'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Limit the payment options availability?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+					<comment><![CDATA[If checked, only the selected options will be shown to the customers.]]></comment>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='optionsLocation'>magento</field>
+					</depends>
+				</field>
+				<field
+					dfMultiselect_ordered='true'
+					id='optionsAllowed'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='21'
+					translate='label'
+					type='Df\Framework\Form\Element\Multiselect'
+				>
+					<label>Allowed Payment Options</label>
+					<source_model>Dfe\AlphaCommerceHub\Source\Option</source_model>
+					<comment><![CDATA[Only the selected options will be shown to the customers on the Magento checkout screen.<br/>You can <b>reorder</b> the options by drag and drop.]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='optionsLimit'>1</field>
+						<field id='optionsLocation'>magento</field>
+					</depends>
+				</field>
 				<field
 					id='currency'
 					showInDefault='1' showInStore='1' showInWebsite='1'
