@@ -29,5 +29,18 @@
 		,"Payment gateway"
 		,"Refund"
 		,"AlphaCommerceHub"
+
+		,"Alipay","CUP (GZ/Gnete)"
+		,"Direct Debit/ACH (eCheck in US)"
+		,"Direkt-Überweisung"
+		,"eNets"
+		,"Inicis"
+		,"iDEAL"
+		,"Inpay"
+		,"POLi Payments"
+		,"PayPal"
+		,"SOFORT"
+		,"Skrill"
+		,"SafetyPay"
 	]
 }
