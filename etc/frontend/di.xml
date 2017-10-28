@@ -10,7 +10,4 @@
 			</argument>
 		</arguments>
 	</type>
-	<virtualType name='Dfe\AlphaCommerceHub\ConfigProvider' type='Df\Payment\ConfigProvider'>
-		<arguments><argument name='module' xsi:type='string'>Dfe_AlphaCommerceHub</argument></arguments>
-	</virtualType>
 </config>

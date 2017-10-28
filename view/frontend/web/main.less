@@ -1,0 +1,17 @@
+// 2017-10-28
+// I show the payment options in 2 columns,
+// and these columns look better while their composite width is limited by 40em.
+.payment-method.dfe_alpha_commerce_hub {max-width: 40em;}
+// 2017-10-28 [AlphaCommerceHub] The payment options codes: https://mage2.pro/t/4809
+form.dfe_alpha_commerce_hub {
+	@media (min-width: 570px) {
+		ul.df-options {
+			-moz-column-count: 2;
+			-webkit-column-count: 2;
+			column-count: 2;
+			-moz-column-gap: 2em;
+			-webkit-column-gap: 2em;
+			column-gap: 2em;
+		}
+	}
+}
