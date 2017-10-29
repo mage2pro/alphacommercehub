@@ -9,6 +9,8 @@ The extension integrates your Magento 2 store with the **[AlphaCommerceHub](http
 [twitter.com/AlphaFintech/status/897827890728972288](https://twitter.com/AlphaFintech/status/897827890728972288)
 
 ## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
+- The frontend checkout screen:
+    - [in the «**text**» mode](https://mage2.pro/t/topic/4815)
 - [A bank card payment form in the AlphaHPP case](https://mage2.pro/t/4782)
 
 ## How to install
