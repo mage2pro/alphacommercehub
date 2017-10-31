@@ -7,6 +7,26 @@
 		<df_payment>
 			<alpha_commerce_hub>
 				<currency>base</currency>
+				<description>{order.items}</description>
+				<description_rules>
+					<locations>
+						<merchant>
+							<shown>1</shown>
+							<title><![CDATA[How is a payment's description (`TxnDetails`) shown in the AlphaCommerceHub merchant interface?]]></title>
+							<url>https://mage2.pro/c/extensions/alphacommercehub</url>
+						</merchant>
+						<payment>
+							<shown>1</shown>
+							<title><![CDATA[How is a payment's description (`TxnDetails`) shown on the AlphaCommerceHub payment page?]]></title>
+							<url>https://mage2.pro/c/extensions/alphacommercehub</url>
+						</payment>
+					</locations>
+					<maxLength>
+						<title><![CDATA[[AlphaCommerceHub] The maximum length of a payment description (`TxnDetails`) is 2000 characters]]></title>
+						<url>https://mage2.pro/t/4852</url>
+						<value>2000</value>
+					</maxLength>
+				</description_rules>
 <!-- 2017-10-27
 [AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?
 https://mage2.pro/t/4779

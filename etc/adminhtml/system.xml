@@ -139,7 +139,7 @@ contain some other symbols.</p>
 ]]></comment>
 					<depends><field id='enable'>1</field></depends>
 				</field>
-<field
+				<field
 					id='optionsLocation'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='16'
@@ -245,10 +245,25 @@ contain some other symbols.</p>
 					<depends><field id='enable'>1</field></depends>
 				</field>
 				<field
+					id='description'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='26'
+					translate='label'
+					type='textarea'
+				>
+					<comment model='Df\Payment\Comment\Description'/>
+					<depends><field id='enable'>1</field></depends>
+					<label>Description</label>
+<!-- 2016-07-01
+We do not use the `validate-length` validator here
+because the value can contain variables, so do not know the real length here. -->
+					<validate>required-entry</validate>
+				</field>
+				<field
 					id='requireBillingAddress'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='26'
+					sortOrder='28'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -262,7 +277,7 @@ contain some other symbols.</p>
 					id='min_order_total'
 					translate='label'
 					type='text'
-					sortOrder='27'
+					sortOrder='29'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -276,7 +291,7 @@ contain some other symbols.</p>
 					id='max_order_total'
 					translate='label'
 					type='text'
-					sortOrder='28'
+					sortOrder='30'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -290,7 +305,7 @@ contain some other symbols.</p>
 					id='country_restriction'
 					translate='label'
 					type='select'
-					sortOrder='29'
+					sortOrder='31'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -303,7 +318,7 @@ contain some other symbols.</p>
 					id='countries'
 					translate='label'
 					type='Df\Framework\Form\Element\Multiselect'
-					sortOrder='30'
+					sortOrder='32'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'

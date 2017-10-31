@@ -114,6 +114,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * and how does AlphaCommerceHub handle them
 		 * (silently strip them, or reject the payment API request at whole)?»
 		 * https://mage2.pro/t/4801
+		 * Note 4.  We provide also `TxnDetails` for a long description.
 		 */
 		'MerchantDescriptor' => null
 		/**
@@ -139,5 +140,14 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * String(14), optional.
 		 */
 		,'TransactionTimestamp' => null
+		/**
+		 * 2017-11-01
+		 * Note 1. «Information on the product/service being purchased». String(2000), optional.
+		 * Note 2.
+		 * We provide also `MerchantDescriptor` for a very short description:
+		 * e.g., it is used as a dynamic statement descriptor for the bank card payment option:
+		 * https://en.wikipedia.org/wiki/Billing_descriptor#Dynamic_descriptors
+		 */
+		,'TxnDetails' => $this->description()
 	];}
 }
