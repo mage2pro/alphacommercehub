@@ -94,6 +94,29 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 */
 	protected function pCharge() {return [
 		/**
+		 * 2017-11-01
+		 * Note 1.
+		 * «Allows the merchant to specify a statement descriptor for the transaction.
+		 * Please note the narrative supported by different card schemes varies.»
+		 * http://alpha.pwstaging.com.au/docs/alphahpp#request-a-paypage-session
+		 * String(64), optional.
+		 * Note 2.
+		 * «[AlphaCommerceHub] Is the `MerchantDescriptor` parameter really accepts up to 64 characters?»
+		 * https://mage2.pro/t/4800
+		 * «The value is truncated depending on the provider of the payment processing.
+		 * The Wikipedia article mainly focuses on card schemes,
+		 * but as the platform supports many different payment methods worldwide
+		 * this can be passed through to various providers where appropriate.
+		 * The 64 character limit is simply what the hub will accept,
+		 * not what is sent through to the end provider.»
+		 * Note 3.
+		 * «Are any unallowed characters for the `MerchantDescriptor` parameter values,
+		 * and how does AlphaCommerceHub handle them
+		 * (silently strip them, or reject the payment API request at whole)?»
+		 * https://mage2.pro/t/4801
+		 */
+		'MerchantDescriptor' => null
+		/**
 		 * 2017-10-27
 		 * Note 1.
 		 * «The payment method to be used, default to `CC`.
@@ -107,7 +130,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * Visa Checkout, UnionPay Online Payments, and ApplePay payment options?
 		 * https://mage2.pro/t/4811
 		 */
-		'Method' => 'ALL'
+		,'Method' => 'ALL'
 		/**
 		 * 2017-10-27
 		 * «The date and time of the transaction.
