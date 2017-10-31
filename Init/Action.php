@@ -29,6 +29,8 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * Note 2.
 	 * [AlphaCommerceHub] What is the difference between the «Test» and «Sandbox» environments?
 	 * https://mage2.pro/t/4745
+	 * 2017-10-31
+	 * «A pay page URL will be provided in the activation email to the merchant»: https://mage2.pro/t/4785/2
 	 * @override
 	 * @see \Df\Payment\Init\Action::redirectUrl()
 	 * @used-by \Df\Payment\Init\Action::action()
