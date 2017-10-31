@@ -260,6 +260,18 @@ because the value can contain variables, so do not know the real length here. --
 					<validate>required-entry</validate>
 				</field>
 				<field
+					id='dsd'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='27'
+					translate='label'
+					type='text'
+				>
+					<label>Dynamic statement descripor</label>
+					<comment><![CDATA[An arbitrary string to be displayed in a customer's payment statement.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+					<validate>validate-length maximum-length-22</validate>
+				</field>
+				<field
 					id='requireBillingAddress'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'

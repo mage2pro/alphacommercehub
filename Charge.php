@@ -92,7 +92,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @used-by \Df\PaypalClone\Charge::p()
 	 * @return array(string => mixed)
 	 */
-	protected function pCharge() {return [
+	protected function pCharge() {$s = $this->s(); return [
 		/**
 		 * 2017-11-01
 		 * Note 1.
@@ -116,7 +116,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://mage2.pro/t/4801
 		 * Note 4.  We provide also `TxnDetails` for a long description.
 		 */
-		'MerchantDescriptor' => null
+		'MerchantDescriptor' => $s->dsd()
 		/**
 		 * 2017-10-27
 		 * Note 1.
