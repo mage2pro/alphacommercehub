@@ -21,6 +21,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	
 	/**
 	 * 2017-10-27 «The currency of the order. ISO-4217 A3 codes e.g. USD, GBP.», required.
+	 * 2017-11-01 «Which currencies are allowed by each payment option?» https://mage2.pro/t/4820
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Currency()
 	 * @used-by \Df\PaypalClone\Charge::p()
