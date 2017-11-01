@@ -60,6 +60,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * Note 2.
 	 * [AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?
 	 * https://mage2.pro/t/4779
+	 * 2017-11-01
+	 * Which characters are considered «special» and «not special» for the AlphaHPP's `MerchantTxnID` parameter?
+	 * https://mage2.pro/t/4842
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_RequestId()
 	 * @used-by \Df\PaypalClone\Charge::p()
