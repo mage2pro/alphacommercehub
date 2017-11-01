@@ -113,6 +113,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * String(1), optional.
 			 */
 			'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+			// 2017-11-01 «The customers City». String(25), optional.
+			,'City' => $this->text($sa->getCity(), 25)
 			/**
 			 * 2017-11-01
 			 * «A customer identifier assigned by the merchant». String(20), optional.
@@ -180,9 +182,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 			// 2017-11-01 «A social or tax id for the customer». String(20), optional.
 			,'SocialID' => $this->customerVAT()
 			// 2017-11-01 «The first line of the customers street address». String(100), optional.
-			,'Street1' => $sa->getStreet(1)
+			,'Street1' => $this->text($sa->getStreet(1), 100)
 			// 2017-11-01 «The second line of the customers street address». String(100), optional.
-			,'Street2' => $sa->getStreet(2)
+			,'Street2' => $this->text($sa->getStreet(2), 100)
 			// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 			,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 			/**
@@ -215,6 +217,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
 			 */
 			,'UserId' => $s->privateKey()
+			// 2017-11-01
+			// «The customers Zip/Postal code. See note on validated countries.». String(20), optional.
+			,'Zip' => $sa->getPostcode()
 		];
 	}
 }
