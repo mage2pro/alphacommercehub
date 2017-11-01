@@ -101,6 +101,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * String(1), optional.
 		 */
 		'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+		// 2017-11-01 «The customers IP address» String(15), optional.
+		,'IPAddress' => df_visitor_ip()
 		/**
 		 * 2017-11-01
 		 * Note 1. «AlphaHPP» → «Paypage Request Reference» → «Request a Paypage Session»
@@ -157,10 +159,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://github.com/mage2pro/allpay/blob/1.10.0/Charge.php#L538-L562
 		 */
 		,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
-		/**
-		 * 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
-		 * https://stackoverflow.com/a/35619532
-		 */
+		// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 		,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 		/**
 		 * 2017-10-27
