@@ -107,7 +107,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * Should `CustomerID` be unique or not? https://mage2.pro/t/4854
 		 */
 		,'CustomerID' => $this->customerEmail()
-		// 2017-11-01 «The customers IP address» String(15), optional.
+		// 2017-11-01 «The customers IP address». String(15), optional.
 		,'IPAddress' => df_visitor_ip()
 		/**
 		 * 2017-11-01
@@ -165,6 +165,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://github.com/mage2pro/allpay/blob/1.10.0/Charge.php#L538-L562
 		 */
 		,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
+		// 2017-11-01 «A social or tax id for the customer». String(20), optional.
+		,'SocialID' => $this->customerVAT()
 		// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 		,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 		/**
