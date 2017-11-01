@@ -96,6 +96,19 @@ final class Charge extends \Df\PaypalClone\Charge {
 	protected function pCharge() {$s = $this->s(); $o = $s->options(); return [
 		/**
 		 * 2017-11-01
+		 * Note 1. «AlphaHPP» → «Paypage Request Reference» → «Request a Paypage Session»
+		 * «The language the customer selected on the merchants site.
+		 * For example `EN` for English, `DE` for German.
+		 * If not provided the page will default to English
+		 * or if a language is provided that is not supported the page will default to.»
+		 * String(2), optional.
+		 * http://developer.alphacommercehub.com.au/docs/alphahpp-#request-a-paypage-session
+		 * Note 2. «AlphaHPP» → «Paypage Request Reference» → «Supported Languages»
+		 * http://developer.alphacommercehub.com.au/docs/alphahpp-#supported-languages
+		 */
+		'Language' => 'EN'
+		/**
+		 * 2017-11-01
 		 * Note 1.
 		 * «Allows the merchant to specify a statement descriptor for the transaction.
 		 * Please note the narrative supported by different card schemes varies.»
@@ -117,7 +130,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://mage2.pro/t/4801
 		 * Note 4.  We provide also `TxnDetails` for a long description.
 		 */
-		'MerchantDescriptor' => $this->text($s->dsd(), 64)
+		,'MerchantDescriptor' => $this->text($s->dsd(), 64)
 		/**
 		 * 2017-10-27
 		 * Note 1.
