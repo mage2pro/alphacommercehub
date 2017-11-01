@@ -68,22 +68,19 @@ final class Charge extends \Df\PaypalClone\Charge {
 	protected function k_RequestId() {return 'MerchantTxnID';}
 
 	/**
-	 * 2017-10-27
-	 * Note 1. «User id for authentication», String, required.
-	 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented? https://mage2.pro/t/4768
-	 * Note 3.
-	 * [AlphaCommerceHub] Will the `MerchantID` and `UserID` values be preserved
-	 * for a particular merchant after switching its account from the test mode to the production one?
-	 * https://mage2.pro/t/4798
-	 * Note 4. [AlphaCommerceHub] Where can a merchant find his `MerchantID` and `UserID` values?
-	 * https://mage2.pro/t/4799
-	 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
+	 * 2017-11-01
+	 * AlphaCommerceHub does not use signatures.
+	 * It requires a plain merchant password (`UserId`) instead.
+	 * *) How is the APIs authentication security implemented? https://mage2.pro/t/4768
+	 * *) Will the `MerchantID` and `UserID` values be preserved for a particular merchant
+	 * after switching its account from the test mode to the production one? ttps://mage2.pro/t/4798
+	 * *) Where can a merchant find his `MerchantID` and `UserID` values? https://mage2.pro/t/4799
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Signature()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
+	 * @return null
 	 */
-	protected function k_Signature() {return 'UserId';}
+	protected function k_Signature() {return null;}
 
 	/**
 	 * 2017-10-27
@@ -132,6 +129,19 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://mage2.pro/t/4811
 		 */
 		,'Method' => 'ALL'
+		/**
+		 * 2017-10-27
+		 * Note 1. «User id for authentication», String, required.
+		 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented? https://mage2.pro/t/4768
+		 * Note 3.
+		 * [AlphaCommerceHub] Will the `MerchantID` and `UserID` values be preserved
+		 * for a particular merchant after switching its account from the test mode to the production one?
+		 * https://mage2.pro/t/4798
+		 * Note 4. [AlphaCommerceHub] Where can a merchant find his `MerchantID` and `UserID` values?
+		 * https://mage2.pro/t/4799
+		 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
+		 */
+		,'UserId' => $s->privateKey()
 		/**
 		 * 2017-10-27
 		 * «The date and time of the transaction.
