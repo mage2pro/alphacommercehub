@@ -158,18 +158,10 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 */
 		,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
 		/**
-		 * 2017-10-27
-		 * Note 1. «User id for authentication», String, required.
-		 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented? https://mage2.pro/t/4768
-		 * Note 3.
-		 * [AlphaCommerceHub] Will the `MerchantID` and `UserID` values be preserved
-		 * for a particular merchant after switching its account from the test mode to the production one?
-		 * https://mage2.pro/t/4798
-		 * Note 4. [AlphaCommerceHub] Where can a merchant find his `MerchantID` and `UserID` values?
-		 * https://mage2.pro/t/4799
-		 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
+		 * 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
+		 * https://stackoverflow.com/a/35619532
 		 */
-		,'UserId' => $s->privateKey()
+		,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 		/**
 		 * 2017-10-27
 		 * «The date and time of the transaction.
@@ -187,5 +179,18 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://en.wikipedia.org/wiki/Billing_descriptor#Dynamic_descriptors
 		 */
 		,'TxnDetails' => $this->description()
+		/**
+		 * 2017-10-27
+		 * Note 1. «User id for authentication», String, required.
+		 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented? https://mage2.pro/t/4768
+		 * Note 3.
+		 * [AlphaCommerceHub] Will the `MerchantID` and `UserID` values be preserved
+		 * for a particular merchant after switching its account from the test mode to the production one?
+		 * https://mage2.pro/t/4798
+		 * Note 4. [AlphaCommerceHub] Where can a merchant find his `MerchantID` and `UserID` values?
+		 * https://mage2.pro/t/4799
+		 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
+		 */
+		,'UserId' => $s->privateKey()
 	];}
 }
