@@ -116,7 +116,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * https://mage2.pro/t/4801
 		 * Note 4.  We provide also `TxnDetails` for a long description.
 		 */
-		'MerchantDescriptor' => $s->dsd()
+		'MerchantDescriptor' => $this->text($s->dsd(), 64)
 		/**
 		 * 2017-10-27
 		 * Note 1.
