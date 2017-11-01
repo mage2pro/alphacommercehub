@@ -3,6 +3,13 @@ namespace Dfe\AlphaCommerceHub;
 // 2017-10-25
 final class Method extends \Df\PaypalClone\Method {
 	/**
+	 * 2017-11-01
+	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
+	 * @return string|null
+	 */
+	function option() {return $this->iia(self::$II_OPTION);}
+
+	/**
 	 * 2017-10-27
 	 * «The amount fields are defined as fixed format 14,3 length.
 	 * This allows for three exponent currencies such as OMR (Omani Rial) to be supported
@@ -31,4 +38,20 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @return null
 	 */
 	protected function amountLimits() {return null;}
+
+	/**
+	 * 2017-11-01
+	 * @override
+	 * @see \Df\Payment\Method::iiaKeys()
+	 * @used-by \Df\Payment\Method::assignData()
+	 * @return string[]
+	 */
+	protected function iiaKeys() {return [self::$II_OPTION];}
+
+	/**
+	 * 2017-11-01 https://github.com/mage2pro/core/blob/2.12.17/Payment/view/frontend/web/withOptions.js#L56-L72
+	 * @used-by iiaKeys()
+	 * @used-by option()
+	 */
+	private static $II_OPTION = 'option';
 }

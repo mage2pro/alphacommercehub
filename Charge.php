@@ -93,7 +93,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @used-by \Df\PaypalClone\Charge::p()
 	 * @return array(string => mixed)
 	 */
-	protected function pCharge() {$s = $this->s(); return [
+	protected function pCharge() {$s = $this->s(); $o = $s->options(); return [
 		/**
 		 * 2017-11-01
 		 * Note 1.
@@ -131,8 +131,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * [AlphaCommerceHub] Which codes are used for the
 		 * Visa Checkout, UnionPay Online Payments, and ApplePay payment options?
 		 * https://mage2.pro/t/4811
+		 *
+		 * 2017-11-01
+		 * I have implemented it similar to @see \Dfe\AllPay\Charge::pChoosePayment():
+		 * https://github.com/mage2pro/allpay/blob/1.10.0/Charge.php#L538-L562
 		 */
-		,'Method' => 'ALL'
+		,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
 		/**
 		 * 2017-10-27
 		 * Note 1. «User id for authentication», String, required.
