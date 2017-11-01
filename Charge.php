@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
+use Df\Payment\Init\Action;
 /**
  * 2017-10-27
  * The charge parameters are described
@@ -96,6 +97,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 	protected function pCharge() {$s = $this->s(); $o = $s->options(); return [
 		/**
 		 * 2017-11-01
+		 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
+		 * String(1), optional.
+		 */
+		'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+		/**
+		 * 2017-11-01
 		 * Note 1. «AlphaHPP» → «Paypage Request Reference» → «Request a Paypage Session»
 		 * «The language the customer selected on the merchants site.
 		 * For example `EN` for English, `DE` for German.
@@ -106,7 +113,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * Note 2. «AlphaHPP» → «Paypage Request Reference» → «Supported Languages»
 		 * http://developer.alphacommercehub.com.au/docs/alphahpp-#supported-languages
 		 */
-		'Language' => df_lang(df_visitor_locale())
+		,'Language' => df_lang(df_visitor_locale())
 		/**
 		 * 2017-11-01
 		 * Note 1.

@@ -268,9 +268,32 @@ contain some other symbols.</p>
 					<depends><field id='enable'>1</field></depends>
 				</field>
 				<field
-					id='description'
+					id='actionForNew'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='26'
+					translate='label'
+					type='select'
+				>
+					<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
+					<depends><field id='enable'>1</field></depends>
+					<label>Payment Action for a New Customer</label>
+					<source_model>Df\Payment\Source\ACR</source_model>
+				</field>
+				<field
+					id='actionForReturned'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='27'
+					translate='label'
+					type='select'
+				>
+					<depends><field id='enable'>1</field></depends>
+					<label>Payment Action for a Returned Customer</label>
+					<source_model>Df\Payment\Source\ACR</source_model>
+				</field>
+				<field
+					id='description'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='28'
 					translate='label'
 					type='textarea'
 				>
@@ -285,7 +308,7 @@ because the value can contain variables, so do not know the real length here. --
 				<field
 					id='dsd'
 					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='27'
+					sortOrder='29'
 					translate='label'
 					type='text'
 				>
@@ -298,7 +321,7 @@ because the value can contain variables, so do not know the real length here. --
 					id='requireBillingAddress'
 					translate='label'
 					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='28'
+					sortOrder='30'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -312,7 +335,7 @@ because the value can contain variables, so do not know the real length here. --
 					id='min_order_total'
 					translate='label'
 					type='text'
-					sortOrder='29'
+					sortOrder='31'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -326,7 +349,7 @@ because the value can contain variables, so do not know the real length here. --
 					id='max_order_total'
 					translate='label'
 					type='text'
-					sortOrder='30'
+					sortOrder='32'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -340,7 +363,7 @@ because the value can contain variables, so do not know the real length here. --
 					id='country_restriction'
 					translate='label'
 					type='select'
-					sortOrder='31'
+					sortOrder='33'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
@@ -353,7 +376,7 @@ because the value can contain variables, so do not know the real length here. --
 					id='countries'
 					translate='label'
 					type='Df\Framework\Form\Element\Multiselect'
-					sortOrder='32'
+					sortOrder='34'
 					showInDefault='1'
 					showInWebsite='1'
 					showInStore='1'
