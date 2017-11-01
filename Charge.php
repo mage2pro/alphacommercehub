@@ -106,7 +106,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * Note 2. «AlphaHPP» → «Paypage Request Reference» → «Supported Languages»
 		 * http://developer.alphacommercehub.com.au/docs/alphahpp-#supported-languages
 		 */
-		'Language' => 'EN'
+		'Language' => df_lang(df_visitor_locale())
 		/**
 		 * 2017-11-01
 		 * Note 1.
