@@ -101,6 +101,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * String(1), optional.
 		 */
 		'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+		/**
+		 * 2017-11-01
+		 * «A customer identifier assigned by the merchant». String(20), optional.
+		 * Should `CustomerID` be unique or not? https://mage2.pro/t/4854
+		 */
+		,'CustomerID' => $this->customerEmail()
 		// 2017-11-01 «The customers IP address» String(15), optional.
 		,'IPAddress' => df_visitor_ip()
 		/**
