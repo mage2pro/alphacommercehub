@@ -98,14 +98,19 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @return array(string => mixed)
 	 */
 	protected function pCharge() {
+		/** @var S $s */ $s = $this->s();
+		/** @var Options $o */ $o = $s->options();
 		/**
 		 * 2017-11-01
 		 * «Whether the `Street1`, `Street2`, `City`, `Zip`, `Country` parameters
 		 * are related to a shipping address, or to a billing address?» https://mage2.pro/t/4855
+		 * 2017-11-02
+		 * An order/quote can be without a shipping address (consist of the Virtual products).
+		 * In this case $sa is an empty object.
+		 * https://en.wikipedia.org/wiki/Null_object_pattern
+		 * @var OA $sa
 		 */
-		/** @var OA $sa */$sa = $this->addressS();
-		/** @var S $s */ $s = $this->s();
-		/** @var Options $o */ $o = $s->options();
+		$sa = $this->addressS(true);
 		return [
 			/**
 			 * 2017-11-01
@@ -115,6 +120,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 			'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
 			// 2017-11-01 «The customers City». String(25), optional.
 			,'City' => $this->text($sa->getCity(), 25)
+			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
+			,'Country' => $sa->getCountryId()
 			/**
 			 * 2017-11-01
 			 * «A customer identifier assigned by the merchant». String(20), optional.
@@ -181,6 +188,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 			,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
 			// 2017-11-01 «A social or tax id for the customer». String(20), optional.
 			,'SocialID' => $this->customerVAT()
+			// 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
+			,'State' => $this->text($s->dsd(), 50)
 			// 2017-11-01 «The first line of the customers street address». String(100), optional.
 			,'Street1' => $this->text($sa->getStreet(1), 100)
 			// 2017-11-01 «The second line of the customers street address». String(100), optional.
