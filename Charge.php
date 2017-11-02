@@ -114,11 +114,23 @@ final class Charge extends \Df\PaypalClone\Charge {
 		return [
 			/**
 			 * 2017-11-02
+			 * Note 1.
+			 * «If a merchant configured for 3D Secure wants to bypass it for a transaction they may send ‘Y’.»
+			 * Note 2.
+			 * «What will happen if a not configured for 3D Secure merchant
+			 * will pass `3DSecureBypass = Y` in an AlphaHPP request?» https://mage2.pro/t/4857
+			 * Note 3.
+			 * «Is `Y` the only allowed value of the `3DSecureBypass` parameter,
+			 * or `N` (or an empty string) is also allowed?» https://mage2.pro/t/4858
+			 */
+			'3DSecureBypass' => $s->_3ds()->enable_($sa->getCountryId(), $this->o()->getCustomerId()) ? null : 'Y'
+			/**
+			 * 2017-11-02
 			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».
 			 * String, optional.
 			 * Note 2. "What is `CancelURL` («Cancel URL»)" https://mage2.pro/t/4804
 			 */
-			'CancelURL' => $this->customerReturnRemote()
+			,'CancelURL' => $this->customerReturnRemote()
 			/**
 			 * 2017-11-01
 			 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
