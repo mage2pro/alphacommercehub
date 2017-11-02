@@ -105,9 +105,24 @@ https://mage2.pro/t/4798/2
 					<validate>required-entry</validate>
 				</field>
 				<field
-					id='livePrivateKey'
+					id='testPayPagePath'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='6'
+					translate='label'
+				>
+					<label>Test Pay Page Path</label>
+					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
+<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>1</field>
+					</depends>
+				</field>
+				<field
+					id='livePrivateKey'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='7'
 					translate='label'
 					type='obscure'
 				>
@@ -119,6 +134,21 @@ https://mage2.pro/t/4798/2
 						<field id='test'>0</field>
 					</depends>
 					<validate>required-entry</validate>
+				</field>
+				<field
+					id='livePayPagePath'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='8'
+					translate='label'
+				>
+					<label>Live Pay Page Path</label>
+					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
+<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>0</field>
+					</depends>
 				</field>
 				<field
 					id='identification'
