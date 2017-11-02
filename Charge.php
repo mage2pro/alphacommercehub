@@ -137,6 +137,30 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * String(1), optional.
 			 */
 			,'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+			/**
+			 * 2017-11-03
+			 * Note 1.
+			 * «The type of card selected by the user e.g.
+			 * `VISA` or `MASTER` or allows merchant to prepopulate reduced set of cards to display
+			 * by using comma delimiter.
+			 * Current values supported:
+			 * 		`AMEX`
+			 * 		`CUP DINERS`
+			 * 		`JCB`
+			 * 		`MAESTRO`
+			 * 		`MASTER`
+			 * 		`MASTERCARDEBIT`
+			 * 		`VISA`
+			 * 		`VISADEBIT`
+			 * 		`VISAELECTRON`
+			 * ».
+			 * String(50), optional.
+			 * Note 2.
+			 * «Is any practical sense to limit a buyer to particular bank card brands
+			 * by the `CardType` parameter, and disallow to pay with a card of another brand?»
+			 * https://mage2.pro/t/4861
+			 */
+			,'CardType' => null
 			// 2017-11-01 «The customers City». String(25), optional.
 			,'City' => $this->text($sa->getCity(), 25)
 			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
