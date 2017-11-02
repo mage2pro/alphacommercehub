@@ -194,6 +194,17 @@ final class Charge extends \Df\PaypalClone\Charge {
 			,'Street1' => $this->text($sa->getStreet(1), 100)
 			// 2017-11-01 «The second line of the customers street address». String(100), optional.
 			,'Street2' => $this->text($sa->getStreet(2), 100)
+			/**
+			 * 2017-11-02
+			 * Note 1.
+			 * «Allows the merchant to define a different URL the response should be sent to
+			 * from the default configured URL, for example for mobile support».
+			 * String, optional.
+			 * Note 2. "What is `SuccessURL` («Success URL»)?" https://mage2.pro/t/4803
+			 * Note 3. "Whether a customer is redirected to `SuccessURL` or not?" https://mage2.pro/t/4805
+			 * Note 4. "What is «result page» for AlphaHPP?" https://mage2.pro/t/4807
+			 */
+			,'SuccessURL' => $this->customerReturnRemote()
 			// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 			,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 			/**
