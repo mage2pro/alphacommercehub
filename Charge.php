@@ -113,11 +113,18 @@ final class Charge extends \Df\PaypalClone\Charge {
 		$sa = $this->addressS(true);
 		return [
 			/**
+			 * 2017-11-02
+			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».
+			 * String, optional.
+			 * Note 2. "What is `CancelURL` («Cancel URL»)" https://mage2.pro/t/4804
+			 */
+			'CancelURL' => $this->customerReturnRemote()
+			/**
 			 * 2017-11-01
 			 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
 			 * String(1), optional.
 			 */
-			'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+			,'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
 			// 2017-11-01 «The customers City». String(25), optional.
 			,'City' => $this->text($sa->getCity(), 25)
 			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
