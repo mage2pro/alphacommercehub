@@ -98,8 +98,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @return array(string => mixed)
 	 */
 	protected function pCharge() {
-		/** @var S $s */ $s = $this->s();
-		/** @var Options $o */ $o = $s->options();
+		$s = $this->s(); /** @var S $s */
+		$o = $s->options(); /** @var Options $o */
 		/**
 		 * 2017-11-01
 		 * «Whether the `Street1`, `Street2`, `City`, `Zip`, `Country` parameters
@@ -111,7 +111,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * @var OA $sa
 		 */
 		$sa = $this->addressS(true);
-		return [
+		return df_clean([
 			/**
 			 * 2017-11-02
 			 * Note 1.
@@ -283,6 +283,6 @@ final class Charge extends \Df\PaypalClone\Charge {
 			// 2017-11-01
 			// «The customers Zip/Postal code. See note on validated countries.». String(20), optional.
 			,'Zip' => $sa->getPostcode()
-		];
+		]);
 	}
 }
