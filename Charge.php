@@ -3,7 +3,9 @@ namespace Dfe\AlphaCommerceHub;
 use Df\Payment\Init\Action;
 use Df\Payment\Settings\Options;
 use Dfe\AlphaCommerceHub\Settings as S;
+use Magento\Sales\Model\Order as O;
 use Magento\Sales\Model\Order\Address as OA;
+use Magento\Sales\Model\Order\Item as OI;
 /**
  * 2017-10-27
  * The charge parameters are described
@@ -234,6 +236,11 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://github.com/mage2pro/allpay/blob/1.10.0/Charge.php#L538-L562
 			 */
 			,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
+			/**
+			 * 2017-11-03 «Product Line Information»
+			 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
+			 */
+			,'OrderDetails' => $this->pOrderItems()
 			// 2017-11-01 «A social or tax id for the customer». String(20), optional.
 			,'SocialID' => $this->customerVAT()
 			// 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
@@ -290,4 +297,71 @@ final class Charge extends \Df\PaypalClone\Charge {
 			,'Zip' => $sa->getPostcode()
 		]);
 	}
+
+	/**
+	 * 2017-11-03
+	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
+	 * @used-by pOrderItems()
+	 * @param string $name
+	 * @param float $amount  It should be with tax!
+	 * @param int $qty [optional]
+	 * @return array(string => mixed)
+	 */
+	private function pOrderItem($name, $amount, $qty = 1) {return [
+		// 2017-11-03
+		// «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
+		// Integer, optional.
+		'ItemAmount' => $this->cFromDocF($amount)
+		// 2017-11-03 «The name of the product line». String, optional.
+		,'ItemName' => $name
+		// 2017-11-03 «The quantity of the product». Integer, optional.
+		,'ItemQuantity' => $qty
+		/**
+		 * 2017-11-03
+		 * Note 1.
+		 * «Is the product tax exempt or not.
+		 * `TRUE` – the product is tax exempt and AlphaHPP will not calculate tax for the product.»
+		 * String, optional.
+		 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
+		 * Note 2.
+		 * "Whether an `OrderDetails` → `ItemTaxExempt` positive value should be really expressed
+		 * as the «TRUE» string, not as «Y» string (like for other boolean parameters)?"
+		 * https://mage2.pro/t/4871
+		 */
+		,'ItemTaxExempt' => 'TRUE'
+	];}
+
+	/**
+	 * 2017-11-03
+	 * Note 1.
+	 * «Product Line Information»
+	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
+	 * Note 2.
+	 * In which cases does AlphaHPP calculate the shopping cart product contents for a merchant?
+	 * https://mage2.pro/t/4868
+	 * Note 3.
+	 * How does AlphaHPP handle the situation
+	 * when the `Amount` value differs from the amount calculated from `OrderDetails`?
+	 * https://mage2.pro/t/4869
+	 * Note 4.
+	 * Can an `OrderDetails` → `ItemAmount` be negative?
+	 * https://mage2.pro/t/4870
+	 * @used-by pCharge()
+	 * @return array(array(string => string|int))
+	 */
+	private function pOrderItems() {$o = $this->o(); /** @var O $o */ return array_merge(
+		$this->oiLeafs(function(OI $i) {return $this->pOrderItem(
+			$i->getName(), df_oqi_price($i, true, true), df_oqi_qty($i)
+		);})
+		/**
+		 * 2017-10-03
+		 * I need the shipping cost WITH discount and WITH tax.
+		 * `shipping_amount`: it is the shipping cost WITHOUT discount and tax.
+		 * `shipping_tax_amount`: it is the tax.
+		 * `shipping_discount_amount`: it is the discount (a positive value, so I subtract it).
+		 */
+		,[$this->pOrderItem('Shipping',
+			$o->getShippingAmount() - $o->getShippingDiscountAmount() + $o->getShippingTaxAmount()
+		)]
+	);}
 }
