@@ -171,6 +171,11 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Should `CustomerID` be unique or not? https://mage2.pro/t/4854
 			 */
 			,'CustomerID' => $this->customerEmail()
+			// 2017-11-03
+			// «Allows a merchant that is configured for fraud screening
+			// to bypass screening for a particular transaction by passing Y as the value».
+			// String(1), optional, `Y` or `N`.
+			,'FraudCheckBypass' => 'N'
 			// 2017-11-01 «The customers IP address». String(15), optional.
 			,'IPAddress' => df_visitor_ip()
 			/**
