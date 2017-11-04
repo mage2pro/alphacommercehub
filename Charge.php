@@ -246,9 +246,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 			// 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
 			,'State' => $this->text($s->dsd(), 50)
 			// 2017-11-01 «The first line of the customers street address». String(100), optional.
-			,'Street1' => $this->text($sa->getStreet(1), 100)
+			,'Street1' => $this->text($sa->getStreetLine(1), 100)
 			// 2017-11-01 «The second line of the customers street address». String(100), optional.
-			,'Street2' => $this->text($sa->getStreet(2), 100)
+			,'Street2' => $this->text($sa->getStreetLine(2), 100)
 			/**
 			 * 2017-11-02
 			 * Note 1.
