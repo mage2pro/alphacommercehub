@@ -1,7 +1,7 @@
 {
 	"name": "mage2pro/alphacommercehub"
 	,"version": "0.2.4"
-	,"description": "AlphaCommerceHub integration with Magento 2."
+	,"description": "AlphaCommerceHub integration with Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/alphacommercehub"
 	,"license": "The MIT License (MIT)"
