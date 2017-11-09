@@ -1,4 +1,4 @@
-The extension integrates your Magento 2 store with the **[AlphaCommerceHub](http://alphacommercehub.com.au)** payment service (Australia).  
+The extension integrates your Magento 2 based webstore with the **[AlphaCommerceHub](http://alphacommercehub.com.au)** payment service (Australia).  
 
 ## What is AlphaCommerceHub?
 >Australia Post and [Alpha Payments Cloud](https://mage2.pro/t/3218) have launched a joint venture to provide local businesses with access to eCommerce services such as payment processing, anti-fraud technology, loyalty programs, identity management, logistics and consolidated reporting through a single platform.
