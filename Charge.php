@@ -37,6 +37,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 
 	/**
 	 * 2017-10-27 «The customers email address», String(64), optional.
+	 * 2017-11-13
+	 * "The `EmailAddress` AlphaHPP request field is wrongly marked as «Alpha» («alphanumeric»)"
+	 * https://mage2.pro/t/4925
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Email()
 	 * @used-by \Df\PaypalClone\Charge::p()
@@ -175,7 +178,13 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://mage2.pro/t/4861
 			 */
 			,'CardType' => null
-			// 2017-11-01 «The customers City». String(25), optional.
+			//
+			/**
+			 * 2017-11-01 «The customers City». String(25), optional.
+			 * 2017-11-13
+			 * "Are the address fields (`Street1`, `Street2`, `City`, `Zip`, `State`) really alphanumeric?"
+			 * https://mage2.pro/t/4926
+			 */
 			,'City' => $this->text($sa->getCity(), 25)
 			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
 			,'Country' => $sa->getCountryId()
@@ -369,8 +378,17 @@ final class Charge extends \Df\PaypalClone\Charge {
 		// «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
 		// Integer, optional.
 		'ItemAmount' => $this->cFromDocF($amount)
-		// 2017-11-03 «The name of the product line». String, optional.
-		,'ItemName' => $name
+		//
+		/**
+		 * 2017-11-03 «The name of the product line». String, optional.
+		 * 2017-11-13
+		 * It should be «Alpha» («alphanumeric»)
+		 * "[AlphaCommerceHub] What does the «Alpha» type mean?" https://mage2.pro/t/4920
+		 * "[AlphaCommerceHub] What is the full set of characters
+		 * treated as «alphanumeric» in the specification?" https://mage2.pro/t/4921
+		 * So I use @uses text() here.
+		 */
+		,'ItemName' => $this->text($name)
 		// 2017-11-03 «The quantity of the product». Integer, optional.
 		,'ItemQuantity' => $qty
 		/**
