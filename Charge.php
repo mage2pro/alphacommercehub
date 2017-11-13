@@ -178,11 +178,13 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://mage2.pro/t/4861
 			 */
 			,'CardType' => null
-			//
 			/**
 			 * 2017-11-01 «The customers City». String(25), optional.
 			 * 2017-11-13
-			 * "Are the address fields (`Street1`, `Street2`, `City`, `Zip`, `State`) really alphanumeric?"
+			 * @todo "Are the address fields really alphanumeric?
+			 * (`Street1`, `Street2`, `City`, `Zip`, `State`)"
+			 * «So, should the commas, hyphens, brackets be stripped?
+			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
 			 */
 			,'City' => $this->text($sa->getCity(), 25)
@@ -264,11 +266,35 @@ final class Charge extends \Df\PaypalClone\Charge {
 			,'OrderDetails' => $this->pOrderItems()
 			// 2017-11-01 «A social or tax id for the customer». String(20), optional.
 			,'SocialID' => $this->customerVAT()
-			// 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
+			/**
+			 * 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
+			 * 2017-11-13
+			 * @todo "Are the address fields really alphanumeric?
+			 * (`Street1`, `Street2`, `City`, `Zip`, `State`)"
+			 * «So, should the commas, hyphens, brackets be stripped?
+			 * What about non-English letters?»
+			 * https://mage2.pro/t/4926
+			 */
 			,'State' => $this->text($s->dsd(), 50)
-			// 2017-11-01 «The first line of the customers street address». String(100), optional.
+			/**
+			 * 2017-11-01 «The first line of the customers street address». String(100), optional.
+			 * 2017-11-13
+			 * @todo "Are the address fields really alphanumeric?
+			 * (`Street1`, `Street2`, `City`, `Zip`, `State`)"
+			 * «So, should the commas, hyphens, brackets be stripped?
+			 * What about non-English letters?»
+			 * https://mage2.pro/t/4926
+			 */
 			,'Street1' => $this->text($sa->getStreetLine(1), 100)
-			// 2017-11-01 «The second line of the customers street address». String(100), optional.
+			/**
+			 * 2017-11-01 «The second line of the customers street address». String(100), optional.
+			 * 2017-11-13
+			 * @todo "Are the address fields really alphanumeric?
+			 * (`Street1`, `Street2`, `City`, `Zip`, `State`)"
+			 * «So, should the commas, hyphens, brackets be stripped?
+			 * What about non-English letters?»
+			 * https://mage2.pro/t/4926
+			 */
 			,'Street2' => $this->text($sa->getStreetLine(2), 100)
 			/**
 			 * 2017-11-02
@@ -323,7 +349,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 			/**
 			 * 2017-10-27
 			 * Note 1. «User id for authentication», String, required.
-			 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented? https://mage2.pro/t/4768
+			 * Note 2. [AlphaCommerceHub] How is the APIs authentication security implemented?
+			 * https://mage2.pro/t/4768
 			 * Note 3.
 			 * [AlphaCommerceHub] Will the `MerchantID` and `UserID` values be preserved
 			 * for a particular merchant after switching its account from the test mode to the production one?
@@ -333,9 +360,17 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 5. AlphaCommerceHub does not use signatures. `UserId` is really a merchant password.
 			 */
 			,'UserId' => $s->privateKey()
-			// 2017-11-01
-			// «The customers Zip/Postal code. See note on validated countries.». String(20), optional.
-			,'Zip' => $sa->getPostcode()
+			/**
+			 * 2017-11-01
+			 * «The customers Zip/Postal code. See note on validated countries.». String(20), optional.
+			 * 2017-11-13
+			 * @todo "Are the address fields really alphanumeric?
+			 * (`Street1`, `Street2`, `City`, `Zip`, `State`)"
+			 * «So, should the commas, hyphens, brackets be stripped?
+			 * What about non-English letters?»
+			 * https://mage2.pro/t/4926
+			 */
+			,'Zip' => $this->text($sa->getPostcode())
 		]);
 	}
 
