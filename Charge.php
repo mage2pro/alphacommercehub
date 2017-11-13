@@ -124,8 +124,20 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 3.
 			 * «Is `Y` the only allowed value of the `3DSecureBypass` parameter,
 			 * or `N` (or an empty string) is also allowed?» https://mage2.pro/t/4858
+			 *
+			 * 2017-11-04
+			 * AlphaHPP 3D Secure: «No Processor flow found for Transaction type: EnrolCheck»:
+			 * https://github.com/mage2pro/alphacommercehub/issues/7
+			 *
+			 * 2017-11-13
+			 * «Today I have got a response from the AlphaCommerceHub team:
+			 * I didn't set-up the merchant, the `EnrolCheck` process flow was missing.
+			 * Has been added but there is another configuration step of 3D Secure certs needed
+			 * which I need one of my colleagues in Dublin to get later today.»
+			 * https://github.com/mage2pro/alphacommercehub/issues/7#issuecomment-343819432
 			 */
-			'3DSecureBypass' => $s->_3ds()->enable_($sa->getCountryId(), $this->o()->getCustomerId()) ? null : 'Y'
+			'3DSecureBypass' => 'Y'
+			//$s->_3ds()->enable_($sa->getCountryId(), $this->o()->getCustomerId()) ? null : 'Y'
 			/**
 			 * 2017-11-02
 			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».
@@ -138,7 +150,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
 			 * String(1), optional.
 			 */
-			,'Capture' => Action::singleton($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
+			,'Capture' => Action::sg($this->m())->preconfiguredToCapture() ? 'Y' : 'N'
 			/**
 			 * 2017-11-03
 			 * Note 1.
@@ -277,6 +289,26 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * We provide also `MerchantDescriptor` for a very short description:
 			 * e.g., it is used as a dynamic statement descriptor for the bank card payment option:
 			 * https://en.wikipedia.org/wiki/Billing_descriptor#Dynamic_descriptors
+			 * 2017-11-04
+			 * AlphaHPP 3D Secure: «Request failed, format error: TxnDetails»:
+			 * https://github.com/mage2pro/alphacommercehub/issues/6
+			 * 2017-11-13
+			 * Note 1.
+			 * «This field is only accepting alphanumerics.
+			 * The brackets are not supported.
+			 * We will look to extend this field for special characters
+			 * but for now please remove the brackets and comma from your test string.»
+			 * https://github.com/mage2pro/alphacommercehub/issues/6#issuecomment-343819287
+			 * Note 2.
+			 * "Is it normal that AlphaCommerceHub treats a bracket
+			 * in a payment description or in a product name as a critical error,
+			 * and rejects the whole payment?" https://mage2.pro/t/4922
+			 * Note 3.
+			 * "The maximum length of a payment description (`TxnDetails`) is 2000 characters"
+			 * https://mage2.pro/t/4852
+			 * Note 4. "What does the «Alpha» type mean?" https://mage2.pro/t/4920
+			 * Note 5. "What is the full set of characters treated as «alphanumeric» in the specification?"
+			 * https://mage2.pro/t/4921
 			 */
 			,'TxnDetails' => $this->description()
 			/**
@@ -297,6 +329,31 @@ final class Charge extends \Df\PaypalClone\Charge {
 			,'Zip' => $sa->getPostcode()
 		]);
 	}
+
+	/**
+	 * 2017-11-13
+	 * Note 1.
+	 * «This field is only accepting alphanumerics.
+	 * The brackets are not supported.
+	 * We will look to extend this field for special characters
+	 * but for now please remove the brackets and comma from your test string.»
+	 * https://github.com/mage2pro/alphacommercehub/issues/6#issuecomment-343819287
+	 * Note 2.
+	 * "Is it normal that AlphaCommerceHub treats a bracket
+	 * in a payment description or in a product name as a critical error,
+	 * and rejects the whole payment?" https://mage2.pro/t/4922
+	 * Note 3. "What does the «Alpha» type mean?" https://mage2.pro/t/4920
+	 * Note 4. "What is the full set of characters treated as «alphanumeric» in the specification?"
+	 * https://mage2.pro/t/4921
+	 * @override
+	 * @see \Df\Payment\Charge::textFilter()
+	 * @used-by \Df\Payment\Charge::text()
+	 * @param string $s
+	 * @return string
+	 */
+	protected function textFilter($s) {return preg_replace("#[^a-zA-Z0-9\s]+#", '',
+		str_replace('-', ' ', df_translit($s))
+	);}
 
 	/**
 	 * 2017-11-03
