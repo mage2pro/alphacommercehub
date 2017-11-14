@@ -3,6 +3,24 @@ namespace Dfe\AlphaCommerceHub;
 // 2017-10-25
 final class Method extends \Df\PaypalClone\Method {
 	/**
+	 * 2017-11-14
+	 * "The last amounts digit should be 0 for all currencies except JPY and OMR":
+	 * https://github.com/mage2pro/alphacommercehub/issues/14
+	 * @override
+	 * @see \Df\Payment\Method::amountFormat()
+	 * @used-by \Df\Payment\ConfigProvider::config()
+	 * @used-by \Df\Payment\Operation::amountFormat()
+	 * @used-by \Df\StripeClone\Method::_refund()
+	 * @used-by \Df\StripeClone\Method::charge()
+	 * @param float $a
+	 * @return float|int|string
+	 */
+	function amountFormat($a) {
+		$r = parent::amountFormat($a); /** @var int $r */
+		return in_array($this->cPayment(), ['JPY', 'OMR']) ? $r : 10 * round($r / 10);
+	}
+	
+	/**
 	 * 2017-11-01
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 * @return string|null
