@@ -4,8 +4,13 @@ namespace Dfe\AlphaCommerceHub;
 final class Method extends \Df\PaypalClone\Method {
 	/**
 	 * 2017-11-14
-	 * "The last amounts digit should be 0 for all currencies except JPY and OMR":
-	 * https://github.com/mage2pro/alphacommercehub/issues/14
+	 * Note 1.
+	 * "The last 3 digits of every payment amount should be «000» in the test mode for Westpac":
+	 * https://github.com/mage2pro/alphacommercehub/issues/17
+	 * Note 2.
+	 * SecurePay (another Australian payment service provider, I have already integrated it with Magento 2)
+	 * has a similar rule: @see \Dfe\SecurePay\Method::amountFormat()
+	 * https://github.com/mage2pro/securepay/blob/1.6.5/Method.php#L7-L26
 	 * @override
 	 * @see \Df\Payment\Method::amountFormat()
 	 * @used-by \Df\Payment\ConfigProvider::config()
@@ -16,8 +21,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @return float|int|string
 	 */
 	function amountFormat($a) {
-		$r = parent::amountFormat($a); /** @var int $r */
-		return in_array($this->cPayment(), ['JPY', 'OMR']) ? $r : 10 * round($r / 10);
+		$r = round($a * 1000); /** @var int $r */
+		return !$this->test() ? $r : 1000 * round($r / 1000);
 	}
 	
 	/**
@@ -42,7 +47,6 @@ final class Method extends \Df\PaypalClone\Method {
 	 * http://alpha.pwstaging.com.au/docs/alphahpp#handling-amounts
 	 * @override
 	 * @see \Df\Payment\Method::amountFactor()
-	 * @used-by \Df\Payment\Method::amountFormat()
 	 * @used-by \Df\Payment\Method::amountParse()
 	 * @return int
 	 */
