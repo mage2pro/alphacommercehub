@@ -404,15 +404,15 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
 	 * @used-by pOrderItems()
 	 * @param string $name
-	 * @param float $amount  It should be with tax!
+	 * @param int $amountF
 	 * @param int $qty [optional]
 	 * @return array(string => mixed)
 	 */
-	private function pOrderItem($name, $amount, $qty = 1) {return [
+	private function pOrderItem($name, $amountF, $qty = 1) {return [
 		// 2017-11-03
 		// «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
 		// Integer, optional.
-		'ItemAmount' => $this->cFromDocF($amount)
+		'ItemAmount' => $amountF
 		//
 		/**
 		 * 2017-11-03 «The name of the product line». String, optional.
@@ -459,19 +459,67 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @used-by pCharge()
 	 * @return array(array(string => string|int))
 	 */
-	private function pOrderItems() {$o = $this->o(); /** @var O $o */ return array_merge(
-		$this->oiLeafs(function(OI $i) {return $this->pOrderItem(
-			$i->getName(), df_oqi_price($i, true, true), df_oqi_qty($i)
-		);})
+	private function pOrderItems() {
+		$o = $this->o(); /** @var O $o */
+		$r = array_merge(
+			$this->oiLeafs(function(OI $i) {return $this->pOrderItem(
+				$i->getName(), $this->cFromDocF(df_oqi_price($i, true, true)), df_oqi_qty($i)
+			);})
+			/**
+			 * 2017-10-03
+			 * I need the shipping cost WITH discount and WITH tax.
+			 * `shipping_amount`: it is the shipping cost WITHOUT discount and tax.
+			 * `shipping_tax_amount`: it is the tax.
+			 * `shipping_discount_amount`: it is the discount (a positive value, so I subtract it).
+			 */
+			,[$this->pOrderItem('Shipping', $this->cFromDocF(
+				$o->getShippingAmount() - $o->getShippingDiscountAmount() + $o->getShippingTaxAmount()
+			))]
+		); /** @var array(array(string => mixed)) $r */
 		/**
-		 * 2017-10-03
-		 * I need the shipping cost WITH discount and WITH tax.
-		 * `shipping_amount`: it is the shipping cost WITHOUT discount and tax.
-		 * `shipping_tax_amount`: it is the tax.
-		 * `shipping_discount_amount`: it is the discount (a positive value, so I subtract it).
+		 * 2017-11-14
+		 * Note 1.
+		 * We can have a mismatch between the `Amount` value and the aggregated order items amounts
+		 * because of the 2 reasons:
+		 * 1) \Dfe\AlphaCommerceHub\Method::amountFormat() uses @see round()
+		 * https://github.com/mage2pro/alphacommercehub/blob/0.2.6/Method.php#L5-L21
+		 * "The last amounts digit should be 0 for all currencies except JPY and OMR":
+		 * https://github.com/mage2pro/alphacommercehub/issues/14
+		 * 2) The Magento's base currency can be different from the current order's currency,
+		 * and in this case we will have conversions and roundings.
+		 *
+		 * An example of such mismatch: https://github.com/mage2pro/alphacommercehub/issues/15
+		 * 		`Amount`: 160710
+		 * 		---------
+		 * 		OrderDetails[0][ItemAmount]: 45550
+		 * 		OrderDetails[0][ItemQuantity]: 2
+		 * 		OrderDetails[1][ItemAmount]: 56940
+		 * 		OrderDetails[1][ItemQuantity]: 1
+		 * 		OrderDetails[2][ItemAmount]: 12650
+		 * 		OrderDetails[2][ItemName]: Shipping
+		 * 		OrderDetails[2][ItemQuantity]: 1
+		 * 		--------
+		 * 		The calculated amount is 160690 != 160710
+		 *
+		 * Because of this potential amounts mismatch, we make an adjustment.
+		 * https://github.com/mage2pro/alphacommercehub/issues/16
+		 *
+		 * Note 2.
+		 * @todo "How does AlphaHPP handle the situation when the `Amount` value differs
+		 * from the amount calculated from `OrderDetails`?" https://mage2.pro/t/4869
 		 */
-		,[$this->pOrderItem('Shipping',
-			$o->getShippingAmount() - $o->getShippingDiscountAmount() + $o->getShippingTaxAmount()
-		)]
-	);}
+		/** @var int $adjustment */
+		if ($adjustment = $this->amountF() - array_sum(array_map(function(array $i) {return
+			$i['ItemQuantity'] * $i['ItemAmount']
+		;}, $r))) {
+			/**
+			 * 2017-11-14
+			 * 1) @todo "Can an `OrderDetails` → `ItemAmount` be negative?" https://mage2.pro/t/4870
+			 * 2) "In which cases does AlphaHPP calculate the shopping cart product contents for a merchant?"
+			 * https://mage2.pro/t/4868
+			 */
+			$r[]= $this->pOrderItem('Adjustment', $adjustment);
+		}
+		return $r;
+	}
 }
