@@ -275,7 +275,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
 			 */
-			,'State' => $this->text($s->dsd(), 50)
+			,'State' => $this->text($sa->getRegion(), 50)
 			/**
 			 * 2017-11-01 «The first line of the customers street address». String(100), optional.
 			 * 2017-11-13
