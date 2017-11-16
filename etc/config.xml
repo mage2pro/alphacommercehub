@@ -44,7 +44,7 @@ for the AlphaHPP's `MerchantTxnID` parameter? https://mage2.pro/t/4842
 					</regex>
 					<max_length>60</max_length>
 				</identification_rules>
-				<optionsAllowed>CC,PP,99,AL,CP,DD,DU,EN,IC,ID,IN,PO,SB,SK,SP</optionsAllowed>
+				<optionsAllowed>CC,PP,PO</optionsAllowed>
 				<optionsDescription><![CDATA[On clicking the «<b>Place Order</b>» button you will be redirected to the AlphaCommerceHub payment page, and the following payment options will be available: {options}.]]></optionsDescription>
 				<optionsDisplayMode>images</optionsDisplayMode>
 				<optionsLocation>magento</optionsLocation>

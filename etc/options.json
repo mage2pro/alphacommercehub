@@ -1,17 +1,5 @@
 {
-	"99": {"countries": "CN", "title": "99Bill"}
-	,"AL": {"title": "Alipay"}
-	,"CC": {"title": "Bank card"}
-	,"CP": {"title": "CUP (GZ/Gnete)"}
-	,"DD": {"title": "Direct Debit/ACH (eCheck in US)"}
-	,"DU": {"countries": "DE", "title": "Direkt-Überweisung"}
-	,"EN": {"countries": "SG", "title": "eNets"}
-	,"IC": {"countries": "KR", "title": "Inicis"}
-	,"ID": {"countries": "NL", "title": "iDEAL"}
-	,"IN": {"title": "Inpay"}
+	"CC": {"title": "Bank card"}
 	,"PO": {"countries": ["AU", "NZ"], "title": "POLi Payments"}
 	,"PP": {"title": "PayPal"}
-	,"SB": {"title": "SOFORT"}
-	,"SK": {"title": "Skrill"}
-	,"SP": {"title": "SafetyPay"}
 }
