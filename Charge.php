@@ -147,7 +147,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * String, optional.
 			 * Note 2. "What is `CancelURL` («Cancel URL»)" https://mage2.pro/t/4804
 			 */
-			,'CancelURL' => $this->customerReturnRemote()
+			,'CancelURL' => $this->callback(null)
 			/**
 			 * 2017-11-01
 			 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
@@ -306,7 +306,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 3. "Whether a customer is redirected to `SuccessURL` or not?" https://mage2.pro/t/4805
 			 * Note 4. "What is «result page» for AlphaHPP?" https://mage2.pro/t/4807
 			 */
-			,'SuccessURL' => $this->customerReturnRemote()
+			,'SuccessURL' => $this->callback(null)
 			// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 			,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 			/**
