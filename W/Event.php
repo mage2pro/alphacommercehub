@@ -61,6 +61,15 @@ final class Event extends \Df\PaypalClone\W\Event {
 	protected function k_status() {return 'Result/ResponseCode';}
 
 	/**
+	 * 2017-11-19 «The description of the result of the event».
+	 * @override
+	 * @see \Df\PaypalClone\W\Event::k_statusT()
+	 * @used-by \Df\PaypalClone\W\Event::statusT()
+	 * @return string|null
+	 */
+	protected function k_statusT() {return 'Result/ResponseMessage';}
+
+	/**
 	 * 2017-11-19 http://developer.alphacommercehub.com.au/docs/alphahpp-#response-codes
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::statusExpected()
