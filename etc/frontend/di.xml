@@ -10,4 +10,5 @@
 			</argument>
 		</arguments>
 	</type>
+	<virtualType name='Dfe\AlphaCommerceHub\Controller\CustomerReturn\Index' type='Df\Payment\W\Action'/>
 </config>
