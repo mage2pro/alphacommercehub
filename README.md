@@ -10,13 +10,13 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 
 ## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
 - The frontend checkout screen:
+    - [in the «**images**» mode](https://mage2.pro/t/topic/4973)
     - [in the «**text**» mode](https://mage2.pro/t/topic/4815)
 - [The backend settings](https://mage2.pro/t/topic/4816)    
 
 ##  [The **pay page** configuration articles](https://mage2.pro/tags/alphacommercehub-pay-page-configuration)
 
 ## How to install
-The extension will be released before 2017-11-16.
 
 ### 1. Free installation service
 Just order my [free installation service](https://mage2.pro/t/3585).
