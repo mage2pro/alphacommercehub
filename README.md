@@ -8,6 +8,9 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 [computerworld.com.au/article/626082/aus-post-partners-fintech-ecommerce-hub](https://www.computerworld.com.au/article/626082/aus-post-partners-fintech-ecommerce-hub)
 [twitter.com/AlphaFintech/status/897827890728972288](https://twitter.com/AlphaFintech/status/897827890728972288)
 
+## [Demo videos](https://www.youtube.com/playlist?list=PLTq8uOpBQGsFXcazPVhagNxV8Wb77ggoT)
+1. [Capture a bank card payment](https://www.youtube.com/watch?v=kKrIZWvHLcA) ([0.3.5](https://github.com/mage2pro/alphacommercehub/releases/tag/0.3.5))
+
 ## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
 - The frontend checkout screen:
     - [in the «**images**» mode](https://mage2.pro/t/topic/4973)
