@@ -1,17 +1,36 @@
 // 2017-10-28
-// I show the payment options in 2 columns,
-// and these columns look better while their composite width is limited by 40em.
-.payment-method.dfe_alpha_commerce_hub {max-width: 40em;}
+// I show the payment options in 3 columns,
+// and these columns look better while their composite width is limited by 50em.
+.payment-method.dfe_alpha_commerce_hub {max-width: 50em;}
 // 2017-10-28 [AlphaCommerceHub] The payment options codes: https://mage2.pro/t/4809
 form.dfe_alpha_commerce_hub {
 	@media (min-width: 570px) {
 		ul.df-options {
-			-moz-column-count: 2;
-			-webkit-column-count: 2;
-			column-count: 2;
-			-moz-column-gap: 2em;
-			-webkit-column-gap: 2em;
-			column-gap: 2em;
+			-moz-column-count: 3;
+			-webkit-column-count: 3;
+			column-count: 3;
+			-moz-column-gap: 0.5em;
+			-webkit-column-gap: 0.5em;
+			column-gap: 0.5em;
 		}
+	}
+	// 2017-11-19
+	// This style is set when the «Payment options display mode» option has the «images» value.
+	// @see Df_Payment/withOptions::containerCss():
+	//		'withOptions-displayMode-' + this.config('optionsDisplayMode')
+	.withOptions-displayMode-images & {
+		.df-choice label {
+			background-position: center;
+			background-repeat: no-repeat;
+			color: transparent;
+			display: inline-block;
+			height: 50px;
+		}
+		// 2017-11-19 Bank Card
+		.df-option-CC label {background-image: url('./i/bank-card.png'); width: 162px;}
+		// 2017-11-19 PayPal
+		.df-option-PP label {background-image: url('./i/paypal.png'); width: 172px; height: 42px;}
+		// 2017-11-19 POLi Payments
+		.df-option-PO label {background-image: url('./i/poli-payments.png'); width: 101px; }
 	}
 }
