@@ -22,5 +22,6 @@ class Info extends \Df\Payment\Block\Info {
 		 * https://github.com/mage2pro/alphacommercehub/issues/41
 		 */
 		$this->siEx('AlphaCommerceHub ID', $e->idE());
+		$this->si('Payment Option', $this->choiceT());
 	}
 }

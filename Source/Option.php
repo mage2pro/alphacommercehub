@@ -16,9 +16,10 @@ final class Option extends \Df\Config\Source {
 	 * @override
 	 * @see \Df\Config\Source::map()
 	 * @used-by \Df\Config\Source::toOptionArray()
+	 * @used-by \Dfe\AlphaCommerceHub\Choice::title()
 	 * @return array(string => string)
 	 */
-	protected function map() {return df_sort_names(array_map(
+	function map() {return df_sort_names(array_map(
 		function(array $a) {return $a['title'];}, df_module_json($this, 'options')
 	));}
 }
