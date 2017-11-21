@@ -3,6 +3,27 @@ namespace Dfe\AlphaCommerceHub\W;
 // 2017-11-18 https://mage2.pro/tags/alphacommercehub-api-response
 final class Reader extends \Df\Payment\W\Reader {
 	/**
+	 * 2017-11-22
+	 * "PayPal: implement the `PaymentStatus` transaction":
+	 * https://github.com/mage2pro/alphacommercehub/issues/48
+	 * @override
+	 * @see \Df\Payment\W\Reader::_construct()
+	 * @used-by \Df\Payment\W\Reader::__construct()
+	 */
+	protected function _construct() {
+		// 2017-11-22 "A `SuccessURL` response to a PayPal payment": https://mage2.pro/t/4953
+		if ($this->r('token') && $this->r('PayerID')) {
+			/**
+			 * 2017-11-22
+			 * 1) "The PayPal's `PaymentStatus` transaction is undocumented":
+			 * https://github.com/mage2pro/alphacommercehub/issues/52
+			 * 2) "Where are the request and response parameters specification
+			 * for the PayPal's `PaymentStatus` transaction?" https://mage2.pro/t/4991
+			 */
+		}
+	}
+
+	/**
 	 * 2017-11-18
 	 * @override
 	 * @see \Df\Payment\W\Reader::http()
