@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub\W;
+use Df\Payment\W\Exception\Critical;
 // 2017-11-18 https://mage2.pro/tags/alphacommercehub-api-response
 final class Reader extends \Df\Payment\W\Reader {
 	/**
@@ -20,6 +21,11 @@ final class Reader extends \Df\Payment\W\Reader {
 			 * 2) "Where are the request and response parameters specification
 			 * for the PayPal's `PaymentStatus` transaction?" https://mage2.pro/t/4991
 			 */
+			throw new Critical($this->m(), $this,
+				"A `SuccessURL` response to a PayPal payment is not yet handled, "
+				."because the PayPal's `PaymentStatus` transaction is undocumented: "
+				."https://github.com/mage2pro/alphacommercehub/issues/52"
+			);
 		}
 	}
 
