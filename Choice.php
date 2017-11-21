@@ -15,9 +15,10 @@ final class Choice extends \Df\Payment\Choice {
 	/**
 	 * 2017-11-21
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
-	 * @return bool
+	 * @used-by title()
+	 * @return string
 	 */
-	function isBankCard() {return 'CC' === $this->id();}
+	function id() {return $this->req('Method');}
 
 	/**
 	 * 2017-11-20
@@ -31,12 +32,4 @@ final class Choice extends \Df\Payment\Choice {
 	 * @return Phrase|string|null
 	 */
 	function title() {return dfc($this, function() {return dftr($this->id(), Opt::s()->map());});}
-
-	/**
-	 * 2017-11-21
-	 * @used-by isBankCard()
-	 * @used-by title()
-	 * @return string
-	 */
-	private function id() {return $this->req('Method');}
 }

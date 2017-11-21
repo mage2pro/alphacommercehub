@@ -8,6 +8,13 @@ use Magento\Sales\Model\Order\Payment\Transaction as T;
  */
 final class Event extends \Df\PaypalClone\W\Event {
 	/**
+	 * 2017-11-21
+	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
+	 * @return string
+	 */
+	function currencyName() {return df_currency_name($this->r('Result/Currency'));}
+
+	/**
 	 * 2017-11-18
 	 * AlphaCommerceHub does not uses signatures for an unknown reason.
 	 * "How should my extension check whether an AlphaHPP's response message

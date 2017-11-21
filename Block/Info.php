@@ -33,12 +33,38 @@ class Info extends \Df\Payment\Block\Info {
 		 * 2) "What is the recommended way to detect the chosen payment option
 		 * from a `CancelURL` response?" https://mage2.pro/t/4979
 		 */
-		if ($this->choice()->isBankCard()) {
-			$this->si([
-				'Card Number' => "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})"
-				,'Cardholder' => $e->r('Result/CardHolder')
-			]);
-			$this->siEx(['Issuer Country' => df_country_ctn($e->r('PaymentInfo/PaymentIssuerCountry'))]);
+		/** @var string $choiceId */
+		switch ($choiceId = $this->choice()->id()) {
+			case 'CC':
+				/**
+				 * 2017-11-21
+				 * "Show the cardholder and bank card information in the Magento's «Payment Information» blocks
+				 * (backend, frontend, emails)": https://github.com/mage2pro/alphacommercehub/issues/38
+				 */
+				$this->si([
+					'Card Number' => "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})"
+					,'Cardholder' => $e->r('Result/CardHolder')
+				]);
+				$this->siEx(['Issuer Country' => df_country_ctn($e->r('PaymentInfo/PaymentIssuerCountry'))]);
+				break;
+			case 'PP':
+				/**
+				 * 2017-11-21
+				 * "Show the `PayerID` and `token` response parameters for a successful PayPal payment
+				 * in the Magento's backend «Payment Information» block":
+				 * https://github.com/mage2pro/alphacommercehub/issues/45
+				 */
+				$this->siEx(['PayerID' => $e->r('PayerID'), 'token' => $e->r('EC-5P235520W1795473P')]);
+				break;
+		}
+		/**
+		 * 2017-11-21
+		 * "Show the used payment currency in the Magento's «Payment Information» blocks
+		 * (backend, frontend, emails) for bank card payments and POLi Payment payments":
+		 * https://github.com/mage2pro/alphacommercehub/issues/44
+		 */
+		if (in_array($choiceId, ['CC', 'PO'])) {
+			$this->si('Payment Currency', $e->currencyName());
 		}
 	}
 }
