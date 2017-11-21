@@ -1,9 +1,11 @@
 <?php
 namespace Dfe\AlphaCommerceHub\Block;
+use Dfe\AlphaCommerceHub\Choice;
 use Dfe\AlphaCommerceHub\W\Event;
 /**
  * 2017-11-19
  * @final Unable to use the PHP «final» keyword here because of the M2 code generation.
+ * @method Choice choice()
  * @method Event|string|null e(...$k)
  */
 class Info extends \Df\Payment\Block\Info {
@@ -23,5 +25,20 @@ class Info extends \Df\Payment\Block\Info {
 		 */
 		$this->siEx('AlphaCommerceHub ID', $e->idE());
 		$this->si('Payment Option', $this->choiceT());
+		$this->tm()->responseF();
+		/**
+		 * 2017-11-21
+		 * 1) "What is the recommended way to detect the chosen payment option
+		 * from a `SuccessURL` response?" https://mage2.pro/t/4978
+		 * 2) "What is the recommended way to detect the chosen payment option
+		 * from a `CancelURL` response?" https://mage2.pro/t/4979
+		 */
+		if ($this->choice()->isBankCard()) {
+			$this->si([
+				'Card Number' => "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})"
+				,'Cardholder' => $e->r('Result/CardHolder')
+			]);
+			$this->siEx(['Issuer Country' => df_country_ctn($e->r('PaymentInfo/PaymentIssuerCountry'))]);
+		}
 	}
 }

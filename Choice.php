@@ -13,6 +13,13 @@ use Magento\Framework\Phrase;
  */
 final class Choice extends \Df\Payment\Choice {
 	/**
+	 * 2017-11-21
+	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
+	 * @return bool
+	 */
+	function isBankCard() {return 'CC' === $this->id();}
+
+	/**
 	 * 2017-11-20
 	 * @override
 	 * @see \Df\Payment\Choice::title()
@@ -21,8 +28,15 @@ final class Choice extends \Df\Payment\Choice {
 	 * @see \Dfe\AlphaCommerceHub\Charge::pCharge():
 	 * 		'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
 	 * https://github.com/mage2pro/alphacommercehub/blob/0.3.6/Charge.php#L243-L261
-	 * 
 	 * @return Phrase|string|null
 	 */
-	function title() {return dfc($this, function() {return dftr($this->req('Method'), Opt::s()->map());});}
+	function title() {return dfc($this, function() {return dftr($this->id(), Opt::s()->map());});}
+
+	/**
+	 * 2017-11-21
+	 * @used-by isBankCard()
+	 * @used-by title()
+	 * @return string
+	 */
+	private function id() {return $this->req('Method');}
 }
