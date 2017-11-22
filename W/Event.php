@@ -26,8 +26,13 @@ final class Event extends \Df\PaypalClone\W\Event {
 	function validate() {}
 
 	/**
-	 * 2017-11-18 «The APC ID for the payment».
-	 * An example: «104543502».
+	 * 2017-11-18 «The APC ID for the payment». An example: «104543502».
+	 * 2017-11-22
+	 * 1) "Which payment options `SuccessURL` responses contain `PaymentID`, and which do not?":
+	 * https://mage2.pro/t/topic/4996
+	 * 2) POLi Payments: «The request is invalid because the required parameter `Result/PaymentID`
+	 * is absent»: https://github.com/mage2pro/alphacommercehub/issues/55
+	 * 3) A `SuccessURL` response to a POLi Payments payment: https://mage2.pro/t/4961
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_idE()
 	 * @used-by \Df\PaypalClone\W\Event::idE()
