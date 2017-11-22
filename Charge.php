@@ -284,8 +284,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * «So, should the commas, hyphens, brackets be stripped?
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
+			 * 2017-11-22
+			 * "Allow the «#,.-» characters for the `Street1` and `Street2` request fields":
+			 * https://github.com/mage2pro/alphacommercehub/issues/37
+			 * @uses textFilterStreet()
 			 */
-			,'Street1' => $this->text($sa->getStreetLine(1), 100)
+			,'Street1' => $this->text($sa->getStreetLine(1), 100, 'textFilterStreet')
 			/**
 			 * 2017-11-01 «The second line of the customers street address». String(100), optional.
 			 * 2017-11-13
@@ -294,8 +298,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * «So, should the commas, hyphens, brackets be stripped?
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
+			 * 2017-11-22
+			 * "Allow the «#,.-» characters for the `Street1` and `Street2` request fields":
+			 * https://github.com/mage2pro/alphacommercehub/issues/37
+			 * @uses textFilterStreet()
 			 */
-			,'Street2' => $this->text($sa->getStreetLine(2), 100)
+			,'Street2' => $this->text($sa->getStreetLine(2), 100, 'textFilterStreet')
 			/**
 			 * 2017-11-02
 			 * Note 1.
@@ -397,6 +405,18 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 */
 	protected function textFilter($s) {return preg_replace("#[^a-zA-Z0-9\s]+#", '',
 		str_replace('-', ' ', df_translit($s))
+	);}
+
+	/**
+	 * 2017-11-22
+	 * "Allow the «#,.-» characters for the `Street1` and `Street2` request fields":
+	 * https://github.com/mage2pro/alphacommercehub/issues/37
+	 * @used-by pCharge()
+	 * @param string $s
+	 * @return string
+	 */
+	protected function textFilterStreet($s) {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '',
+		df_translit($s)
 	);}
 
 	/**
