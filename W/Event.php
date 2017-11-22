@@ -15,6 +15,15 @@ final class Event extends \Df\PaypalClone\W\Event {
 	function currencyName() {return df_currency_name($this->r('Result/Currency'));}
 
 	/**
+	 * 2017-11-22
+	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
+	 * @param string|null $k
+	 * @param mixed|null $d
+	 * @return string|null|array(string => string)
+	 */
+	function providerRespL($k = null, $d = null) {return dfak(df_last($this->providerResps()), $k, $d);}
+
+	/**
 	 * 2017-11-18
 	 * AlphaCommerceHub does not uses signatures for an unknown reason.
 	 * "How should my extension check whether an AlphaHPP's response message
@@ -29,7 +38,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * 2017-11-18 «The APC ID for the payment». An example: «104543502».
 	 * 2017-11-22
 	 * 1) "Which payment options `SuccessURL` responses contain `PaymentID`, and which do not?":
-	 * https://mage2.pro/t/topic/4996
+	 * https://mage2.pro/t/4996
 	 * 2) POLi Payments: «The request is invalid because the required parameter `Result/PaymentID`
 	 * is absent»: https://github.com/mage2pro/alphacommercehub/issues/55
 	 * 3) A `SuccessURL` response to a POLi Payments payment: https://mage2.pro/t/4961
@@ -97,4 +106,13 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @return int
 	 */
 	protected function statusExpected() {return 1000;}
+
+	/**
+	 * 2017-11-22 «Component capturing 0:N Provider Resp».
+	 * «API Integration Guide(Nov 2017)» → «Supported Integrations» → «Response Message»
+	 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#response-message
+	 * @used-by providerRespL()
+	 * @return array(array(string => string))
+	 */
+	private function providerResps() {return $this->r('ProviderResps', []);}
 }
