@@ -15,6 +15,16 @@ final class Reader extends \Df\Payment\W\Reader {
 		// 2017-11-22 "A `SuccessURL` response to a PayPal payment": https://mage2.pro/t/4953
 		if ($this->r('token') && $this->r('PayerID')) {
 			/**
+			 * 2017-12-01
+			 * "I should save the order's MerchantTxnID to the customer's PHP session
+			 * before redirecting the customer to an AlphaCommerceHub's hosted payment page,
+			 * because AlphaCommerceHub does not provide it in a `SuccessURL` request for a PayPal payment":
+			 * https://github.com/mage2pro/alphacommercehub/issues/62
+			 * @var string $pid
+			 */
+			$pid = df_checkout_session()->getDfPID();
+			// @todo ...
+			/**
 			 * 2017-11-22
 			 * 1) "The PayPal's `PaymentStatus` transaction is undocumented":
 			 * https://github.com/mage2pro/alphacommercehub/issues/52
