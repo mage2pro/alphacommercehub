@@ -25,6 +25,5 @@ final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
 			,'MerchantTxnID' => '1122.2L758'
 			,'Method' => 'PP'
 		]]);
-		xdebug_break();
 	}
 }

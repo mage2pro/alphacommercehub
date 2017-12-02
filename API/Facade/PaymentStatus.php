@@ -15,4 +15,4 @@ namespace Dfe\AlphaCommerceHub\API\Facade;
  * "Why a `SuccessURL` response to a PayPal payment does not contain any information about the buyer?"
  * https://mage2.pro/t/4985
  */
-final class PaymentStatus extends \Df\API\Facade {}
+final class PaymentStatus extends \Dfe\AlphaCommerceHub\API\Facade {}
