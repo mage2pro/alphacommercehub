@@ -5,6 +5,9 @@ use Dfe\AlphaCommerceHub\Method as M;
 final class Client extends \Df\API\Client {
 	/**
 	 * 2017-12-02
+	 * «The AlphaHub API is available in XML and JSON formats»
+	 * «API Integration Guide(Nov 2017)» → «Technical Integration Requirements» → «API Formats»
+	 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#api-formats
 	 * @override
 	 * @see \Df\API\Client::_construct()
 	 * @used-by \Df\API\Client::__construct()
