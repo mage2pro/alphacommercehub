@@ -30,7 +30,7 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * configured by the merchant as the result page.
 	 * Similar to the request hidden parameters are posted
 	 * that inform the merchant of the result of the payment transaction.»
-	 * http://alpha.pwstaging.com.au/docs/alphahpp#technical-integration-requirements
+	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#technical-integration-requirements
 	 * Note 2.
 	 * [AlphaCommerceHub] What is the difference between the «Test» and «Sandbox» environments?
 	 * https://mage2.pro/t/4745

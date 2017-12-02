@@ -65,7 +65,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * 250			JPY			250000
 	 * 250.99		EUR			250990
 	 * 250.999		OMR			250999»
-	 * http://alpha.pwstaging.com.au/docs/alphahpp#handling-amounts
+	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#handling-amounts
 	 * @override
 	 * @see \Df\Payment\Method::amountFactor()
 	 * @used-by \Df\Payment\Method::amountParse()

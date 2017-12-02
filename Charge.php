@@ -10,7 +10,7 @@ use Magento\Sales\Model\Order\Item as OI;
  * 2017-10-27
  * The charge parameters are described
  * in the «AlphaHPP» → «Paypage Request Reference» → «Request a Paypage Session» section
- * of the documentation: http://alpha.pwstaging.com.au/docs/alphahpp#request-a-paypage-session
+ * of the documentation: http://developer.alphacommercehub.com.au/docs/alphahpp-#request-a-paypage-session
  * @method Method m()
  * @method Settings s()
  */
@@ -229,7 +229,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 1.
 			 * «Allows the merchant to specify a statement descriptor for the transaction.
 			 * Please note the narrative supported by different card schemes varies.»
-			 * http://alpha.pwstaging.com.au/docs/alphahpp#request-a-paypage-session
+			 * http://developer.alphacommercehub.com.au/docs/alphahpp-#request-a-paypage-session
 			 * String(64), optional.
 			 * Note 2.
 			 * «[AlphaCommerceHub] Is the `MerchantDescriptor` parameter really accepts up to 64 characters?»
