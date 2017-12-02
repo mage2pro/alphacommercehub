@@ -44,7 +44,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * 		Prod: https://hub.alphacommercehub.com.au/pp/
 	 * »
 	 * https://mage2.pro/t/4775/3
-	 * @used-by \Dfe\AlphaCommerceHub\API\Client::uriBase()
+	 * @used-by \Dfe\AlphaCommerceHub\API\Client::urlBase()
 	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
 	 * @param bool $forRedirection [optional]
 	 * @return string
