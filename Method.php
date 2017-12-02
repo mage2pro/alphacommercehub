@@ -34,7 +34,7 @@ final class Method extends \Df\PaypalClone\Method {
 	function option() {return $this->iia(self::$II_OPTION);}
 
 	/**
-	 * 2017-11-02, 2017-12-02
+	 * 2017-11-02
 	 * «These are the URLs that should be used.
 	 * For API calls:
 	 * 		UAT: https://hubapiuat.alphacommercehub.com.au
@@ -44,6 +44,9 @@ final class Method extends \Df\PaypalClone\Method {
 	 * 		Prod: https://hub.alphacommercehub.com.au/pp/
 	 * »
 	 * https://mage2.pro/t/4775/3
+	 * 2017-12-02
+	 * "Why does the «API Integration Guide(Nov 2017)» recommend to send the API requests
+	 * to an unknown `hub.apcld.net` domain?" https://mage2.pro/t/5034
 	 * @used-by \Dfe\AlphaCommerceHub\API\Client::urlBase()
 	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
 	 * @param bool $forRedirection [optional]
