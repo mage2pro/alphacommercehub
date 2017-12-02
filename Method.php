@@ -52,9 +52,11 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @param bool $forRedirection [optional]
 	 * @return string
 	 */
-	function urlBase($forRedirection) {$api = $forRedirection ? '' : 'api'; return
-		"https://hub{$api}{$this->test('uat', '')}.alphacommercehub.com.au{$this->s()->payPagePath()}"
-	;}
+	function urlBase($forRedirection) {
+		/** @var string $api */ /** @var string $path */
+		list($api, $path) = $forRedirection ? ['', $this->s()->payPagePath()] : ['api', ''];
+		return "https://hub{$api}{$this->test('uat', '')}.alphacommercehub.com.au{$path}";
+	}
 
 	/**
 	 * 2017-10-27
