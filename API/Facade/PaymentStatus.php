@@ -1,6 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\PayPal;
-use Dfe\AlphaCommerceHub\API\Facade\PaymentStatus as PS;
+namespace Dfe\AlphaCommerceHub\API\Facade;
 /**
  * 2017-12-02
  * Note 1. «API Explorer» → «POST PaymentStatus»
@@ -16,15 +15,4 @@ use Dfe\AlphaCommerceHub\API\Facade\PaymentStatus as PS;
  * "Why a `SuccessURL` response to a PayPal payment does not contain any information about the buyer?"
  * https://mage2.pro/t/4985
  */
-final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** @test 2017-12-02 */
-	function t00() {
-		$r = PS::s()->post(['Transaction' => [
-			'Amount' => '161000'
-			,'Currency' => 'AUD'
-			,'MerchantTxnID' => '1122.2L758'
-			,'Method' => 'PP'
-		]]);
-		xdebug_break();
-	}
-}
+final class PaymentStatus extends \Df\API\Facade {}
