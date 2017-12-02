@@ -36,22 +36,10 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * https://mage2.pro/t/4745
 	 * 2017-10-31
 	 * «A pay page URL will be provided in the activation email to the merchant»: https://mage2.pro/t/4785/2
-	 * 2017-11-02
-	 * «These are the URLs that should be used.
-	 * For API calls:
-	 * 		UAT: https://hubapiuat.alphacommercehub.com.au
-	 * 		Prod: https://hubapi.alphacommercehub.com.au
-	 * For HPP calls:
-	 * 		UAT: https://hubuat.alphacommercehub.com.au/pp/
-	 * 		Prod: https://hub.alphacommercehub.com.au/pp/
-	 * »
-	 * https://mage2.pro/t/4775/3
 	 * @override
 	 * @see \Df\Payment\Init\Action::redirectUrl()
 	 * @used-by \Df\Payment\Init\Action::action()
 	 * @return string
 	 */
-	protected function redirectUrl() {return
-		"https://hub{$this->m()->test('uat', '')}.alphacommercehub.com.au{$this->s()->payPagePath()}"
-	;}
+	protected function redirectUrl() {return $this->m()->urlBase(true);}
 }

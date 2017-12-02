@@ -23,7 +23,7 @@ final class Settings extends \Df\Payment\Settings {
 	/**
 	 * 2017-11-02 «Test Pay Page Path» / «Live Pay Page Path»
 	 * "[AlphaCommerceHub] What is a «pay page path»"? https://mage2.pro/t/4856
-	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
+	 * @used-by \Dfe\AlphaCommerceHub\Method::urlBase()
 	 * @return string
 	 */
 	function payPagePath() {return $this->testable();}

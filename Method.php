@@ -1,6 +1,7 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
 // 2017-10-25
+/** @method Settings s() */
 final class Method extends \Df\PaypalClone\Method {
 	/**
 	 * 2017-11-14
@@ -31,6 +32,26 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @return string|null
 	 */
 	function option() {return $this->iia(self::$II_OPTION);}
+
+	/**
+	 * 2017-11-02, 2017-12-02
+	 * «These are the URLs that should be used.
+	 * For API calls:
+	 * 		UAT: https://hubapiuat.alphacommercehub.com.au
+	 * 		Prod: https://hubapi.alphacommercehub.com.au
+	 * For HPP calls:
+	 * 		UAT: https://hubuat.alphacommercehub.com.au/pp/
+	 * 		Prod: https://hub.alphacommercehub.com.au/pp/
+	 * »
+	 * https://mage2.pro/t/4775/3
+	 * @used-by \Dfe\AlphaCommerceHub\API\Client::uriBase()
+	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
+	 * @param bool $forRedirection [optional]
+	 * @return string
+	 */
+	function urlBase($forRedirection) {$api = $forRedirection ? '' : 'api'; return
+		"https://hub{$api}{$this->test('uat', '')}.alphacommercehub.com.au{$this->s()->payPagePath()}"
+	;}
 
 	/**
 	 * 2017-10-27
