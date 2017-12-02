@@ -10,11 +10,15 @@ final class Validator extends \Df\API\Response\Validator {
 	/**
 	 * 2017-10-08
 	 * @override
-	 * @see \Df\API\Exception::long()
+	 * @see \Df\API\Exception::short()
 	 * @used-by \Df\API\Client::_p()
 	 * @return string
 	 */
-	function long() {return "[{$this->code()}] {$this->result('ResponseMessage')}";}
+	function short() {
+		/** @var string|null $c */  /** @var string $m */
+		list($c, $m) = [$this->code(), $this->result('ResponseMessage')];
+		return !$c ? $m : "[$c] $m";
+	}
 
 	/**
 	 * 2017-12-02
@@ -27,16 +31,22 @@ final class Validator extends \Df\API\Response\Validator {
 
 	/**
 	 * 2017-12-02
-	 * @used-by long()
+	 * 2017-13-03
+	 * `ResponseCode` can be absent despite the documentation says it is a mandatory response parameter:
+	 * "The AlphaCommerceHub's response «No Processor flow found for Transaction type: PaymentStatus»
+	 * to a PayPal's `PaymentStatus` transaction does not contain a `ResponseCode`
+	 * despite the documentation says it is a mandatory parameter":
+	 * https://mage2.pro/t/5041
+	 * @used-by short()
 	 * @used-by valid()
-	 * @return string
+	 * @return string|null
 	 */
 	private function code() {return $this->result('ResponseCode');}
 
 	/**
 	 * 2017-12-02
 	 * @used-by code()
-	 * @used-by long(
+	 * @used-by short(
 	 * @param string $k
 	 * @return string|null
 	 */
