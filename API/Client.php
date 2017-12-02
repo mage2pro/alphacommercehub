@@ -5,6 +5,14 @@ use Dfe\AlphaCommerceHub\Method as M;
 final class Client extends \Df\API\Client {
 	/**
 	 * 2017-12-02
+	 * @override
+	 * @see \Df\API\Client::_construct()
+	 * @used-by \Df\API\Client::__construct()
+	 */
+	protected function _construct() {parent::_construct(); $this->reqJson(); $this->resJson();}
+
+	/**
+	 * 2017-12-02
 	 * «To distinguish whether the message content is sent as XML or JSON
 	 * please provide `Content-Type` as either `application/xml` or `application/json`»
 	 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#api-reference
