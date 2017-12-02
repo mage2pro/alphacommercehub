@@ -30,10 +30,16 @@ final class Client extends \Df\API\Client {
 		'Header' => [
 			/**
 			 * 2017-12-02
+			 * «Merchant ID assigned by APC».
+			 * String, required.
+			 */
+			'MerchantID' => $s->merchantID()
+			/**
+			 * 2017-12-02
 			 * «The transaction being executed, for example `AuthPayment` for an Authorization».
 			 * String, required.
 			 */
-			'TransactionType' => $this->path()
+			,'TransactionType' => $this->path()
 			/**
 			 * 2017-12-02
 			 * «The ID for the user making the API request. Assigned by APC.
@@ -41,7 +47,13 @@ final class Client extends \Df\API\Client {
 			 * if they wish to separate permissions for example for refunds to their backend application.»
 			 * String, required.
 			 */
-			,'UserID' => $s->merchantID()
+			,'UserID' => $s->privateKey()
+			/**
+			 * 2017-12-02
+			 * «Version of the Hub API. Current version is 2.»
+			 * String, required.
+			 */
+			,'Version' => '2'
 		]
 	];}
 
