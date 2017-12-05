@@ -24,6 +24,25 @@ final class Event extends \Df\PaypalClone\W\Event {
 	function providerRespL($k = null, $d = null) {return dfak(df_last($this->providerResps()), $k, $d);}
 
 	/**
+	 * 2017-12-05
+	 * Note 1. The type of the current transaction.
+	 * Note 2.
+	 * "If a bank card transaction was just preauthorized (not captured yet),
+	 * then my `SuccessURL` handler should mark it so in Magento (currently it wrongly marks it as captured)":
+	 * https://github.com/mage2pro/alphacommercehub/issues/65
+	 * Note 3.
+	 * "[AlphaCommerceHub] A `SuccessURL` response to a preauthorized (not captured) bank card payment":
+	 * https://mage2.pro/t/5062
+	 * @override
+	 * @see \Df\PaypalClone\W\Event::ttCurrent()
+	 * @used-by \Df\Payment\W\Strategy\ConfirmPending::_handle()
+	 * @used-by \Df\PaypalClone\W\Nav::id()
+	 */
+	function ttCurrent() {return !$this->isSuccessful() ? parent::ttCurrent() : (
+		$this->r('MethodResult/AuthCode') ? self::T_AUTHORIZE : self::T_CAPTURE
+	);}
+
+	/**
 	 * 2017-11-18
 	 * AlphaCommerceHub does not uses signatures for an unknown reason.
 	 * "How should my extension check whether an AlphaHPP's response message
