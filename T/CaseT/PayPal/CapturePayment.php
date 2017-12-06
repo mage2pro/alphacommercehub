@@ -17,12 +17,16 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/4985
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** @test 2017-12-03 */
-	function t00() {
+	/** @test 2017-12-04 */
+	function t00() {}
+
+	/** 2017-12-03 */
+	function t01() {
+		// 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
 		$r = F::s()->post(['Transaction' => [
 			'Amount' => '161000'
 			,'Currency' => 'AUD'
-			,'MerchantTxnID' => '1122.2L758'
+			,'MerchantTxnID' => '1203L.759'
 			,'Method' => 'PP'
 		]], df_class_l($this));
 	}
