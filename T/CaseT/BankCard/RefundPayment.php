@@ -3,14 +3,14 @@ namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
  * 2017-12-06
- * "Implement an ability to capture a preauthorized bank card payment from the Magento backend
- * (the `CapturePayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/60
+ * "Implement an ability to refund a bank card payment from the Magento backend
+ * (the `RefundPayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/61
  */
-final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** @test 2017-12-06 */
+final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+	/** 2017-12-06 */
 	function t00() {}
 
-	/** 2017-12-06 */
+	/** @test 2017-12-06 */
 	function t01() {
 		$r = F::s()->post(['Transaction' => [
 			/**
@@ -36,7 +36,7 @@ final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
 			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
 			 */
-			,'MerchantTxnID' => '1203L.760'
+			,'MerchantTxnID' => '1203L.761'
 			/**
 			 * 2017-12-06
 			 * «The payment method used. See Payment Methods.»

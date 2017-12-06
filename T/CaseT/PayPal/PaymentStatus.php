@@ -17,10 +17,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/4985
  */
 final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-03 */
+	/** @test 2017-12-03 */
 	function t00() {}
 
-	/** @test 2017-12-02 */
+	/** 2017-12-02 */
 	function t01() {
 		$r = F::s()->post(['Transaction' => [
 			'Amount' => '161000'
