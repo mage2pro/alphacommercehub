@@ -3,8 +3,10 @@ namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
  * 2017-12-06
+ * Note 1.
  * "Implement an ability to refund a bank card payment from the Magento backend
  * (the `RefundPayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/61
+ * Note 2. "A response to a `RefundPayment` API request" https://mage2.pro/t/5077
  */
 final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 	/** 2017-12-06 */
@@ -36,7 +38,7 @@ final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
 			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
 			 */
-			,'MerchantTxnID' => '1203L.761'
+			,'MerchantTxnID' => '1206L.762'
 			/**
 			 * 2017-12-06
 			 * «The payment method used. See Payment Methods.»
@@ -46,5 +48,6 @@ final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 */
 			,'Method' => 'CC'
 		]], df_class_l($this));
+		echo $r->j();
 	}
 }
