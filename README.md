@@ -15,6 +15,7 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 - The frontend checkout screen:
     - [in the «**images**» mode](https://mage2.pro/t/topic/4973)
     - [in the «**text**» mode](https://mage2.pro/t/topic/4815)
+- [The backend «**Payment Information**» block for a bank card payment](https://mage2.pro/t/topic/5076)
 - [The backend settings](https://mage2.pro/t/topic/4816)    
 
 ##  [The **pay page** configuration articles](https://mage2.pro/tags/alphacommercehub-pay-page-configuration)
