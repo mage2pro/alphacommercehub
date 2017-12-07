@@ -21,10 +21,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * for a bank card payment" https://mage2.pro/t/5075
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-06 */
+	/** @test 2017-12-06 */
 	function t00() {}
 
-	/** @test 2017-12-06 */
+	/** 2017-12-06 */
 	function t01() {
 		$r = F::s()->post(['Transaction' => [
 			/**
