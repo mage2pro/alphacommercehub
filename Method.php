@@ -21,6 +21,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * https://github.com/mage2pro/securepay/blob/1.6.5/Method.php#L7-L26
 	 * @override
 	 * @see \Df\Payment\Method::amountFormat()
+	 * @used-by _refund()
+	 * @used-by charge()
 	 * @used-by \Df\Payment\ConfigProvider::config()
 	 * @used-by \Df\Payment\Operation::amountFormat()
 	 * @used-by \Df\StripeClone\Method::_refund()
@@ -107,6 +109,80 @@ final class Method extends \Df\PaypalClone\Method {
 	function canRefund() {return true;}
 
 	/**
+	 * 2017-12-07
+	 * "Implement an ability to capture a preauthorized bank card payment from the Magento backend
+	 * (the `CapturePayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/60
+	 * @override
+	 * @see \Df\Payment\Method::charge()
+	 * @used-by \Df\Payment\Method::authorize()
+	 * @used-by \Df\Payment\Method::capture()
+	 * @param bool|null $capture [optional]
+	 */
+	final function charge($capture = true) {
+		df_assert($capture);
+		df_sentry_extra($this, 'Amount', $a = dfp_due($this)); /** @var float $a */
+		df_sentry_extra($this, 'Need Capture?', df_bts($capture));
+		/**
+		 * 2017-11-11
+		 * Despite of its name, @uses \Magento\Sales\Model\Order\Payment::getAuthorizationTransaction()
+		 * simply returns the previous transaction, and it can be not only an `authorization` transaction,
+		 * but a transaction of another type (e.g. `payment`) too.
+		 * https://github.com/mage2pro/core/blob/3.4.2/StripeClone/Method.php#L124-L159
+		 */
+		$tPrev = $this->ii()->getAuthorizationTransaction(); /** @var T|false|null $tPrev */
+		/**
+		 * 2017-11-11
+		 * The @see \Magento\Sales\Api\Data\TransactionInterface::TYPE_AUTH constant
+		 * is absent in Magento < 2.1.0,
+		 * but is present as @uses \Magento\Sales\Model\Order\Payment\Transaction::TYPE_AUTH
+		 * https://github.com/magento/magento2/blob/2.0.0/app/code/Magento/Sales/Model/Order/Payment/Transaction.php#L37
+		 * https://github.com/magento/magento2/blob/2.0.17/app/code/Magento/Sales/Api/Data/TransactionInterface.php
+		 */
+		df_assert($tPrev && T::TYPE_AUTH === $tPrev->getTxnType());
+		$tm = df_tm($this); /** @var TM $tm */
+		df_sentry_extra($this, 'Parent Transaction ID', $txnId = $tPrev->getTxnId()); /** @var string $txnId */
+		df_sentry_extra($this, 'Charge ID', $tid = $this->tid()->i2e($txnId, true)); /** @var string $tid */
+		$r = F::s()->post(['Transaction' => [
+			/**
+			 * 2017-12-06
+			 * «Amount of the payment. Please see note below on formatting of amount for different currencies.»
+			 * Numeric (14,3), conditional.
+			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+			 */
+			'Amount' => $this->amountFormat($a)
+			/**
+			 * 2017-12-06
+			 * «ISO 4217 Currency Code e.g. USD/GBP/EUR»
+			 * String (3), conditional.
+			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+			 */
+			,'Currency' => $tm->req('Currency')
+			/**
+			 * 2017-12-06
+			 * «Internal ID assigned by the merchant to the transaction»
+			 * String, conditional.
+			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+			 */
+			,'MerchantTxnID' => $tm->req('MerchantTxnID')
+		]], 'RefundPayment'); /** @var Operation $r */
+		// 2017-01-12, 2017-12-07
+		// I log only a response to the local log.
+		// I log the both a request and its response to Sentry.
+		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
+		$this->iiaSetTRR($r->req(), $respA);
+		// 2016-12-16
+		// Система в этом сценарии по-умолчанию формирует идентификатор транзации как
+		// «<идентификатор родительской транзации>-capture».
+		// У нас же идентификатор родительской транзации имеет окончание «<-authorize»,
+		// и оно нам реально нужно (смотрите комментарий к ветке else ниже),
+		// поэтому здесь мы окончание «<-authorize» вручную подменяем на «-capture».
+		$this->ii()->setTransactionId($this->tid()->e2i($tid, Ev::T_CAPTURE));
+	}
+
+	/**
 	 * 2017-11-01
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 * @return string|null
@@ -173,11 +249,34 @@ final class Method extends \Df\PaypalClone\Method {
 		if ($tPrev = $ii->getAuthorizationTransaction() /** @var T|false $tPrev */) {
 			$tm = df_tm($this); /** @var TM $tm */
 			$tid = $this->tid()->i2e($tPrev->getTxnId(), true); /** @var string $tid */
-			$pid = $tm->req('MerchantTxnID'); /** @var string $pid */
 			$cm = $ii->getCreditmemo(); /** @var CM|null $cm */
 			if ('CC' === $tm->req('Method')) {
-				/** @var Operation $r */
-				$r = F::s()->post(['Transaction' => ['MerchantTxnID' => $pid]], 'RefundPayment');
+				$r = F::s()->post(['Transaction' => [
+					/**
+					 * 2017-12-06
+					 * «Amount of the payment. Please see note below on formatting of amount for different currencies.»
+					 * Numeric (14,3), conditional.
+					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+					 */
+					'Amount' => $this->amountFormat($amt)
+					/**
+					 * 2017-12-06
+					 * «ISO 4217 Currency Code e.g. USD/GBP/EUR»
+					 * String (3), conditional.
+					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+					 */
+					,'Currency' => $tm->req('Currency')
+					/**
+					 * 2017-12-06
+					 * «Internal ID assigned by the merchant to the transaction»
+					 * String, conditional.
+					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
+					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
+					 */
+					,'MerchantTxnID' => $tm->req('MerchantTxnID')
+				]], 'RefundPayment'); /** @var Operation $r */
 				// 2017-01-12, 2017-12-07
 				// I log only a response to the local log.
 				// I log the both a request and its response to Sentry.
