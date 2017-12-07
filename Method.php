@@ -109,6 +109,27 @@ final class Method extends \Df\PaypalClone\Method {
 	function canRefund() {return true;}
 
 	/**
+	 * 2017-12-08
+	 * @override
+	 * @see \Df\Payment\Method::canVoid()
+	 * @used-by \Magento\Sales\Model\Order\Payment::canVoid():
+	 *		public function canVoid() {
+	 *			if (null === $this->_canVoidLookup) {
+	 *				$this->_canVoidLookup = (bool)$this->getMethodInstance()->canVoid();
+	 *				if ($this->_canVoidLookup) {
+	 *					$authTransaction = $this->getAuthorizationTransaction();
+	 *					$this->_canVoidLookup = (bool)$authTransaction && !(int)$authTransaction->getIsClosed();
+	 *				}
+	 *			}
+	 *			return $this->_canVoidLookup;
+	 *		}
+	 * https://github.com/magento/magento2/blob/2.0.0/app/code/Magento/Sales/Model/Order/Payment.php#L528-L543
+	 * https://github.com/magento/magento2/blob/2.2.1/app/code/Magento/Sales/Model/Order/Payment.php#L562-L578
+	 * @return bool
+	 */
+	function canVoid() {return true;}
+
+	/**
 	 * 2017-12-07
 	 * "Implement an ability to capture a preauthorized bank card payment from the Magento backend
 	 * (the `CapturePayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/60
@@ -118,7 +139,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Df\Payment\Method::capture()
 	 * @param bool|null $capture [optional]
 	 */
-	final function charge($capture = true) {
+	function charge($capture = true) {
 		df_assert($capture);
 		df_sentry_extra($this, 'Amount', $a = dfp_due($this)); /** @var float $a */
 		df_sentry_extra($this, 'Need Capture?', df_bts($capture));
