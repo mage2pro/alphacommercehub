@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub\T\CaseT\PayPal;
+use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
  * 2017-12-02
@@ -27,6 +28,6 @@ final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
 			,'Currency' => 'AUD'
 			,'MerchantTxnID' => '1122.2L758'
 			,'Method' => 'PP'
-		]], df_class_l($this));
+		]], df_class_l($this)); /** @var Op $r */
 	}
 }

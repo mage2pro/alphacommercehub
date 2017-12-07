@@ -1,5 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
+use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
  * 2017-12-06
@@ -45,6 +46,6 @@ final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
 			 */
 			,'Method' => 'CC'
-		]], df_class_l($this));
+		]], df_class_l($this)); /** @var Op $r */
 	}
 }
