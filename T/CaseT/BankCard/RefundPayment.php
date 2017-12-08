@@ -17,6 +17,7 @@ final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 	function t01() {
 		/** @var Op $r */
 		$r = F::s()->post(['Transaction' => ['MerchantTxnID' => '1206L.763']], df_class_l($this));
+		echo df_json_encode($r->req());
 		echo $r->j();
 	}
 }

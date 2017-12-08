@@ -30,5 +30,7 @@ final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			,'MerchantTxnID' => '1203L.759'
 			,'Method' => 'PP'
 		]], df_class_l($this)); /** @var Op $r */
+		echo df_json_encode($r->req());
+		echo $r->j();
 	}
 }

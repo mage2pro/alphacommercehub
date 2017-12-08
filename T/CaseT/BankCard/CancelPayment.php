@@ -10,10 +10,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/5113
  */
 final class CancelPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-08 */
+	/** @test 2017-12-08 */
 	function t00() {}
 
-	/** @test 2017-12-08 */
+	/** 2017-12-08 */
 	function t01() {
 		/** @var Op $r */
 		$r = F::s()->post(['Transaction' => [
@@ -42,6 +42,7 @@ final class CancelPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 */
 			,'MerchantTxnID' => '1208L.768'
 		]], df_class_l($this));
+		echo df_json_encode($r->req());
 		echo $r->j();
 	}
 }
