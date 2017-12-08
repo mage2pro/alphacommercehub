@@ -1,7 +1,10 @@
 <?php
 namespace Dfe\AlphaCommerceHub\API;
-// 2017-12-03
-final class Facade extends \Df\API\Facade {
+/**
+ * 2017-12-03
+ * @see \Dfe\AlphaCommerceHub\API\Facade\BankCard
+ */
+class Facade extends \Df\API\Facade {
 	/**
 	 * 2017-12-03
 	 * @override

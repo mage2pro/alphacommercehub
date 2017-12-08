@@ -3,7 +3,7 @@ namespace Dfe\AlphaCommerceHub;
 use Df\API\Operation;
 use Df\Payment\TM;
 use Df\Payment\W\Event as Ev;
-use Dfe\AlphaCommerceHub\API\Facade as F;
+use Dfe\AlphaCommerceHub\API\Facade\BankCard as fBankCard;
 use Magento\Sales\Model\Order\Creditmemo as CM;
 use Magento\Sales\Model\Order\Payment as OP;
 use Magento\Sales\Model\Order\Payment\Transaction as T;
@@ -21,12 +21,11 @@ final class Method extends \Df\PaypalClone\Method {
 	 * https://github.com/mage2pro/securepay/blob/1.6.5/Method.php#L7-L26
 	 * @override
 	 * @see \Df\Payment\Method::amountFormat()
-	 * @used-by _refund()
-	 * @used-by charge()
 	 * @used-by \Df\Payment\ConfigProvider::config()
 	 * @used-by \Df\Payment\Operation::amountFormat()
 	 * @used-by \Df\StripeClone\Method::_refund()
 	 * @used-by \Df\StripeClone\Method::charge()
+	 * @used-by \Dfe\AlphaCommerceHub\API\Facade\BankCard::op()
 	 * @param float $a
 	 * @return float|int|string
 	 */
@@ -160,40 +159,9 @@ final class Method extends \Df\PaypalClone\Method {
 		 * https://github.com/magento/magento2/blob/2.0.17/app/code/Magento/Sales/Api/Data/TransactionInterface.php
 		 */
 		df_assert($tPrev && T::TYPE_AUTH === $tPrev->getTxnType());
-		$tm = df_tm($this); /** @var TM $tm */
 		df_sentry_extra($this, 'Parent Transaction ID', $txnId = $tPrev->getTxnId()); /** @var string $txnId */
 		df_sentry_extra($this, 'Charge ID', $tid = $this->tid()->i2e($txnId, true)); /** @var string $tid */
-		$r = F::s()->post(['Transaction' => [
-			/**
-			 * 2017-12-06
-			 * «Amount of the payment. Please see note below on formatting of amount for different currencies.»
-			 * Numeric (14,3), conditional.
-			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-			 */
-			'Amount' => $this->amountFormat($a)
-			/**
-			 * 2017-12-06
-			 * «ISO 4217 Currency Code e.g. USD/GBP/EUR»
-			 * String (3), conditional.
-			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-			 */
-			,'Currency' => $tm->req('Currency')
-			/**
-			 * 2017-12-06
-			 * «Internal ID assigned by the merchant to the transaction»
-			 * String, conditional.
-			 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-			 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-			 */
-			,'MerchantTxnID' => $tm->req('MerchantTxnID')
-		]], 'RefundPayment'); /** @var Operation $r */
-		// 2017-01-12, 2017-12-07
-		// I log only a response to the local log.
-		// I log the both a request and its response to Sentry.
-		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
-		$this->iiaSetTRR($r->req(), $respA);
+		$this->transInfo(fBankCard::s()->capture($a));
 		// 2016-12-16
 		// Система в этом сценарии по-умолчанию формирует идентификатор транзации как
 		// «<идентификатор родительской транзации>-capture».
@@ -272,40 +240,24 @@ final class Method extends \Df\PaypalClone\Method {
 			$tid = $this->tid()->i2e($tPrev->getTxnId(), true); /** @var string $tid */
 			$cm = $ii->getCreditmemo(); /** @var CM|null $cm */
 			if ('CC' === $tm->req('Method')) {
-				$r = F::s()->post(['Transaction' => [
-					/**
-					 * 2017-12-06
-					 * «Amount of the payment. Please see note below on formatting of amount for different currencies.»
-					 * Numeric (14,3), conditional.
-					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-					 */
-					'Amount' => $this->amountFormat($amt)
-					/**
-					 * 2017-12-06
-					 * «ISO 4217 Currency Code e.g. USD/GBP/EUR»
-					 * String (3), conditional.
-					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-					 */
-					,'Currency' => $tm->req('Currency')
-					/**
-					 * 2017-12-06
-					 * «Internal ID assigned by the merchant to the transaction»
-					 * String, conditional.
-					 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
-					 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-					 */
-					,'MerchantTxnID' => $tm->req('MerchantTxnID')
-				]], 'RefundPayment'); /** @var Operation $r */
-				// 2017-01-12, 2017-12-07
-				// I log only a response to the local log.
-				// I log the both a request and its response to Sentry.
-				dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
-				$this->iiaSetTRR($r->req(), $respA);
+				/** @uses fBankCard::cancel() */  /** @uses fBankCard::refund() */
+				$this->transInfo(call_user_func([fBankCard::s(), $cm ? 'refund' : 'cancel'], $amt));
 				$ii->setTransactionId($this->tid()->e2i($tid, $cm ? Ev::T_REFUND : 'void'));
 			}
 		}
+	}
+
+	/**
+	 * 2017-12-08
+	 * @used-by _refund()
+	 * @used-by charge()
+	 * @param Operation $r
+	 */
+	private function transInfo(Operation $r) {
+		// 2017-01-12, 2017-12-07
+		// I log the both request and its response to Sentry, but I log only response to the local log.
+		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
+		$this->iiaSetTRR($r->req(), $respA);
 	}
 
 	/**
