@@ -73,17 +73,26 @@ class Info extends \Df\Payment\Block\Info {
 					$this->siEx('POLi Payments ID', $e->providerRespL('ProviderReference'));
 					break;
 				case 'PP':
+					/**
+					 * 2017-12-08
+					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5127
+					 */
 					$this->siEx([
 						/**
 						 * 2017-11-21
 						 * "Show the `WalletID` (`PayerID`) for a successful PayPal payment
 						 * in the Magento's backend «Payment Information» block":
 						 * https://github.com/mage2pro/alphacommercehub/issues/45
-						 * 2017-12-08
-						 * A string like «7EY65DU75L82G»:
-						 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5127
+						 * 2017-12-08 A string like «7EY65DU75L82G».
 						 */
 						'[PayPal] Wallet ID' => $e->r('MethodResult/WalletID')
+						/**
+						 * 2017-12-08
+						 * "Show the PayPal's `PayerDetails`.`Country` (the payer's country)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/72
+						 */
+						,'[PayPal] Country' => df_country_ctn($e->r('PayerDetails/Country'))
 					]);
 					break;
 			}
