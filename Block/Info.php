@@ -75,9 +75,23 @@ class Info extends \Df\Payment\Block\Info {
 				case 'PP':
 					/**
 					 * 2017-12-08
-					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5127
+					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 					 */
+					$pd = $e->r('PayerDetails'); /** @var array(string => string) $pd */
 					$this->siEx([
+						/**
+						 * 2017-12-08
+						 * 1) "Show the PayPal's `PayerDetails`.`CustomerFirstName` (the payer's first name)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/75
+						 * 2) "Show the PayPal's `PayerDetails`.`CustomerName` (the payer's last name)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/76
+						 * 3) "Does the `PayerDetails`.`CustomerName` field
+						 * of a response to the PayPal's `PaymentStatus` API request
+						 * always contain only the last name of the customer?": https://mage2.pro/t/topic/5133
+						 */
+						'[PayPal] Customer' => df_cc_s(dfa($pd, ['CustomerFirstName', 'CustomerName']))
 						/**
 						 * 2017-11-21
 						 * "Show the `WalletID` (`PayerID`) for a successful PayPal payment
@@ -85,28 +99,28 @@ class Info extends \Df\Payment\Block\Info {
 						 * https://github.com/mage2pro/alphacommercehub/issues/45
 						 * 2017-12-08 A string like «7EY65DU75L82G».
 						 */
-						'[PayPal] Wallet ID' => $e->r('MethodResult/WalletID')
+						,'[PayPal] Wallet ID' => $e->r('MethodResult/WalletID')
 						/**
 						 * 2017-12-08
 						 * "Show the PayPal's `PayerDetails`.`Country` (the payer's country)
 						 * in the Magento's backend «Payment Information» block":
 						 * https://github.com/mage2pro/alphacommercehub/issues/72
 						 */
-						,'[PayPal] Country' => df_country_ctn($e->r('PayerDetails/Country'))
+						,'[PayPal] Country' => df_country_ctn(dfa($pd, 'Country'))
 						/**
 						 * 2017-12-09
 						 * "Show the PayPal's `PayerDetails`.`State` (the payer's state/region)
 						 * in the Magento's backend «Payment Information» block":
 						 * https://github.com/mage2pro/alphacommercehub/issues/77
 						 */
-						,'[PayPal] State' => $e->r('PayerDetails/State')
+						,'[PayPal] State' => dfa($pd, 'State')
 						/**
 						 * 2017-12-09
 						 * "Show the PayPal's `PayerDetails`.`City` (the payer's city)
 						 * in the Magento's backend «Payment Information» block":
 						 * https://github.com/mage2pro/alphacommercehub/issues/71
 						 */
-						,'[PayPal] City' => $e->r('PayerDetails/City')
+						,'[PayPal] City' => dfa($pd, 'City')
 						/**
 						 * 2017-12-09
 						 * 1) "Show the PayPal's `PayerDetails`.`Custom1`
@@ -117,7 +131,7 @@ class Info extends \Df\Payment\Block\Info {
 						 * of a response to the PayPal's `PaymentStatus` API request?":
 						 * https://mage2.pro/t/5130
 						 */
-						,'[PayPal] Custom1' => $e->r('PayerDetails/Custom1')
+						,'[PayPal] Custom1' => dfa($pd, 'Custom1')
 						/**
 						 * 2017-12-09
 						 * 1) "Show the PayPal's `PayerDetails`.`Custom2` (the payer's email)
@@ -127,7 +141,7 @@ class Info extends \Df\Payment\Block\Info {
 						 * of a response to the PayPal's `PaymentStatus` API request?":
 						 * https://mage2.pro/t/5132
 						 */
-						,'[PayPal] Custom2' => $e->r('PayerDetails/Custom2')
+						,'[PayPal] Custom2' => dfa($pd, 'Custom2')
 					]);
 					break;
 			}
