@@ -1,7 +1,5 @@
 <?php
 namespace Dfe\AlphaCommerceHub\W;
-use Df\API\Operation as Op;
-use Df\Payment\W\Exception\Critical;
 use Dfe\AlphaCommerceHub\API\Facade\PayPal as fPayPal;
 // 2017-11-18 https://mage2.pro/tags/alphacommercehub-api-response
 final class Reader extends \Df\Payment\W\Reader {
