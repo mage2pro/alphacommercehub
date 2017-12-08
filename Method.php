@@ -194,14 +194,12 @@ final class Method extends \Df\PaypalClone\Method {
 	 * to an unknown `hub.apcld.net` domain?" https://mage2.pro/t/5034
 	 * @used-by \Dfe\AlphaCommerceHub\API\Client::urlBase()
 	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
-	 * @param bool $forRedirection [optional]
+	 * @param bool $hpp [optional]
 	 * @return string
 	 */
-	function urlBase($forRedirection) {
-		/** @var string $api */ /** @var string $path */
-		list($api, $path) = $forRedirection ? ['', $this->s()->payPagePath()] : ['api', ''];
-		return "https://hub{$api}{$this->test('uat', '')}.alphacommercehub.com.au{$path}";
-	}
+	function urlBase($hpp) {$s = $this->s(); /** @var Settings $s */ return 'https://' . implode(
+		$hpp ? [$s->payPageDomain(), $s->payPagePath()] : [$s->apiDomain(), '']
+	);}
 
 	/**
 	 * 2017-12-06

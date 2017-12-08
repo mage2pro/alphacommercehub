@@ -44,6 +44,20 @@ for the AlphaHPP's `MerchantTxnID` parameter? https://mage2.pro/t/4842
 					</regex>
 					<max_length>60</max_length>
 				</identification_rules>
+<!-- 2017-12-09
+1) "Why does the «API Integration Guide(Nov 2017)» recommend to send the API requests
+to an unknown `hub.apcld.net` domain?": https://mage2.pro/t/5034
+2) "Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain":
+https://github.com/mage2pro/alphacommercehub/issues/66
+-->
+				<liveApiDomain>hubapi.alphacommercehub.com.au</liveApiDomain>
+<!-- 2017-12-09
+1) "Why does the «API Integration Guide(Nov 2017)» recommend to send the API requests
+to an unknown `hub.apcld.net` domain?": https://mage2.pro/t/5034
+2) "Provide an ability to a Magento backend user to choose a different AlphaHPP domain":
+https://github.com/mage2pro/alphacommercehub/issues/80
+-->
+				<livePayPageDomain>hub.alphacommercehub.com.au</livePayPageDomain>
 				<optionsAllowed>CC,PP,PO</optionsAllowed>
 				<optionsDescription><![CDATA[On clicking the «<b>Place Order</b>» button you will be redirected to the AlphaCommerceHub payment page, and the following payment options will be available: {options}.]]></optionsDescription>
 				<optionsDisplayMode>images</optionsDisplayMode>
@@ -52,6 +66,20 @@ for the AlphaHPP's `MerchantTxnID` parameter? https://mage2.pro/t/4842
 				<requireBillingAddress>0</requireBillingAddress>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
+<!-- 2017-12-09
+1) "Why does the «API Integration Guide(Nov 2017)» recommend to send the API requests
+to an unknown `hub.apcld.net` domain?": https://mage2.pro/t/5034
+2) "Provide an ability to a Magento backend user to choose a different AlphaHPP domain":
+https://github.com/mage2pro/alphacommercehub/issues/80
+-->
+				<testApiDomain>hubapiuat.alphacommercehub.com.au</testApiDomain>
+<!-- 2017-12-09
+1) "Why does the «API Integration Guide(Nov 2017)» recommend to send the API requests
+to an unknown `hub.apcld.net` domain?": https://mage2.pro/t/5034
+2) "Provide an ability to a Magento backend user to choose a different AlphaHPP domain":
+https://github.com/mage2pro/alphacommercehub/issues/80
+-->
+				<testPayPageDomain>hubuat.alphacommercehub.com.au</testPayPageDomain>
 			</alpha_commerce_hub>
 		</df_payment>
         <payment>

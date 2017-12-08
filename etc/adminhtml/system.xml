@@ -105,6 +105,20 @@ https://mage2.pro/t/4798/2
 					<validate>required-entry</validate>
 				</field>
 				<field
+					id='testPayPageDomain'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='6'
+					translate='label'
+				>
+					<label>Test Pay Page Domain</label>
+					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>1</field>
+					</depends>
+				</field>
+				<field
 					id='testPayPagePath'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='6'
@@ -113,6 +127,20 @@ https://mage2.pro/t/4798/2
 					<label>Test Pay Page Path</label>
 					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
 <br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>1</field>
+					</depends>
+				</field>
+				<field
+					id='testApiDomain'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='6'
+					translate='label'
+				>
+					<label>Test API Domain</label>
+					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
 					<validate>required-entry</validate>
 					<depends>
 						<field id='enable'>1</field>
@@ -136,6 +164,20 @@ https://mage2.pro/t/4798/2
 					<validate>required-entry</validate>
 				</field>
 				<field
+					id='livePayPageDomain'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='8'
+					translate='label'
+				>
+					<label>Live Pay Page Domain</label>
+					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>0</field>
+					</depends>
+				</field>
+				<field
 					id='livePayPagePath'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='8'
@@ -144,6 +186,20 @@ https://mage2.pro/t/4798/2
 					<label>Live Pay Page Path</label>
 					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
 <br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+					<validate>required-entry</validate>
+					<depends>
+						<field id='enable'>1</field>
+						<field id='test'>0</field>
+					</depends>
+				</field>
+				<field
+					id='liveApiDomain'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='8'
+					translate='label'
+				>
+					<label>Live API Domain</label>
+					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
 					<validate>required-entry</validate>
 					<depends>
 						<field id='enable'>1</field>
