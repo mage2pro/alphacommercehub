@@ -9,6 +9,11 @@ use Magento\Sales\Model\Order\Payment\Transaction as T;
 final class Event extends \Df\PaypalClone\W\Event {
 	/**
 	 * 2017-11-21
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
 	 * @return string
 	 */
@@ -39,6 +44,14 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @used-by \Df\PaypalClone\W\Nav::id()
 	 */
 	function ttCurrent() {return !$this->isSuccessful() ? parent::ttCurrent() : (
+		/**
+		 * 2017-12-08
+		 * It correctly works with PayPal and POLi payments,
+		 * because an event's data for them does not contain the «MethodResult/AuthCode» property,
+		 * and we always use self::T_CAPTURE for them.
+		 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+		 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+		 */
 		$this->r('MethodResult/AuthCode') ? self::T_AUTHORIZE : self::T_CAPTURE
 	);}
 
@@ -78,6 +91,11 @@ final class Event extends \Df\PaypalClone\W\Event {
 
 	/**
 	 * 2017-11-18 «The merchants transaction id».
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @override
 	 * @see \Df\Payment\W\Event::k_pid()
 	 * @used-by \Df\Payment\W\Event::pid()
@@ -99,8 +117,14 @@ final class Event extends \Df\PaypalClone\W\Event {
 	protected function k_signature() {return null;}
 
 	/**
-	 * 2017-11-18 «The code for the result of the event. Refer to the appendix.»
+	 * 2017-11-18
+	 * The code for the result of the event. Refer to the appendix.»
 	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#response-codes
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_status()
 	 * @used-by \Df\PaypalClone\W\Event::status()
@@ -110,6 +134,11 @@ final class Event extends \Df\PaypalClone\W\Event {
 
 	/**
 	 * 2017-11-19 «The description of the result of the event».
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_statusT()
 	 * @used-by \Df\PaypalClone\W\Event::statusT()
@@ -119,6 +148,11 @@ final class Event extends \Df\PaypalClone\W\Event {
 
 	/**
 	 * 2017-11-19 http://developer.alphacommercehub.com.au/docs/alphahpp-#response-codes
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::statusExpected()
 	 * @used-by \Df\PaypalClone\W\Event::isSuccessful()
@@ -127,9 +161,15 @@ final class Event extends \Df\PaypalClone\W\Event {
 	protected function statusExpected() {return 1000;}
 
 	/**
-	 * 2017-11-22 «Component capturing 0:N Provider Resp».
+	 * 2017-11-22
+	 * «Component capturing 0:N Provider Resp».
 	 * «API Integration Guide(Nov 2017)» → «Supported Integrations» → «Response Message»
 	 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#response-message
+	 * 2017-12-08
+	 * It correctly works with all currently supported payment options: bank cards, PayPal, and POLi Payments:
+	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
+	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * @used-by providerRespL()
 	 * @return array(array(string => string))
 	 */
