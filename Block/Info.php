@@ -93,6 +93,13 @@ class Info extends \Df\Payment\Block\Info {
 						 * https://github.com/mage2pro/alphacommercehub/issues/72
 						 */
 						,'[PayPal] Country' => df_country_ctn($e->r('PayerDetails/Country'))
+						/**
+						 * 2017-12-09
+						 * "Show the PayPal's `PayerDetails`.`City` (the payer's city)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/71
+						 */
+						,'[PayPal] City' => $e->r('PayerDetails/City')
 					]);
 					break;
 			}
