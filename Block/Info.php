@@ -100,6 +100,17 @@ class Info extends \Df\Payment\Block\Info {
 						 * https://github.com/mage2pro/alphacommercehub/issues/71
 						 */
 						,'[PayPal] City' => $e->r('PayerDetails/City')
+						/**
+						 * 2017-12-09
+						 * 1) "Show the PayPal's `PayerDetails`.`Custom1`
+						 * (the payer's account confirmation status)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/73
+						 * 2) "What are the possible values of the `PayerDetails`.`Custom1` field
+						 * of a response to the PayPal's `PaymentStatus` API request?":
+						 * https://mage2.pro/t/5130
+						 */
+						,'[PayPal] Custom1' => $e->r('PayerDetails/Custom1')
 					]);
 					break;
 			}
