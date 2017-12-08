@@ -15,21 +15,31 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/5017
  * Note 4.
  * "Why a `SuccessURL` response to a PayPal payment does not contain any information about the buyer?"
+ * 2017-12-08 "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
  * https://mage2.pro/t/4985
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** @test 2017-12-04 */
+	/** 2017-12-04 */
 	function t00() {}
 
-	/** 2017-12-03 */
+	/** @test 2017-12-03 */
 	function t01() {
 		// 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
-		$r = F::s()->post(['Transaction' => [
-			'Amount' => '161000'
-			,'Currency' => 'AUD'
-			,'MerchantTxnID' => '1203L.759'
-			,'Method' => 'PP'
-		]], df_class_l($this)); /** @var Op $r */
+		$r = F::s()->post([
+			'Transaction' => [
+				'Amount' => '161000'
+				,'Currency' => 'AUD'
+				,'MerchantTxnID' => '1208L.769'
+				// 2017-12-08
+				// If this parameter is absent, then AlphaCommerceHub will respond:
+				// «Original transaction not found».
+				,'Method' => 'PP'
+			]
+			// 2017-12-08
+			// If this parameter is absent, then AlphaCommerceHub will respond:
+			// «Wallet is missing or invalid».
+			,'Wallet' => ['WalletID' => '7EY65DU75L82G']
+		], df_class_l($this)); /** @var Op $r */
 		echo df_json_encode($r->req());
 		echo $r->j();
 	}

@@ -31,6 +31,7 @@ final class Reader extends \Df\Payment\W\Reader {
 	 * 2017-12-08
 	 * 1) "PayPal: implement the `PaymentStatus` transaction": https://github.com/mage2pro/alphacommercehub/issues/48
 	 * 2) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * 3) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @override
 	 * @see \Df\Payment\W\Reader::reqFilter()
 	 * @used-by \Df\Payment\W\Reader::__construct()

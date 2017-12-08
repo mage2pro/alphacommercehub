@@ -14,6 +14,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
 	 * @return string
 	 */
@@ -51,6 +52,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 		 * and we always use self::T_CAPTURE for them.
 		 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 		 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+		 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 		 */
 		$this->r('MethodResult/AuthCode') ? self::T_AUTHORIZE : self::T_CAPTURE
 	);}
@@ -96,6 +98,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @override
 	 * @see \Df\Payment\W\Event::k_pid()
 	 * @used-by \Df\Payment\W\Event::pid()
@@ -125,6 +128,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_status()
 	 * @used-by \Df\PaypalClone\W\Event::status()
@@ -139,6 +143,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_statusT()
 	 * @used-by \Df\PaypalClone\W\Event::statusT()
@@ -153,6 +158,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::statusExpected()
 	 * @used-by \Df\PaypalClone\W\Event::isSuccessful()
@@ -170,6 +176,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) Bank cards: https://mage2.pro/tags/alphacommercehub-api-response-success-bank-card
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @used-by providerRespL()
 	 * @return array(array(string => string))
 	 */
