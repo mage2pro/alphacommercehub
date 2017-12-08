@@ -92,8 +92,12 @@ class Info extends \Df\Payment\Block\Info {
 			 * https://github.com/mage2pro/alphacommercehub/issues/44
 			 * 2017-11-21
 			 * "A `CancelURL` response to an interrupted bank card payment": https://mage2.pro/t/4937
+			 * 2017-12-08
+			 * "Show the used payment currency in the Magento's «Payment Information» blocks
+			 * (backend, frontend, emails) for the PayPal payments":
+			 * https://github.com/mage2pro/alphacommercehub/issues/70
 			 */
-			if (in_array($choiceId, ['CC', 'PO'])) {
+			if (in_array($choiceId, ['CC', 'PO', 'PP'])) {
 				$this->si('Payment Currency', $e->currencyName());
 			}
 		}
