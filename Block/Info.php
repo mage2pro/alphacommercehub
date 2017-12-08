@@ -82,17 +82,17 @@ class Info extends \Df\Payment\Block\Info {
 					$this->siEx(['PayerID' => $e->r('PayerID'), 'token' => $e->r('EC-5P235520W1795473P')]);
 					break;
 			}
-		}
-		/**
-		 * 2017-11-21
-		 * "Show the used payment currency in the Magento's «Payment Information» blocks
-		 * (backend, frontend, emails) for bank card payments and POLi Payment payments":
-		 * https://github.com/mage2pro/alphacommercehub/issues/44
-		 * 2017-11-21
-		 * "A `CancelURL` response to an interrupted bank card payment": https://mage2.pro/t/4937
-		 */
-		if (in_array($choiceId, ['CC', 'PO'])) {
-			$this->si('Payment Currency', $e->currencyName());
+			/**
+			 * 2017-11-21
+			 * "Show the used payment currency in the Magento's «Payment Information» blocks
+			 * (backend, frontend, emails) for bank card payments and POLi Payment payments":
+			 * https://github.com/mage2pro/alphacommercehub/issues/44
+			 * 2017-11-21
+			 * "A `CancelURL` response to an interrupted bank card payment": https://mage2.pro/t/4937
+			 */
+			if (in_array($choiceId, ['CC', 'PO'])) {
+				$this->si('Payment Currency', $e->currencyName());
+			}
 		}
 	}
 }
