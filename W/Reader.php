@@ -1,43 +1,10 @@
 <?php
 namespace Dfe\AlphaCommerceHub\W;
+use Df\API\Operation as Op;
 use Df\Payment\W\Exception\Critical;
+use Dfe\AlphaCommerceHub\API\Facade\PayPal as fPayPal;
 // 2017-11-18 https://mage2.pro/tags/alphacommercehub-api-response
 final class Reader extends \Df\Payment\W\Reader {
-	/**
-	 * 2017-11-22
-	 * "PayPal: implement the `PaymentStatus` transaction":
-	 * https://github.com/mage2pro/alphacommercehub/issues/48
-	 * @override
-	 * @see \Df\Payment\W\Reader::_construct()
-	 * @used-by \Df\Payment\W\Reader::__construct()
-	 */
-	protected function _construct() {
-		// 2017-11-22 "A `SuccessURL` response to a PayPal payment": https://mage2.pro/t/4953
-		if ($this->r('token') && $this->r('PayerID')) {
-			/**
-			 * 2017-12-01
-			 * "I should save the order's MerchantTxnID to the customer's PHP session
-			 * before redirecting the customer to an AlphaCommerceHub's hosted payment page,
-			 * because AlphaCommerceHub does not provide it in a `SuccessURL` request for a PayPal payment":
-			 * https://github.com/mage2pro/alphacommercehub/issues/62
-			 * @var string $pid
-			 */
-			$pid = df_checkout_session()->getDfPID();
-			// @todo ...
-			/**
-			 * 2017-11-22
-			 * 1) "The PayPal's `PaymentStatus` transaction is undocumented":
-			 * https://github.com/mage2pro/alphacommercehub/issues/52
-			 * 2) "Where are the request and response parameters specification
-			 * for the PayPal's `PaymentStatus` transaction?" https://mage2.pro/t/4991
-			 */
-			throw new Critical($this->m(), $this,
-				"The PayPal's `CapturePayment` transaction is not yet implemented: "
-				."https://github.com/mage2pro/alphacommercehub/issues/49"
-			);
-		}
-	}
-
 	/**
 	 * 2017-11-18
 	 * @override
@@ -55,4 +22,24 @@ final class Reader extends \Df\Payment\W\Reader {
 		 */
 		return !isset($r['data']) ? $r : df_json_decode($r['data']);
 	}
+
+	/**
+	 * 2017-11-22 "A `SuccessURL` response to a PayPal payment": https://mage2.pro/t/4953
+	 * 2017-12-01
+	 * "I should save the order's MerchantTxnID to the customer's PHP session
+	 * before redirecting the customer to an AlphaCommerceHub's hosted payment page,
+	 * because AlphaCommerceHub does not provide it in a `SuccessURL` request for a PayPal payment":
+	 * https://github.com/mage2pro/alphacommercehub/issues/62
+	 * 2017-12-08
+	 * 1) "PayPal: implement the `PaymentStatus` transaction": https://github.com/mage2pro/alphacommercehub/issues/48
+	 * 2) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * @override
+	 * @see \Df\Payment\W\Reader::reqFilter()
+	 * @used-by \Df\Payment\W\Reader::__construct()
+	 * @param array(string => mixed) $r
+	 * @return array(string => mixed)
+	 */
+	protected function reqFilter(array $r) {return !isset($r['token'], $r['PayerID']) ? $r :
+		fPayPal::s()->status(df_assert(df_checkout_session()->getDfPID()))->a()
+	;}
 }
