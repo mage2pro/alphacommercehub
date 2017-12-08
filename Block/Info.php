@@ -20,12 +20,16 @@ class Info extends \Df\Payment\Block\Info {
 		/**
 		 * 2017-11-18 «The APC ID for the payment». An example: «104543502».
 		 * 2017-11-22
-		 * Some AlphaCommerceHub's payment options do not return `Result/PaymentID`.:
+		 * Some AlphaCommerceHub's payment options do not return `Result/PaymentID`:
 		 * *) A `SuccessURL` response to a POLi Payments payment: https://mage2.pro/t/4961
 		 * *) "Which payment options `SuccessURL` responses contain `PaymentID`, and which do not?":
 		 * https://mage2.pro/t/4996
 		 * @see \Dfe\AlphaCommerceHub\W\Event::k_idE():
 		 * https://github.com/mage2pro/alphacommercehub/blob/0.4.2/W/Event.php#L28-L49
+		 * 2017-12-08
+		 * AlphaCommerceHub does not provide `Result/PaymentID` for PayPal payments too:
+		 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+		 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 		 */
 		if ($eId = $e->r('Result/PaymentID')) { /** @var string $eId */
 			/**
