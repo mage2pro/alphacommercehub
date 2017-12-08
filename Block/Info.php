@@ -82,7 +82,7 @@ class Info extends \Df\Payment\Block\Info {
 					 * A string like «7EY65DU75L82G»:
 					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5127
 					 */
-					$this->siEx(['WalletID (PayerID)' => $e->r('MethodResult/WalletID')]);
+					$this->siEx(['[PayPal] Wallet ID)' => $e->r('MethodResult/WalletID')]);
 					break;
 			}
 			/**
