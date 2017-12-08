@@ -75,11 +75,14 @@ class Info extends \Df\Payment\Block\Info {
 				case 'PP':
 					/**
 					 * 2017-11-21
-					 * "Show the `PayerID` and `token` response parameters for a successful PayPal payment
+					 * "Show the `WalletID` (`PayerID`) for a successful PayPal payment
 					 * in the Magento's backend «Payment Information» block":
 					 * https://github.com/mage2pro/alphacommercehub/issues/45
+					 * 2017-12-08
+					 * A string like «7EY65DU75L82G»:
+					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5127
 					 */
-					$this->siEx(['PayerID' => $e->r('PayerID'), 'token' => $e->r('EC-5P235520W1795473P')]);
+					$this->siEx(['WalletID (PayerID)' => $e->r('MethodResult/WalletID')]);
 					break;
 			}
 			/**
