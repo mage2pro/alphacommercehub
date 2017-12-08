@@ -130,6 +130,13 @@ class Info extends \Df\Payment\Block\Info {
 						,'[PayPal] Street' => dfa($pd, 'Street1')
 						/**
 						 * 2017-12-09
+						 * "Show the PayPal's `PayerDetails`.`Zip` (the payer's postal code)
+						 * in the Magento's backend «Payment Information» block":
+						 * https://github.com/mage2pro/alphacommercehub/issues/79
+						 */
+						,'[PayPal] Postal code' => dfa($pd, 'Zip')
+						/**
+						 * 2017-12-09
 						 * 1) "Show the PayPal's `PayerDetails`.`Custom1`
 						 * (the payer's account confirmation status)
 						 * in the Magento's backend «Payment Information» block":
