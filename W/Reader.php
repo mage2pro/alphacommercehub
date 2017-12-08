@@ -32,9 +32,8 @@ final class Reader extends \Df\Payment\W\Reader {
 			 * for the PayPal's `PaymentStatus` transaction?" https://mage2.pro/t/4991
 			 */
 			throw new Critical($this->m(), $this,
-				"A `SuccessURL` response to a PayPal payment is not yet handled, "
-				."because the PayPal's `PaymentStatus` transaction is undocumented: "
-				."https://github.com/mage2pro/alphacommercehub/issues/52"
+				"The PayPal's `CapturePayment` transaction is not yet implemented: "
+				."https://github.com/mage2pro/alphacommercehub/issues/49"
 			);
 		}
 	}
