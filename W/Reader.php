@@ -1,6 +1,7 @@
 <?php
 namespace Dfe\AlphaCommerceHub\W;
 use Df\API\Operation as Op;
+use Df\Payment\TM;
 use Dfe\AlphaCommerceHub\API\Facade\PayPal as fPayPal;
 // 2017-11-18 https://mage2.pro/tags/alphacommercehub-api-response
 final class Reader extends \Df\Payment\W\Reader {
@@ -41,9 +42,9 @@ final class Reader extends \Df\Payment\W\Reader {
 	 */
 	protected function reqFilter(array $r) {
 		if (isset($r['token'], $r['PayerID'])) {
-			$tid = df_assert(df_checkout_session()->getDfPID()); /** @var string $tid */
+			$tm = df_tm(dfpm(df_checkout_session()->getLastRealOrder())); /** @var TM $tm */
 			$f = fPayPal::s(); /** @var fPayPal $s */
-			$s = $f->status($tid); /** @var Op $s */
+			$s = $f->status($tm->req(['MerchantTxnID', 'Amount', 'Currency'])); /** @var Op $s */
 			$c = $f->capture($s); /** @var Op $c */
 			$r = $s->a(['MethodResult']) + df_extend($s->a(), $c->a());
 		}

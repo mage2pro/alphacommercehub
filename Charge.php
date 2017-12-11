@@ -116,14 +116,6 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * @var OA $sa
 		 */
 		$sa = $this->addressS(true);
-		/**
-		 * 2017-12-01
-		 * "I should save the order's MerchantTxnID to the customer's PHP session
-		 * before redirecting the customer to an AlphaCommerceHub's hosted payment page,
-		 * because AlphaCommerceHub does not provide it in a `SuccessURL` request for a PayPal payment":
-		 * https://github.com/mage2pro/alphacommercehub/issues/62
-		 */
-		df_checkout_session()->setDfPID($this->id());
 		return df_clean([
 			/**
 			 * 2017-11-02

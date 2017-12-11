@@ -33,11 +33,14 @@ final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 	 * to a PayPal's `PaymentStatus` request if `Method` is not provided?"
 	 * https://mage2.pro/t/5119
 	 * 2) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+	 * 2017-12-11
+	 * From now on, if the `Amount` and `Currency` request parameters are not provided,
+	 * then AlphaCommerceHub responds `1059` / «Internal Processing Error please resend the request»
+	 * to a PayPal's PaymentStatus API request:
+	 * https://github.com/mage2pro/alphacommercehub/issues/81
 	 * @used-by \Dfe\AlphaCommerceHub\W\Reader::reqFilter()
-	 * @param string $id
+	 * @param array(string => string) $p
 	 * @return Op
 	 */
-	function status($id) {return $this->post(
-		['Transaction' => ['MerchantTxnID' => $id, 'Method' => 'PP']], 'PaymentStatus'
-	);}
+	function status(array $p) {return $this->post(['Transaction' => ['Method' => 'PP'] + $p], 'PaymentStatus');}
 }
