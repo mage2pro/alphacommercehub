@@ -21,10 +21,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * 2) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
  */
 final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-03 */
+	/** @test 2017-12-03 */
 	function t00() {}
 
-	/** @test 2017-12-02 */
+	/** 2017-12-02 */
 	function t01() {
 		// token=EC-37F54734B9677552F&PayerID=7EY65DU75L82G
 		$r = F::s()->post(['Transaction' => [
