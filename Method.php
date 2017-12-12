@@ -12,13 +12,15 @@ use Magento\Sales\Model\Order\Payment\Transaction as T;
 final class Method extends \Df\PaypalClone\Method {
 	/**
 	 * 2017-11-14
-	 * Note 1.
-	 * "The last 3 digits of every payment amount should be «000» in the test mode for Westpac":
+	 * 1) The last 3 digits of every payment amount should be «000» in the test mode for Westpac":
 	 * https://github.com/mage2pro/alphacommercehub/issues/17
-	 * Note 2.
-	 * SecurePay (another Australian payment service provider, I have already integrated it with Magento 2)
+	 * 2) SecurePay (another Australian payment service provider, I have already integrated it with Magento 2)
 	 * has a similar rule: @see \Dfe\SecurePay\Method::amountFormat()
 	 * https://github.com/mage2pro/securepay/blob/1.6.5/Method.php#L7-L26
+	 * 2017-12-12
+	 * "The payment amount should be adjusted in the test mode only for the bank card payment option
+	 * (both 3D Secured and not 3D Secured), and should not be adjusted for other payment options
+	 * (PayPal, POLi Payments, etc.)": https://github.com/mage2pro/alphacommercehub/issues/31
 	 * @override
 	 * @see \Df\Payment\Method::amountFormat()
 	 * @used-by \Df\Payment\ConfigProvider::config()
