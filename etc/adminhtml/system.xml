@@ -383,31 +383,6 @@ So the `sortOrder` value is 1920. -->
 						<depends><field id='enable'>1</field></depends>
 					</field>
 					<field
-						id='actionForNew'
-						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='26'
-						translate='label'
-						type='select'
-					>
-						<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
-						<config_path>df_payment/alpha_commerce_hub/actionForNew</config_path>
-						<depends><field id='enable'>1</field></depends>
-						<label>Payment Action for a New Customer</label>
-						<source_model>Df\Payment\Source\ACR</source_model>
-					</field>
-					<field
-						id='actionForReturned'
-						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='27'
-						translate='label'
-						type='select'
-					>
-						<config_path>df_payment/alpha_commerce_hub/actionForReturned</config_path>
-						<depends><field id='enable'>1</field></depends>
-						<label>Payment Action for a Returned Customer</label>
-						<source_model>Df\Payment\Source\ACR</source_model>
-					</field>
-					<field
 						id='description'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='28'
@@ -452,36 +427,6 @@ So the `sortOrder` value is 1920. -->
 						<depends><field id='enable'>1</field></depends>
 					</field>
 					<field
-						id='min_order_total'
-						translate='label'
-						type='text'
-						sortOrder='31'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
-					>
-						<label>Minimum Order Total</label>
-						<comment><![CDATA[]]></comment>
-						<config_path>df_payment/alpha_commerce_hub/min_order_total</config_path>
-						<validate>validate-number validate-greater-than-zero</validate>
-						<depends><field id='enable'>1</field></depends>
-					</field>
-					<field
-						id='max_order_total'
-						translate='label'
-						type='text'
-						sortOrder='32'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
-					>
-						<label>Maximum Order Total</label>
-						<comment><![CDATA[]]></comment>
-						<config_path>df_payment/alpha_commerce_hub/max_order_total</config_path>
-						<validate>validate-number validate-greater-than-zero</validate>
-						<depends><field id='enable'>1</field></depends>
-					</field>
-					<field
 						id='country_restriction'
 						translate='label'
 						type='select'
@@ -519,6 +464,176 @@ So the `sortOrder` value is 1920. -->
 							<field id='country_restriction' negative='1'>0</field>
 						</depends>
 					</field>
+				</group>
+				<group
+					id='card'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
+					translate='label'
+				>
+					<label>Bank Card</label>
+					<comment><![CDATA[]]></comment>
+					<field
+						id='enable'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='1'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+					>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[Enable the bank card payment option?]]></comment>
+						<label>Enable?</label>
+					</field>
+					<field
+						id='title'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='2'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[It is shown on the checkout screen.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>A title for the bank card payment option</label>
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='actionForNew'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='3'
+						translate='label'
+						type='select'
+					>
+						<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/actionForNew</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<label>Payment Action for a New Customer</label>
+						<source_model>Df\Payment\Source\ACR</source_model>
+					</field>
+					<field
+						id='actionForReturned'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='4'
+						translate='label'
+						type='select'
+					>
+						<config_path>df_payment/alpha_commerce_hub/actionForReturned</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<label>Payment Action for a Returned Customer</label>
+						<source_model>Df\Payment\Source\ACR</source_model>
+					</field>
+					<field
+						id='min_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='5'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Minimum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<field
+						id='max_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='6'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Maximum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<group
+						id='3ds'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='35'
+						translate='label'
+					>
+						<label>3D Secure</label>
+						<depends><field id='enable'>1</field></depends>
+						<field
+							id='enabled'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='1'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+						>
+							<label>Whether the 3D Secure validation is enabled for your merchant account in AlphaCommerceHub?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[Unfortunately, AlphaCommerceHub <a href='https://mage2.pro/t/topic/4857/5' target='_blank'>does not allow</a> to enable the 3D Secure validation from the Magento side: it should be enabled in your AlphaCommerceHub merchant account.]]></comment>
+						</field>
+						<field
+							id='forReturning'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='2'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+						>
+							<label>Disable the 3D Secure validation for the returning customers?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[A customer is regarded as <b>returning</b>, if he has any orders in the «Completed» or «Processing» state.]]></comment>
+							<depends><field id='enabled'>1</field></depends>
+						</field>
+						<field
+							id='forShippingDestinations'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='3'
+							translate='label'
+							type='select'
+						>
+							<label>Disable 3D Secure validation for particular shipping destinations?</label>
+							<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
+							<depends><field id='enabled'>1</field></depends>
+						</field>
+						<field
+							id='forShippingDestinations_countries'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='4'
+							translate='label'
+							type='Df\Framework\Form\Element\Multiselect'
+						>
+							<label>Countries</label>
+							<can_be_empty>1</can_be_empty>
+							<depends>
+								<field id='enabled'>1</field>
+								<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»:
+								https://mage2.pro/t/329 -->
+								<field id='forShippingDestinations' negative='1'>0</field>
+							</depends>
+							<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						</field>
+						<field
+							id='forIPs'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='5'
+							translate='label'
+							type='select'
+						>
+							<label>Disable 3D Secure validation for particular customer locations (detected by IP Address)?</label>
+							<depends><field id='enabled'>1</field></depends>
+							<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
+						</field>
+						<field
+							id='forIPs_countries'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='6'
+							translate='label'
+							type='Df\Framework\Form\Element\Multiselect'
+						>
+							<label>Countries</label>
+							<can_be_empty>1</can_be_empty>
+							<depends>
+								<field id='enabled'>1</field>
+								<!-- 2016-03-08
+								«The negative syntax for a backend config field <depends> condition»
+								https://mage2.pro/t/329 -->
+								<field id='forIPs' negative='1'>0</field>
+							</depends>
+							<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						</field>
+					</group>
 				</group>
 			</group>
 		</section>
