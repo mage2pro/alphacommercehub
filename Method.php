@@ -33,7 +33,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 */
 	function amountFormat($a) {
 		$r = round($a * 1000); /** @var int $r */
-		return !$this->test() ? $r : 1000 * round($r / 1000);
+		return !$this->test() || !in_array($this->option(), ['CC', null]) ? $r : 1000 * round($r / 1000);
 	}
 
 	/**
@@ -175,6 +175,7 @@ final class Method extends \Df\PaypalClone\Method {
 
 	/**
 	 * 2017-11-01
+	 * @used-by amountFormat()
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 * @return string|null
 	 */
