@@ -1,8 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
-use Df\Payment\Settings\_3DS;
-use Df\Payment\Settings\Options as O;
-use Dfe\AlphaCommerceHub\Source\Option as OptionSource;
+use Dfe\AlphaCommerceHub\Settings\Card;
 // 2017-10-25
 /** @method static Settings s() */
 final class Settings extends \Df\Payment\Settings {
@@ -16,18 +14,11 @@ final class Settings extends \Df\Payment\Settings {
 	function apiDomain() {return $this->testable();}
 
 	/**
-	 * 2017-11-02
+	 * 2017-12-12
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
-	 * @return _3DS
+	 * @return Card
 	 */
-	function _3ds() {return dfc($this, function() {return new _3DS($this);});}
-
-	/**
-	 * 2017-10-28
-	 * @used-by \Dfe\AlphaCommerceHub\ConfigProvider::options()
-	 * @return O
-	 */
-	function options() {return $this->_options(OptionSource::class);}
+	function card() {return dfc($this, function() {return new Card($this->m());});}
 
 	/**
 	 * 2017-12-09 «Test Pay Page Domain» / «Live Pay Page Domain»

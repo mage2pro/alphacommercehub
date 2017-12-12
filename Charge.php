@@ -140,7 +140,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://github.com/mage2pro/alphacommercehub/issues/7#issuecomment-343819432
 			 */
 			'3DSecureBypass' =>
-				$s->_3ds()->disable_($sa->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
+				$s->card()->_3ds()->disable_($sa->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
 			/**
 			 * 2017-11-02
 			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».

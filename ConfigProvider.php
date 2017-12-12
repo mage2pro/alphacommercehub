@@ -1,24 +1,31 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
-use Df\Payment\ConfigProvider\IOptions;
-// 2017-10-28
-/** @method Settings s() */
-final class ConfigProvider extends \Df\Payment\ConfigProvider implements IOptions {
+/**
+ * 2017-10-28
+ * @method Method m()
+ * @method Settings s()
+ */
+final class ConfigProvider extends \Df\Payment\ConfigProvider {
 	/**
-	 * 2017-10-28
-	 * @override
-	 * @see \Df\Payment\ConfigProvider\IOptions::options()
-	 * @used-by \Df\Payment\ConfigProvider::configOptions()
-	 * @return array(<value> => <label>)
-	 */
-	function options() {return $this->s()->options()->o(true);}
-
-	/**
-	 * 2017-10-28
+	 * 2017-12-12
 	 * @override
 	 * @see \Df\Payment\ConfigProvider::config()
 	 * @used-by \Df\Payment\ConfigProvider::getConfig()
 	 * @return array(string => mixed)
 	 */
-	protected function config() {return self::configOptions($this) + parent::config();}
+	protected function config() {return
+		$this->option('card') + $this->option('paypal') + $this->option('poli') +
+		['common' => ['isTest' => $this->s()->test(), 'titleBackend' => $this->m()->titleB()]]
+	;}
+
+	/**
+	 * 2017-12-12
+	 * @used-by config()
+	 * @param string $id
+	 * @return array(string => mixed)
+	 */
+	private function option($id) {$s = $this->s(); return [$id => [
+		'enable' => $s->v("$id/enable") && $s->applicableForQuote($id)
+		,'title' => $this->m()->optionTitle($id)
+	]];}
 }

@@ -1,6 +1,5 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
-use Dfe\AlphaCommerceHub\Source\Option as Opt;
 use Magento\Framework\Phrase;
 /**
  * 2017-11-20
@@ -10,6 +9,7 @@ use Magento\Framework\Phrase;
  * https://mage2.pro/t/4978
  * 3) "What is the recommended way to detect the chosen payment option from a `CancelURL` response?"
  * https://mage2.pro/t/4979
+ * @method \Dfe\Moip\Method m()
  */
 final class Choice extends \Df\Payment\Choice {
 	/**
@@ -31,5 +31,5 @@ final class Choice extends \Df\Payment\Choice {
 	 * https://github.com/mage2pro/alphacommercehub/blob/0.3.6/Charge.php#L243-L261
 	 * @return Phrase|string|null
 	 */
-	function title() {return dfc($this, function() {return dftr($this->id(), Opt::s()->map());});}
+	function title() {return $this->m()->optionTitle();}
 }

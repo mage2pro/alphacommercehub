@@ -176,10 +176,23 @@ final class Method extends \Df\PaypalClone\Method {
 	/**
 	 * 2017-11-01
 	 * @used-by amountFormat()
+	 * @used-by optionTitle()
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 * @return string|null
 	 */
 	function option() {return $this->iia(self::$II_OPTION);}
+
+	/**
+	 * 2017-12-12
+	 * @used-by titleF()
+	 * @used-by \Dfe\AlphaCommerceHub\Choice::title()
+	 * @used-by \Dfe\AlphaCommerceHub\ConfigProvider::option()
+	 * @param string|null $o [optional]
+	 * @return string|null
+	 */
+	function optionTitle($o = null) {return !($o = dftr($o ?: $this->option(), [
+		'CC' => 'card', 'PO' => 'poli', 'PP' => 'paypal'
+	])) ? null : $this->s("$o/title");}
 
 	/**
 	 * 2017-11-02
