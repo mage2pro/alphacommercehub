@@ -31,543 +31,493 @@ So the `sortOrder` value is 1920. -->
 				<label>AlphaCommerceHub</label>
 				<dfExtension>Dfe_AlphaCommerceHub</dfExtension>
 				<frontend_model>Df\Config\Fieldset</frontend_model>
-				<field
-					id='enable'
-					translate='label'
-					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='1'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Enable?</label>
-					<backend_model>Df\Config\Backend\Checkbox</backend_model>
-					<comment><![CDATA[Enable the «<a href='https://mage2.pro/c/extensions/alphacommercehub' target='_blank'>AlphaCommerceHub</a>» payment extension?
-]]></comment>
-				</field>
-				<field
-					id='title'
-					translate='label'
-					type='text'
-					sortOrder='2'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Title</label>
-					<comment><![CDATA[It is shown on the checkout screen.]]></comment>
-					<depends><field id='enable'>1</field></depends>
-					<validate>required-entry</validate>
-				</field>
-				<field
-					id='test'
-					translate='label'
-					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='3'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Test Mode?</label>
-					<backend_model>Df\Config\Backend\Checkbox</backend_model>
-					<comment><![CDATA[]]></comment>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='merchantID'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='4'
-					translate='label'
-				>
-					<label>MerchantID</label>
-					<comment><![CDATA[]]></comment>
-					<validate>required-entry</validate>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-<!-- 2017-11-01
-«`MerchantID` will remain the same between environments, `UserID` will change.»
-https://mage2.pro/t/4798/2
- -->
-				<field
-					id='testPrivateKey'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='5'
-					translate='label'
-					type='obscure'
-				>
-					<label>Test UserID</label>
-					<comment><![CDATA[]]></comment>
-					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>1</field>
-					</depends>
-					<validate>required-entry</validate>
-				</field>
-				<field
-					id='testPayPageDomain'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='6'
-					translate='label'
-				>
-					<label>Test Pay Page Domain</label>
-					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>1</field>
-					</depends>
-				</field>
-				<field
-					id='testPayPagePath'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='6'
-					translate='label'
-				>
-					<label>Test Pay Page Path</label>
-					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
-<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>1</field>
-					</depends>
-				</field>
-				<field
-					id='testApiDomain'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='6'
-					translate='label'
-				>
-					<label>Test API Domain</label>
-					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>1</field>
-					</depends>
-				</field>
-				<field
-					id='livePrivateKey'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='7'
-					translate='label'
-					type='obscure'
-				>
-					<label>Live UserID</label>
-					<comment><![CDATA[]]></comment>
-					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>0</field>
-					</depends>
-					<validate>required-entry</validate>
-				</field>
-				<field
-					id='livePayPageDomain'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='8'
-					translate='label'
-				>
-					<label>Live Pay Page Domain</label>
-					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>0</field>
-					</depends>
-				</field>
-				<field
-					id='livePayPagePath'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='8'
-					translate='label'
-				>
-					<label>Live Pay Page Path</label>
-					<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
-<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>0</field>
-					</depends>
-				</field>
-				<field
-					id='liveApiDomain'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='8'
-					translate='label'
-				>
-					<label>Live API Domain</label>
-					<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='test'>0</field>
-					</depends>
-				</field>
-				<field
-					id='identification'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='14'
-					translate='label'
-					type='select'
-				>
-					<label>Payment Identification Type</label>
-					<source_model>Df\Payment\Source\Identification</source_model>
-					<comment><![CDATA[
-<p class='df-note'>This option defines what will be the value of the <a href='https://mage2.pro/t/topic/4779' target='_blank' title='[AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?'><code>MerchantTxnID</code></a> API parameter.</p>
-<p class='df-note'>«<b>Visible ID</b>» is the recommended value for the most shops,
-because it allows you to locate a payment in the AlphaCommerceHub merchant backend
-knowing only the order's visible identifier.</p>
-<p class='df-note'>AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>» and «<code>.</code>» characters in the payment identifiers,
-so the «Visible ID» option will not work if an order identifier
-contain some other symbols.</p>
-<p class='df-note'>For example, the «<a href='https://mage2.pro/t/512' target='_blank'>Sales Documents Numeration</a>» extension allows you to implement a custom order numeration scheme like <b>ORD-2016/07-00327</b>.</p>
-<p class='df-note'>If you use such non-standard orders numbers, then choose the «<b>Internal ID</b>» value for the «Payment Identification Type» option.</p>]]></comment>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='idPrefix'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='15'
-					translate='label'
-				>
-					<label>Payment ID prefix</label>
-					<comment><![CDATA[<p class='df-note'>This option allows you to define a prefix for the payment identificators (values of the <a href='https://mage2.pro/t/topic/4779' target='_blank' title='[AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?'><code>MerchantTxnID</code></a> API parameter).</p>
-<p class='df-note'>In the most cases you do not need any prefix and can leave this option empty.</p>
-<p class='df-note'>But there are some (rare) cases when your AlphaCommerceHub payment identifiers can potentially overlap with the previous ones:</p>
-<ul class='df-note'>
-<li>If you use a single AlphaCommerceHub merchant account for multiple shops.</li>
-<li>If you have changed (e.g., reset) your Magento order numeration scheme.</li>
-</ul>
-<p class='df-note'>If AlphaCommerceHub encounters a payment identifier which has been already used for another payment, then it fails.</p>
-<p class='df-note'>So to evade such situation you can define a prefix for the payment identifiers.</p>
-<p class='df-note'>Please note that AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>» and «<code>.</code>» characters in the payment identifiers, so you should not use other characters in the prefix too.
-</p>
-]]></comment>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='optionsLocation'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='16'
-					translate='label'
-					type='select'
-				>
-					<label>Where to ask for a payment option?</label>
-					<source_model>Df\Payment\Source\Options\Location</source_model>
-					<comment><![CDATA[]]></comment>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='optionsPrompt'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='17'
-					translate='label'
-					type='textarea'
-				>
-					<label>Options Prompt</label>
-					<comment><![CDATA[A text above the AlphaCommerceHub payment options on the Magento checkout page.<br/>You can use the HTML tags. Also you set the prompt empty to hide it.]]></comment>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='optionsLocation'>magento</field>
-					</depends>
-				</field>
-				<field
-					id='optionsDisplayMode'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='18'
-					translate='label'
-					type='select'
-				>
-					<label>Payment options display mode</label>
-					<comment><![CDATA[See the screenshots:<ul class='df-note'><li><a href='https://mage2.pro/t/4562' target='_blank'>the «<b>images</b>» mode</a></li><li><a href='https://mage2.pro/t/4815' target='_blank'>the «<b>text</b>» mode</a></li></ul>]]></comment>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='optionsLocation'>magento</field>
-					</depends>
-					<source_model>Df\Payment\Source\Options\DisplayMode</source_model>
-				</field>
-				<field
-					dfRows='3'
-					id='optionsDescription'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='19'
-					translate='label'
-					type='Df\Framework\Form\Element\Textarea'
-				>
-					<label>Options Description</label>
-					<comment><![CDATA[A text to be shown on the Magento checkout page instead of the payment options dialog (as you have chosen to show the payment options on the AlphaCommerceHub side, the options dialog will not be shown on the Magento checkout screen).
-<br/>You can:
-<ul class='df-note'>
-<li>Use the HTML tags.</li>
-<li>Use the <code>{options}</code> variable. It will be substituted with the available payment options.</li>
-<li>Set the description empty to hide it.</li>
-</ul>]]></comment>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='optionsLocation'>psp</field>
-					</depends>
-				</field>
-				<field
-					id='optionsLimit'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='20'
-					translate='label'
-					type='Df\Framework\Form\Element\Checkbox'
-				>
-					<label>Limit the payment options availability?</label>
-					<backend_model>Df\Config\Backend\Checkbox</backend_model>
-					<comment><![CDATA[If checked, only the selected options will be shown to the customers.]]></comment>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='optionsLocation'>magento</field>
-					</depends>
-				</field>
-				<field
-					dfMultiselect_ordered='true'
-					id='optionsAllowed'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='21'
-					translate='label'
-					type='Df\Framework\Form\Element\Multiselect'
-				>
-					<label>Allowed Payment Options</label>
-					<source_model>Dfe\AlphaCommerceHub\Source\Option</source_model>
-					<comment><![CDATA[Only the selected options will be shown to the customers on the Magento checkout screen.<br/>You can <b>reorder</b> the options by drag and drop.]]></comment>
-					<validate>required-entry</validate>
-					<depends>
-						<field id='enable'>1</field>
-						<field id='optionsLimit'>1</field>
-						<field id='optionsLocation'>magento</field>
-					</depends>
-				</field>
-				<field
-					id='currency'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='25'
-					translate='label'
-					type='Df\Directory\FE\Currency'
-				>
-					<label>Payment Currency</label>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='actionForNew'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='26'
-					translate='label'
-					type='select'
-				>
-					<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
-					<depends><field id='enable'>1</field></depends>
-					<label>Payment Action for a New Customer</label>
-					<source_model>Df\Payment\Source\ACR</source_model>
-				</field>
-				<field
-					id='actionForReturned'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='27'
-					translate='label'
-					type='select'
-				>
-					<depends><field id='enable'>1</field></depends>
-					<label>Payment Action for a Returned Customer</label>
-					<source_model>Df\Payment\Source\ACR</source_model>
-				</field>
-				<field
-					id='description'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='28'
-					translate='label'
-					type='textarea'
-				>
-					<comment model='Df\Payment\Comment\Description'/>
-					<depends><field id='enable'>1</field></depends>
-					<label>Description</label>
-<!-- 2016-07-01
-We do not use the `validate-length` validator here
-because the value can contain variables, so do not know the real length here. -->
-					<validate>required-entry</validate>
-				</field>
-				<field
-					id='dsd'
-					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='29'
-					translate='label'
-					type='text'
-				>
-					<label>Dynamic statement descripor</label>
-					<comment><![CDATA[An arbitrary string to be displayed in a customer's payment statement.]]></comment>
-					<depends><field id='enable'>1</field></depends>
-					<validate>validate-length maximum-length-22</validate>
-				</field>
-				<field
-					id='requireBillingAddress'
-					translate='label'
-					type='Df\Framework\Form\Element\Checkbox'
-					sortOrder='30'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Require the billing address?</label>
-					<backend_model>Df\Config\Backend\Checkbox</backend_model>
-					<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='min_order_total'
-					translate='label'
-					type='text'
-					sortOrder='31'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Minimum Order Total</label>
-					<comment><![CDATA[]]></comment>
-					<validate>validate-number validate-greater-than-zero</validate>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='max_order_total'
-					translate='label'
-					type='text'
-					sortOrder='32'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Maximum Order Total</label>
-					<comment><![CDATA[]]></comment>
-					<validate>validate-number validate-greater-than-zero</validate>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='country_restriction'
-					translate='label'
-					type='select'
-					sortOrder='33'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Country Restriction</label>
-					<source_model>Df\Config\Source\NoWhiteBlack</source_model>
-					<depends><field id='enable'>1</field></depends>
-				</field>
-				<field
-					id='countries'
-					translate='label'
-					type='Df\Framework\Form\Element\Multiselect'
-					sortOrder='34'
-					showInDefault='1'
-					showInWebsite='1'
-					showInStore='1'
-				>
-					<label>Countries</label>
-					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-					<can_be_empty>1</can_be_empty>
-					<depends>
-						<field id='enable'>1</field>
-<!--
-2016-03-08
-«The negative syntax for a backend config field <depends> condition»
-https://mage2.pro/t/329
--->
-						<field id='country_restriction' negative='1'>0</field>
-					</depends>
-					<comment><![CDATA[Customers from which countries can (or can not) use the method?]]></comment>
-				</field>
 				<group
-					id='3ds'
+					id='common'
 					showInDefault='1' showInStore='1' showInWebsite='1'
-					sortOrder='35'
+					sortOrder='1'
 					translate='label'
 				>
-					<label>3D Secure</label>
-					<depends><field id='enable'>1</field></depends>
+					<label>Common</label>
+					<comment><![CDATA[]]></comment>
 					<field
-						id='enabled'
-						showInDefault='1' showInStore='1' showInWebsite='1'
+						id='enable'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
 						sortOrder='1'
-						translate='label'
-						type='Df\Framework\Form\Element\Checkbox'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
 					>
-						<label>Whether the 3D Secure validation is enabled for your merchant account in AlphaCommerceHub?</label>
+						<label>Enable?</label>
 						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[Unfortunately, AlphaCommerceHub <a href='https://mage2.pro/t/topic/4857/5' target='_blank'>does not allow</a> to enable the 3D Secure validation from the Magento side: it should be enabled in your AlphaCommerceHub merchant account.]]></comment>
+						<comment><![CDATA[Enable the «<a href='https://mage2.pro/c/extensions/alphacommercehub' target='_blank'>AlphaCommerceHub</a>» payment extension?
+	]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/enable</config_path>
 					</field>
 					<field
-						id='forReturning'
-						showInDefault='1' showInStore='1' showInWebsite='1'
+						id='title'
+						translate='label'
+						type='text'
 						sortOrder='2'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Title</label>
+						<comment><![CDATA[It is shown on the checkout screen.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/title</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='test'
 						translate='label'
 						type='Df\Framework\Form\Element\Checkbox'
-					>
-						<label>Disable the 3D Secure validation for the returning customers?</label>
-						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[A customer is regarded as <b>returning</b>, if he has any orders in the «Completed» or «Processing» state.]]></comment>
-						<depends><field id='enabled'>1</field></depends>
-					</field>
-					<field
-						id='forShippingDestinations'
-						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='3'
-						translate='label'
-						type='select'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
 					>
-						<label>Disable 3D Secure validation for particular shipping destinations?</label>
-						<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
-						<depends><field id='enabled'>1</field></depends>
+						<label>Test Mode?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/test</config_path>
+						<depends><field id='enable'>1</field></depends>
 					</field>
 					<field
-						id='forShippingDestinations_countries'
+						id='merchantID'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='4'
 						translate='label'
-						type='Df\Framework\Form\Element\Multiselect'
 					>
-						<label>Countries</label>
-						<can_be_empty>1</can_be_empty>
-						<depends>
-							<field id='enabled'>1</field>
-							<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»:
-							https://mage2.pro/t/329 -->
-							<field id='forShippingDestinations' negative='1'>0</field>
-						</depends>
-						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						<label>MerchantID</label>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/merchantID</config_path>
+						<validate>required-entry</validate>
+						<depends><field id='enable'>1</field></depends>
 					</field>
+	<!-- 2017-11-01
+	«`MerchantID` will remain the same between environments, `UserID` will change.»
+	https://mage2.pro/t/4798/2
+	 -->
 					<field
-						id='forIPs'
+						id='testPrivateKey'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='5'
 						translate='label'
-						type='select'
+						type='obscure'
 					>
-						<label>Disable 3D Secure validation for particular customer locations (detected by IP Address)?</label>
-						<depends><field id='enabled'>1</field></depends>
-						<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
+						<label>Test UserID</label>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/testPrivateKey</config_path>
+						<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>1</field>
+						</depends>
+						<validate>required-entry</validate>
 					</field>
 					<field
-						id='forIPs_countries'
+						id='testPayPageDomain'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='6'
 						translate='label'
+					>
+						<label>Test Pay Page Domain</label>
+						<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/testPayPageDomain</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>1</field>
+						</depends>
+					</field>
+					<field
+						id='testPayPagePath'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='6'
+						translate='label'
+					>
+						<label>Test Pay Page Path</label>
+						<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
+	<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/testPayPagePath</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>1</field>
+						</depends>
+					</field>
+					<field
+						id='testApiDomain'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='6'
+						translate='label'
+					>
+						<label>Test API Domain</label>
+						<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/testApiDomain</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>1</field>
+						</depends>
+					</field>
+					<field
+						id='livePrivateKey'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='7'
+						translate='label'
+						type='obscure'
+					>
+						<label>Live UserID</label>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/livePrivateKey</config_path>
+						<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>0</field>
+						</depends>
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='livePayPageDomain'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='8'
+						translate='label'
+					>
+						<label>Live Pay Page Domain</label>
+						<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/80' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaHPP domain</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/livePayPageDomain</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>0</field>
+						</depends>
+					</field>
+					<field
+						id='livePayPagePath'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='8'
+						translate='label'
+					>
+						<label>Live Pay Page Path</label>
+						<comment><![CDATA[A value should a string like «<code>/pp/ac580978-81f0-4716-bfc3-3bc46eab8603</code>».
+	<br/><a href='https://mage2.pro/t/4856' target='_blank'>What is a «pay page path»?</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/livePayPagePath</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>0</field>
+						</depends>
+					</field>
+					<field
+						id='liveApiDomain'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='8'
+						translate='label'
+					>
+						<label>Live API Domain</label>
+						<comment><![CDATA[<a href='https://github.com/mage2pro/alphacommercehub/issues/66' target='_blank'>Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain</a>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/liveApiDomain</config_path>
+						<validate>required-entry</validate>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='test'>0</field>
+						</depends>
+					</field>
+					<field
+						id='identification'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='14'
+						translate='label'
+						type='select'
+					>
+						<label>Payment Identification Type</label>
+						<source_model>Df\Payment\Source\Identification</source_model>
+						<comment><![CDATA[
+	<p class='df-note'>This option defines what will be the value of the <a href='https://mage2.pro/t/topic/4779' target='_blank' title='[AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?'><code>MerchantTxnID</code></a> API parameter.</p>
+	<p class='df-note'>«<b>Visible ID</b>» is the recommended value for the most shops,
+	because it allows you to locate a payment in the AlphaCommerceHub merchant backend
+	knowing only the order's visible identifier.</p>
+	<p class='df-note'>AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>» and «<code>.</code>» characters in the payment identifiers,
+	so the «Visible ID» option will not work if an order identifier
+	contain some other symbols.</p>
+	<p class='df-note'>For example, the «<a href='https://mage2.pro/t/512' target='_blank'>Sales Documents Numeration</a>» extension allows you to implement a custom order numeration scheme like <b>ORD-2016/07-00327</b>.</p>
+	<p class='df-note'>If you use such non-standard orders numbers, then choose the «<b>Internal ID</b>» value for the «Payment Identification Type» option.</p>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/identification</config_path>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='idPrefix'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='15'
+						translate='label'
+					>
+						<label>Payment ID prefix</label>
+						<comment><![CDATA[<p class='df-note'>This option allows you to define a prefix for the payment identificators (values of the <a href='https://mage2.pro/t/topic/4779' target='_blank' title='[AlphaCommerceHub] Are any limitations on the «MerchantTxnID» parameter allowed characters or length?'><code>MerchantTxnID</code></a> API parameter).</p>
+	<p class='df-note'>In the most cases you do not need any prefix and can leave this option empty.</p>
+	<p class='df-note'>But there are some (rare) cases when your AlphaCommerceHub payment identifiers can potentially overlap with the previous ones:</p>
+	<ul class='df-note'>
+	<li>If you use a single AlphaCommerceHub merchant account for multiple shops.</li>
+	<li>If you have changed (e.g., reset) your Magento order numeration scheme.</li>
+	</ul>
+	<p class='df-note'>If AlphaCommerceHub encounters a payment identifier which has been already used for another payment, then it fails.</p>
+	<p class='df-note'>So to evade such situation you can define a prefix for the payment identifiers.</p>
+	<p class='df-note'>Please note that AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>» and «<code>.</code>» characters in the payment identifiers, so you should not use other characters in the prefix too.
+	</p>
+	]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/idPrefix</config_path>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='optionsLocation'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='16'
+						translate='label'
+						type='select'
+					>
+						<label>Where to ask for a payment option?</label>
+						<source_model>Df\Payment\Source\Options\Location</source_model>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsLocation</config_path>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='optionsPrompt'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='17'
+						translate='label'
+						type='textarea'
+					>
+						<label>Options Prompt</label>
+						<comment><![CDATA[A text above the AlphaCommerceHub payment options on the Magento checkout page.<br/>You can use the HTML tags. Also you set the prompt empty to hide it.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsPrompt</config_path>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='optionsLocation'>magento</field>
+						</depends>
+					</field>
+					<field
+						id='optionsDisplayMode'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='18'
+						translate='label'
+						type='select'
+					>
+						<label>Payment options display mode</label>
+						<comment><![CDATA[See the screenshots:<ul class='df-note'><li><a href='https://mage2.pro/t/4562' target='_blank'>the «<b>images</b>» mode</a></li><li><a href='https://mage2.pro/t/4815' target='_blank'>the «<b>text</b>» mode</a></li></ul>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsDisplayMode</config_path>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='optionsLocation'>magento</field>
+						</depends>
+						<source_model>Df\Payment\Source\Options\DisplayMode</source_model>
+					</field>
+					<field
+						dfRows='3'
+						id='optionsDescription'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='19'
+						translate='label'
+						type='Df\Framework\Form\Element\Textarea'
+					>
+						<label>Options Description</label>
+						<comment><![CDATA[A text to be shown on the Magento checkout page instead of the payment options dialog (as you have chosen to show the payment options on the AlphaCommerceHub side, the options dialog will not be shown on the Magento checkout screen).
+	<br/>You can:
+	<ul class='df-note'>
+	<li>Use the HTML tags.</li>
+	<li>Use the <code>{options}</code> variable. It will be substituted with the available payment options.</li>
+	<li>Set the description empty to hide it.</li>
+	</ul>]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsDescription</config_path>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='optionsLocation'>psp</field>
+						</depends>
+					</field>
+					<field
+						id='optionsLimit'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='20'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+					>
+						<label>Limit the payment options availability?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[If checked, only the selected options will be shown to the customers.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsLimit</config_path>
+						<depends>
+							<field id='enable'>1</field>
+							<field id='optionsLocation'>magento</field>
+						</depends>
+					</field>
+					<field
+						dfMultiselect_ordered='true'
+						id='optionsAllowed'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='21'
+						translate='label'
 						type='Df\Framework\Form\Element\Multiselect'
 					>
-						<label>Countries</label>
-						<can_be_empty>1</can_be_empty>
+						<label>Allowed Payment Options</label>
+						<source_model>Dfe\AlphaCommerceHub\Source\Option</source_model>
+						<comment><![CDATA[Only the selected options will be shown to the customers on the Magento checkout screen.<br/>You can <b>reorder</b> the options by drag and drop.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/optionsAllowed</config_path>
+						<validate>required-entry</validate>
 						<depends>
-							<field id='enabled'>1</field>
-							<!-- 2016-03-08
-							«The negative syntax for a backend config field <depends> condition»
-							https://mage2.pro/t/329 -->
-							<field id='forIPs' negative='1'>0</field>
+							<field id='enable'>1</field>
+							<field id='optionsLimit'>1</field>
+							<field id='optionsLocation'>magento</field>
 						</depends>
+					</field>
+					<field
+						id='currency'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='25'
+						translate='label'
+						type='Df\Directory\FE\Currency'
+					>
+						<label>Payment Currency</label>
+						<config_path>df_payment/alpha_commerce_hub/currency</config_path>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='actionForNew'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='26'
+						translate='label'
+						type='select'
+					>
+						<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/actionForNew</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<label>Payment Action for a New Customer</label>
+						<source_model>Df\Payment\Source\ACR</source_model>
+					</field>
+					<field
+						id='actionForReturned'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='27'
+						translate='label'
+						type='select'
+					>
+						<config_path>df_payment/alpha_commerce_hub/actionForReturned</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<label>Payment Action for a Returned Customer</label>
+						<source_model>Df\Payment\Source\ACR</source_model>
+					</field>
+					<field
+						id='description'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='28'
+						translate='label'
+						type='textarea'
+					>
+						<comment model='Df\Payment\Comment\Description'/>
+						<config_path>df_payment/alpha_commerce_hub/description</config_path>
+						<depends><field id='enable'>1</field></depends>
+						<label>Description</label>
+	<!-- 2016-07-01
+	We do not use the `validate-length` validator here
+	because the value can contain variables, so do not know the real length here. -->
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='dsd'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='29'
+						translate='label'
+						type='text'
+					>
+						<label>Dynamic statement descripor</label>
+						<comment><![CDATA[An arbitrary string to be displayed in a customer's payment statement.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<config_path>df_payment/alpha_commerce_hub/dsd</config_path>
+						<validate>validate-length maximum-length-22</validate>
+					</field>
+					<field
+						id='requireBillingAddress'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+						sortOrder='30'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Require the billing address?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/requireBillingAddress</config_path>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='min_order_total'
+						translate='label'
+						type='text'
+						sortOrder='31'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Minimum Order Total</label>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/min_order_total</config_path>
+						<validate>validate-number validate-greater-than-zero</validate>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='max_order_total'
+						translate='label'
+						type='text'
+						sortOrder='32'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Maximum Order Total</label>
+						<comment><![CDATA[]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/max_order_total</config_path>
+						<validate>validate-number validate-greater-than-zero</validate>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='country_restriction'
+						translate='label'
+						type='select'
+						sortOrder='33'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<config_path>df_payment/alpha_commerce_hub/country_restriction</config_path>
+						<label>Country Restriction</label>
+						<source_model>Df\Config\Source\NoWhiteBlack</source_model>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='countries'
+						translate='label'
+						type='Df\Framework\Form\Element\Multiselect'
+						sortOrder='34'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Countries</label>
 						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						<can_be_empty>1</can_be_empty>
+						<comment><![CDATA[Customers from which countries can (or can not) use the method?]]></comment>
+						<config_path>df_payment/alpha_commerce_hub/countries</config_path>
+						<depends>
+							<field id='enable'>1</field>
+	<!--
+	2016-03-08
+	«The negative syntax for a backend config field <depends> condition»
+	https://mage2.pro/t/329
+	-->
+							<field id='country_restriction' negative='1'>0</field>
+						</depends>
 					</field>
 				</group>
 			</group>
