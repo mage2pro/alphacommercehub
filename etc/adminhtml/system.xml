@@ -490,30 +490,27 @@ https://mage2.pro/t/329
 					<label>3D Secure</label>
 					<depends><field id='enable'>1</field></depends>
 					<field
-						id='forAll'
+						id='enabled'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='1'
 						translate='label'
 						type='Df\Framework\Form\Element\Checkbox'
 					>
-						<label>Use 3D Secure validation for all customers?</label>
+						<label>Whether the 3D Secure validation is enabled for your merchant account in AlphaCommerceHub?</label>
 						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[<ul class='df-note'><li>If the option is <b>disabled</b>, then the 3D Secure validation will be used based on the <a href="https://mage2.pro/t/1611" target='_blank'>risk rules</a> from your Checkout.com account.</li>
-	<li>If the option is <b>enabled</b>, then 3D Secure validation will be used for all the payments.</li></ul>]]></comment>
+						<comment><![CDATA[Unfortunately, AlphaCommerceHub <a href='https://mage2.pro/t/topic/4857/5' target='_blank'>does not allow</a> to enable the 3D Secure validation from the Magento side: it should be enabled in your AlphaCommerceHub merchant account.]]></comment>
 					</field>
 					<field
-						id='forNew'
+						id='forReturning'
 						showInDefault='1' showInStore='1' showInWebsite='1'
 						sortOrder='2'
 						translate='label'
 						type='Df\Framework\Form\Element\Checkbox'
 					>
-						<label>Use 3D Secure validation for new customers?</label>
+						<label>Disable the 3D Secure validation for the returning customers?</label>
 						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[A customer is regarded as <b>new</b>, if he does not have any order in the «Completed» or «Processing» state.
-	<ul class='df-note'><li>If the option is <b>disabled</b>, then the 3D Secure validation will be used based on the <a href="https://mage2.pro/t/1611" target='_blank'>risk rules</a> from your Checkout.com account.</li>
-	<li>If the option is <b>enabled</b>, then 3D Secure validation will be used for all the new customers.</li></ul>]]></comment>
-						<depends><field id='forAll'>0</field></depends>
+						<comment><![CDATA[A customer is regarded as <b>returning</b>, if he has any orders in the «Completed» or «Processing» state.]]></comment>
+						<depends><field id='enabled'>1</field></depends>
 					</field>
 					<field
 						id='forShippingDestinations'
@@ -522,9 +519,9 @@ https://mage2.pro/t/329
 						translate='label'
 						type='select'
 					>
-						<label>Use 3D Secure validation for particular shipping destinations?</label>
+						<label>Disable 3D Secure validation for particular shipping destinations?</label>
 						<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
-						<depends><field id='forAll'>0</field></depends>
+						<depends><field id='enabled'>1</field></depends>
 					</field>
 					<field
 						id='forShippingDestinations_countries'
@@ -536,7 +533,7 @@ https://mage2.pro/t/329
 						<label>Countries</label>
 						<can_be_empty>1</can_be_empty>
 						<depends>
-							<field id='forAll'>0</field>
+							<field id='enabled'>1</field>
 							<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»:
 							https://mage2.pro/t/329 -->
 							<field id='forShippingDestinations' negative='1'>0</field>
@@ -550,8 +547,8 @@ https://mage2.pro/t/329
 						translate='label'
 						type='select'
 					>
-						<label>Use 3D Secure validation for particular customer locations (detected by IP Address)?</label>
-						<depends><field id='forAll'>0</field></depends>
+						<label>Disable 3D Secure validation for particular customer locations (detected by IP Address)?</label>
+						<depends><field id='enabled'>1</field></depends>
 						<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
 					</field>
 					<field
@@ -564,10 +561,10 @@ https://mage2.pro/t/329
 						<label>Countries</label>
 						<can_be_empty>1</can_be_empty>
 						<depends>
-							<field id='forAll'>0</field>
-							<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»
-							https://mage2.pro/t/329
-							-->
+							<field id='enabled'>1</field>
+							<!-- 2016-03-08
+							«The negative syntax for a backend config field <depends> condition»
+							https://mage2.pro/t/329 -->
 							<field id='forIPs' negative='1'>0</field>
 						</depends>
 						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
