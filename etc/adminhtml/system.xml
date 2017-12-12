@@ -635,6 +635,118 @@ So the `sortOrder` value is 1920. -->
 						</field>
 					</group>
 				</group>
+				<group
+					id='paypal'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='3'
+					translate='label'
+				>
+					<label>PayPal</label>
+					<comment><![CDATA[]]></comment>
+					<field
+						id='enable'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='1'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+					>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[Enable the PayPal payment option?]]></comment>
+						<label>Enable?</label>
+					</field>
+					<field
+						id='title'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='2'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[It is shown on the checkout screen.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>A title for the PayPal payment option</label>
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='min_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='3'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Minimum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<field
+						id='max_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='4'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Maximum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+				</group>
+				<group
+					id='poli'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='4'
+					translate='label'
+				>
+					<label>POLi Payments</label>
+					<comment><![CDATA[]]></comment>
+					<field
+						id='enable'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='1'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+					>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[Enable the POLi Payments payment option?]]></comment>
+						<label>Enable?</label>
+					</field>
+					<field
+						id='title'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='2'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[It is shown on the checkout screen.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>A title for the POLi Payments payment option</label>
+						<validate>required-entry</validate>
+					</field>
+					<field
+						id='min_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='3'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Minimum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<field
+						id='max_order_total'
+						showInDefault='1' showInStore='1' showInWebsite='1'
+						sortOrder='4'
+						translate='label'
+						type='text'
+					>
+						<comment><![CDATA[]]></comment>
+						<depends><field id='enable'>1</field></depends>
+						<label>Maximum Order Total</label>
+						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+				</group>
 			</group>
 		</section>
 	</system>

@@ -6,6 +6,9 @@
     <default>
 		<df_payment>
 			<alpha_commerce_hub>
+				<card>
+					<title>Bank Card</title>
+				</card>
 				<currency>base</currency>
 				<description>{order.items}</description>
 				<description_rules>
@@ -63,6 +66,12 @@ https://github.com/mage2pro/alphacommercehub/issues/80
 				<optionsDisplayMode>images</optionsDisplayMode>
 				<optionsLocation>magento</optionsLocation>
 				<optionsPrompt><![CDATA[Please select a payment option:]]></optionsPrompt>
+				<paypal>
+					<title>PayPal</title>
+				</paypal>
+				<poli>
+					<title>POLi Payments</title>
+				</poli>
 				<requireBillingAddress>0</requireBillingAddress>
 				<title>AlphaCommerceHub</title>
 				<title_backend>AlphaCommerceHub</title_backend>
