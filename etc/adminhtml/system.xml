@@ -310,44 +310,6 @@ So the `sortOrder` value is 1920. -->
 						<config_path>df_payment/alpha_commerce_hub/dsd</config_path>
 						<validate>validate-length maximum-length-22</validate>
 					</field>
-					<field
-						id='country_restriction'
-						translate='label'
-						type='select'
-						sortOrder='33'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
-					>
-						<config_path>df_payment/alpha_commerce_hub/country_restriction</config_path>
-						<label>Country Restriction</label>
-						<source_model>Df\Config\Source\NoWhiteBlack</source_model>
-						<depends><field id='enable'>1</field></depends>
-					</field>
-					<field
-						id='countries'
-						translate='label'
-						type='Df\Framework\Form\Element\Multiselect'
-						sortOrder='34'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
-					>
-						<label>Countries</label>
-						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-						<can_be_empty>1</can_be_empty>
-						<comment><![CDATA[Customers from which countries can (or can not) use the method?]]></comment>
-						<config_path>df_payment/alpha_commerce_hub/countries</config_path>
-						<depends>
-							<field id='enable'>1</field>
-	<!--
-	2016-03-08
-	«The negative syntax for a backend config field <depends> condition»
-	https://mage2.pro/t/329
-	-->
-							<field id='country_restriction' negative='1'>0</field>
-						</depends>
-					</field>
 				</group>
 				<group
 					id='CC'
@@ -442,6 +404,42 @@ So the `sortOrder` value is 1920. -->
 						<depends><field id='enable'>1</field></depends>
 						<label>Maximum Order Total</label>
 						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<field
+						id='country_restriction'
+						translate='label'
+						type='select'
+						sortOrder='7'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Country Restriction</label>
+						<source_model>Df\Config\Source\NoWhiteBlack</source_model>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='countries'
+						translate='label'
+						type='Df\Framework\Form\Element\Multiselect'
+						sortOrder='8'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Countries</label>
+						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						<can_be_empty>1</can_be_empty>
+						<comment><![CDATA[Customers from which countries can (or can not) use the bank card payment option?]]></comment>
+						<depends>
+							<field id='enable'>1</field>
+	<!--
+	2016-03-08
+	«The negative syntax for a backend config field <depends> condition»
+	https://mage2.pro/t/329
+	-->
+							<field id='country_restriction' negative='1'>0</field>
+						</depends>
 					</field>
 					<group
 						id='3ds'
@@ -602,6 +600,42 @@ So the `sortOrder` value is 1920. -->
 						<label>Maximum Order Total</label>
 						<validate>validate-number validate-greater-than-zero</validate>
 					</field>
+					<field
+						id='country_restriction'
+						translate='label'
+						type='select'
+						sortOrder='6'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Country Restriction</label>
+						<source_model>Df\Config\Source\NoWhiteBlack</source_model>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='countries'
+						translate='label'
+						type='Df\Framework\Form\Element\Multiselect'
+						sortOrder='7'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Countries</label>
+						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						<can_be_empty>1</can_be_empty>
+						<comment><![CDATA[Customers from which countries can (or can not) use the PayPal payment option?]]></comment>
+						<depends>
+							<field id='enable'>1</field>
+	<!--
+	2016-03-08
+	«The negative syntax for a backend config field <depends> condition»
+	https://mage2.pro/t/329
+	-->
+							<field id='country_restriction' negative='1'>0</field>
+						</depends>
+					</field>
 				</group>
 				<group
 					id='PO'
@@ -671,6 +705,42 @@ So the `sortOrder` value is 1920. -->
 						<depends><field id='enable'>1</field></depends>
 						<label>Maximum Order Total</label>
 						<validate>validate-number validate-greater-than-zero</validate>
+					</field>
+					<field
+						id='country_restriction'
+						translate='label'
+						type='select'
+						sortOrder='6'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Country Restriction</label>
+						<source_model>Df\Config\Source\NoWhiteBlack</source_model>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
+						id='countries'
+						translate='label'
+						type='Df\Framework\Form\Element\Multiselect'
+						sortOrder='7'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Countries</label>
+						<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+						<can_be_empty>1</can_be_empty>
+						<comment><![CDATA[Customers from which countries can (or can not) use the POLi Payments option?]]></comment>
+						<depends>
+							<field id='enable'>1</field>
+	<!--
+	2016-03-08
+	«The negative syntax for a backend config field <depends> condition»
+	https://mage2.pro/t/329
+	-->
+							<field id='country_restriction' negative='1'>0</field>
+						</depends>
 					</field>
 				</group>
 			</group>

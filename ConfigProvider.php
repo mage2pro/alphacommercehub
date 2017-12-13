@@ -25,7 +25,10 @@ final class ConfigProvider extends \Df\Payment\ConfigProvider {
 	 * @return array(string => mixed)
 	 */
 	private function option($id) {$s = $this->s(); return [$id => [
-		'enable' => $s->b("$id/enable") && $s->applicableForQuote($id)
+		'enable' =>
+			$s->b("$id/enable")
+			&& $s->applicableForQuoteByMinMaxTotal($id)
+			&& $s->applicableForQuoteByCountry($id)
 		/**
 		 * 2017-12-13
 		 * 1) "Provide an ability to the Magento backend users (merchants)
