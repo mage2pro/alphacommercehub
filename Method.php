@@ -200,6 +200,19 @@ final class Method extends \Df\PaypalClone\Method {
 	function optionTitle($o = null) {return !($o = ($o ?: $this->option())) ? null : $this->s("$o/title");}
 
 	/**
+	 * 2017-12-13
+	 * "Provide an ability to the Magento backend users (merchants)
+	 * to set up the «Require the billing address?» option separately
+	 * for each AlphaCommerceHub's payment option (bank cards, PayPal, POLi Payments, etc.)":
+	 * https://github.com/mage2pro/alphacommercehub/issues/84
+	 * @override
+	 * @see \Df\Payment\Method::requireBillingAddress()
+	 * @used-by \Df\Payment\PlaceOrderInternal::_place()
+	 * @return bool
+	 */
+	function requireBillingAddress() {return $this->s()->b("{$this->option()}/requireBillingAddress");}
+
+	/**
 	 * 2017-11-02
 	 * «These are the URLs that should be used.
 	 * For API calls:
