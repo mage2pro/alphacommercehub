@@ -5,7 +5,6 @@
  * @see Dfe_AlphaCommerceHub/poli
  */
 define(['df-lodash', 'Magento_Checkout/js/model/quote'], function(_, quote) {'use strict'; return {
-	defaults: {df: {requireBillingAddress: true}},
 	/**
 	 * 2017-12-12
 	 * @override
