@@ -8,7 +8,7 @@ define([
 var p = window.checkoutConfig.payment;
 /** @type {Object} */ var config = p[mCode];
 if (config) {
-	_.each(['card', 'paypal', 'poli'], function(suffix) {
+	_.each(['CC', 'PP', 'PO'], function(suffix) {
 		if (config[suffix].enable) {
 			/** @type {String} */ var rType = mCode + '_' + suffix;
 			p[rType] = _.assign({}, config['common'], config[suffix]);

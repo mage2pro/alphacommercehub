@@ -365,7 +365,7 @@ So the `sortOrder` value is 1920. -->
 					</field>
 				</group>
 				<group
-					id='card'
+					id='CC'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='2'
 					translate='label'
@@ -535,7 +535,7 @@ So the `sortOrder` value is 1920. -->
 					</group>
 				</group>
 				<group
-					id='paypal'
+					id='PP'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='3'
 					translate='label'
@@ -591,7 +591,7 @@ So the `sortOrder` value is 1920. -->
 					</field>
 				</group>
 				<group
-					id='poli'
+					id='PO'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='4'
 					translate='label'

@@ -4,7 +4,7 @@ define([
 ], function(mixin, df, _, parent) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */	
 return parent.extend(df.o.merge(mixin, {
-	defaults: {df: {formTemplate: 'Dfe_AlphaCommerceHub/poli', alphacommercehub: {suffix: 'poli'}}},
+	defaults: {df: {formTemplate: 'Dfe_AlphaCommerceHub/PO', alphacommercehub: {suffix: 'PO'}}},
 	/**
 	 * 2017-07-26
 	 * These data are submitted to the M2 server part

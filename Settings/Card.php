@@ -21,5 +21,5 @@ final class Card extends \Df\Payment\Settings {
 	 * @used-by \Df\Config\Settings::v()
 	 * @return string
 	 */
-	protected function prefix() {return dfc($this, function() {return parent::prefix() . '/card';});}
+	protected function prefix() {return dfc($this, function() {return parent::prefix() . '/CC';});}
 }
