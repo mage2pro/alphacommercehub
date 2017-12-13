@@ -12,9 +12,7 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 1. [Capture a bank card payment](https://www.youtube.com/watch?v=kKrIZWvHLcA) ([0.3.5](https://github.com/mage2pro/alphacommercehub/releases/tag/0.3.5))
 
 ## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
-- The frontend checkout screen:
-    - [in the «**images**» mode](https://mage2.pro/t/topic/4973)
-    - [in the «**text**» mode](https://mage2.pro/t/topic/4815)
+- [The frontend checkout screen](https://mage2.pro/t/topic/5152).
 - [The backend «**Payment Information**» block for a bank card payment](https://mage2.pro/t/topic/5076)
 - [The backend settings](https://mage2.pro/t/topic/4816)    
 
