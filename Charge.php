@@ -104,7 +104,6 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 */
 	protected function pCharge() {
 		$s = $this->s(); /** @var S $s */
-		$o = $s->options(); /** @var Options $o */
 		/**
 		 * 2017-11-01
 		 * «Whether the `Street1`, `Street2`, `City`, `Zip`, `Country` parameters
@@ -258,7 +257,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * I have implemented it similar to @see \Dfe\AllPay\Charge::pChoosePayment():
 			 * https://github.com/mage2pro/allpay/blob/1.10.0/Charge.php#L538-L562
 			 */
-			,'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
+			,'Method' => $this->m()->option()
 			/**
 			 * 2017-11-03 «Product Line Information»
 			 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
