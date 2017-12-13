@@ -10,10 +10,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * for the PayPal's `RefundPayment` transaction?": https://mage2.pro/t/4993
  */
 final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-11 */
+	/** @test 2017-12-11 */
 	function t00() {}
 
-	/** @test 2017-12-11 */
+	/** 2017-12-11 */
 	function t01() {
 		// 2017-12-03 token=EC-57L73665MJ662912E&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
