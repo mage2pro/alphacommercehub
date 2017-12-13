@@ -311,21 +311,6 @@ So the `sortOrder` value is 1920. -->
 						<validate>validate-length maximum-length-22</validate>
 					</field>
 					<field
-						id='requireBillingAddress'
-						translate='label'
-						type='Df\Framework\Form\Element\Checkbox'
-						sortOrder='30'
-						showInDefault='1'
-						showInWebsite='1'
-						showInStore='1'
-					>
-						<label>Require the billing address?</label>
-						<backend_model>Df\Config\Backend\Checkbox</backend_model>
-						<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
-						<config_path>df_payment/alpha_commerce_hub/requireBillingAddress</config_path>
-						<depends><field id='enable'>1</field></depends>
-					</field>
-					<field
 						id='country_restriction'
 						translate='label'
 						type='select'
@@ -419,6 +404,20 @@ So the `sortOrder` value is 1920. -->
 						<depends><field id='enable'>1</field></depends>
 						<label>Payment Action for a Returned Customer</label>
 						<source_model>Df\Payment\Source\ACR</source_model>
+					</field>
+					<field
+						id='requireBillingAddress'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+						sortOrder='5'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Require the billing address?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
+						<depends><field id='enable'>1</field></depends>
 					</field>
 					<field
 						id='min_order_total'
@@ -566,9 +565,23 @@ So the `sortOrder` value is 1920. -->
 						<validate>required-entry</validate>
 					</field>
 					<field
+						id='requireBillingAddress'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+						sortOrder='3'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Require the billing address?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
 						id='min_order_total'
 						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='3'
+						sortOrder='4'
 						translate='label'
 						type='text'
 					>
@@ -580,7 +593,7 @@ So the `sortOrder` value is 1920. -->
 					<field
 						id='max_order_total'
 						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='4'
+						sortOrder='5'
 						translate='label'
 						type='text'
 					>
@@ -622,9 +635,23 @@ So the `sortOrder` value is 1920. -->
 						<validate>required-entry</validate>
 					</field>
 					<field
+						id='requireBillingAddress'
+						translate='label'
+						type='Df\Framework\Form\Element\Checkbox'
+						sortOrder='3'
+						showInDefault='1'
+						showInWebsite='1'
+						showInStore='1'
+					>
+						<label>Require the billing address?</label>
+						<backend_model>Df\Config\Backend\Checkbox</backend_model>
+						<comment><![CDATA[If <b>checked</b>, Magento will require the billing address. It is the default Magento behavior.<br/>If <b>unchecked</b>, Magento will not require the billing address, and even will not ask for it.]]></comment>
+						<depends><field id='enable'>1</field></depends>
+					</field>
+					<field
 						id='min_order_total'
 						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='3'
+						sortOrder='4'
 						translate='label'
 						type='text'
 					>
@@ -636,7 +663,7 @@ So the `sortOrder` value is 1920. -->
 					<field
 						id='max_order_total'
 						showInDefault='1' showInStore='1' showInWebsite='1'
-						sortOrder='4'
+						sortOrder='5'
 						translate='label'
 						type='text'
 					>

@@ -25,7 +25,19 @@ final class ConfigProvider extends \Df\Payment\ConfigProvider {
 	 * @return array(string => mixed)
 	 */
 	private function option($id) {$s = $this->s(); return [$id => [
-		'enable' => $s->v("$id/enable") && $s->applicableForQuote($id)
+		'enable' => $s->b("$id/enable") && $s->applicableForQuote($id)
+		/**
+		 * 2017-12-13
+		 * 1) "Provide an ability to the Magento backend users (merchants)
+		 * to set up the «Require the billing address?» option separately
+		 * for each AlphaCommerceHub's payment option (bank cards, PayPal, POLi Payments, etc.)":
+		 * https://github.com/mage2pro/alphacommercehub/issues/84
+		 * 2) It is implemented by analogy with @see \Df\Payment\ConfigProvider::config()
+		 * https://github.com/mage2pro/core/blob/3.4.10/Payment/ConfigProvider.php#L123
+		 * @see \Df\Payment\Settings::requireBillingAddress():
+		 * https://github.com/mage2pro/core/blob/3.4.10/Payment/Settings.php#L189-L211
+		 */
+		,'requireBillingAddress' => $s->b("$id/requireBillingAddress")
 		,'title' => $this->m()->optionTitle($id)
 	]];}
 }
