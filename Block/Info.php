@@ -57,10 +57,17 @@ class Info extends \Df\Payment\Block\Info {
 					 * "Show the cardholder and bank card information in the Magento's «Payment Information» blocks
 					 * (backend, frontend, emails)": https://github.com/mage2pro/alphacommercehub/issues/38
 					 */
-					$this->si([
-						'Card Number' => "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})"
-						,'Cardholder' => $e->r('Result/CardHolder')
-					]);
+					$this->si('Card Number', "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})");
+					/**
+					 * 2017-12-14
+					 * "Add the «Validated with 3D-Secure» flag
+					 * to the Magento's backend «Payment Information» block":
+					 * https://github.com/mage2pro/alphacommercehub/issues/88
+					 */
+					if ($e->r('ThreeDSecure')) {
+						$this->siEx(['Validated with 3D-Secure' => 'Yes']);
+					}
+					$this->si('Cardholder', $e->r('Result/CardHolder'));
 					$this->siEx(['Issuer Country' => df_country_ctn($e->r('PaymentInfo/PaymentIssuerCountry'))]);
 					break;
 				case 'PO':
