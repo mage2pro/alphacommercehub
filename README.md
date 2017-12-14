@@ -9,7 +9,7 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 [twitter.com/AlphaFintech/status/897827890728972288](https://twitter.com/AlphaFintech/status/897827890728972288)
 
 ## [Demo videos](https://www.youtube.com/playlist?list=PLTq8uOpBQGsFXcazPVhagNxV8Wb77ggoT)
-1. [Capture a bank card payment](https://www.youtube.com/watch?v=kKrIZWvHLcA) ([0.3.5](https://github.com/mage2pro/alphacommercehub/releases/tag/0.3.5))
+1. [Preauthorize, capture, and refund a bank card payment](https://www.youtube.com/watch?v=qdnMdWwAoMc&list=PLTq8uOpBQGsFXcazPVhagNxV8Wb77ggoT)
 
 ## [Screenshots](https://mage2.pro/tags/alphacommercehub-screenshot)
 - [The frontend checkout screen](https://mage2.pro/t/topic/5152).
