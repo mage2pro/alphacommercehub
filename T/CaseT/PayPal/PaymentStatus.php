@@ -42,9 +42,9 @@ final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 * The PayPal's `PaymentStatus` is working again without `Amount` and `Currency`.
 			 * But the corresponding rows are empty in the AlphaCommerceHub's merchant interface in this case.
 			 */
-			'Amount' => '186240'
+			'Amount' => '168950'
 			,'Currency' => 'AUD'
-			,'MerchantTxnID' => '1208L.777'
+			,'MerchantTxnID' => '1208L.781'
 			/**
 			 * 2017-12-08
 			 * "Why is AlphaCommerceHub unable to detect `Method` automatically by `MerchantTxnID`
@@ -54,6 +54,7 @@ final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
 			 */
 			,'Method' => 'PP'
 		]], df_class_l($this)); /** @var Op $r */
+		$r['Result/Amount'] = dfe_alphacommercehub_fix_amount_bug($r['Result/Amount']);
 		echo df_json_encode($r->req());
 		echo $r->j();
 	}
