@@ -9,6 +9,12 @@ var p = window.checkoutConfig.payment;
 /** @type {Object} */ var config = p[mCode];
 if (config) {
 	_.each(['CC', 'PP', 'PO'], function(suffix) {
+		/**
+		 * 2017-12-14
+		 * @todo This code is not re-run if the customer has changed his shipping address,
+		 * and therefore the country restrictions are not applied correctly in this case.
+		 * https://github.com/mage2pro/alphacommercehub/issues/85#issuecomment-351614173
+		 */
 		if (config[suffix].enable) {
 			/** @type {String} */ var rType = mCode + '_' + suffix;
 			p[rType] = _.assign({}, config['common'], config[suffix]);
