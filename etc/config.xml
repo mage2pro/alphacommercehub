@@ -65,12 +65,19 @@ https://github.com/mage2pro/alphacommercehub/issues/80
 					<title>PayPal</title>
 				</PP>
 				<PO>
-<!-- 2017-12-13
+<!--
+2017-12-13
 "The POLi Payments option should be hidden from outside of Australia and New Zealand":
 https://github.com/mage2pro/alphacommercehub/issues/28
+2017-12-14
+The previous code was:
+	<countries>AU,NZ</countries>
+	<country_restriction>whitelist</country_restriction>
+https://github.com/mage2pro/alphacommercehub/blob/0.7.5/etc/config.xml#L68-L73
+I have removed it, because the country restrictions are not yet applied correctly in some AJAX cases:
+https://github.com/mage2pro/alphacommercehub/issues/85#issuecomment-351614173
 -->
-					<countries>AU,NZ</countries>
-					<country_restriction>whitelist</country_restriction>
+
 					<title>POLi Payments</title>
 				</PO>
 				<title>AlphaCommerceHub</title>
