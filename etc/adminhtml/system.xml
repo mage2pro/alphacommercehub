@@ -461,32 +461,50 @@ So the `sortOrder` value is 1920. -->
 							<comment><![CDATA[Unfortunately, AlphaCommerceHub <a href='https://mage2.pro/t/topic/4857/5' target='_blank'>does not allow</a> to enable the 3D Secure validation from the Magento side: it should be enabled in your AlphaCommerceHub merchant account.]]></comment>
 						</field>
 						<field
-							id='forReturning'
+							id='forAll'
 							showInDefault='1' showInStore='1' showInWebsite='1'
 							sortOrder='2'
+							translate='label'
+							type='Df\Framework\Form\Element\Checkbox'
+						>
+							<label>Disable the 3D Secure validation for all customers?</label>
+							<backend_model>Df\Config\Backend\Checkbox</backend_model>
+							<comment><![CDATA[Sometimes you will need it, because <a href='https://mage2.pro/t/5164' target='_blank'>AlphaCommerceHub periodically breaks the 3D Secure validation</a> feature.]]></comment>
+							<depends><field id='enabled'>1</field></depends>
+						</field>
+						<field
+							id='forReturning'
+							showInDefault='1' showInStore='1' showInWebsite='1'
+							sortOrder='3'
 							translate='label'
 							type='Df\Framework\Form\Element\Checkbox'
 						>
 							<label>Disable the 3D Secure validation for the returning customers?</label>
 							<backend_model>Df\Config\Backend\Checkbox</backend_model>
 							<comment><![CDATA[A customer is regarded as <b>returning</b>, if he has any orders in the «Completed» or «Processing» state.]]></comment>
-							<depends><field id='enabled'>1</field></depends>
+							<depends>
+								<field id='enabled'>1</field>
+								<field id='forAll'>0</field>
+							</depends>
 						</field>
 						<field
 							id='forShippingDestinations'
 							showInDefault='1' showInStore='1' showInWebsite='1'
-							sortOrder='3'
+							sortOrder='4'
 							translate='label'
 							type='select'
 						>
 							<label>Disable 3D Secure validation for particular shipping destinations?</label>
 							<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
-							<depends><field id='enabled'>1</field></depends>
+							<depends>
+								<field id='enabled'>1</field>
+								<field id='forAll'>0</field>
+							</depends>
 						</field>
 						<field
 							id='forShippingDestinations_countries'
 							showInDefault='1' showInStore='1' showInWebsite='1'
-							sortOrder='4'
+							sortOrder='5'
 							translate='label'
 							type='Df\Framework\Form\Element\Multiselect'
 						>
@@ -494,6 +512,7 @@ So the `sortOrder` value is 1920. -->
 							<can_be_empty>1</can_be_empty>
 							<depends>
 								<field id='enabled'>1</field>
+								<field id='forAll'>0</field>
 								<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»:
 								https://mage2.pro/t/329 -->
 								<field id='forShippingDestinations' negative='1'>0</field>
@@ -503,18 +522,21 @@ So the `sortOrder` value is 1920. -->
 						<field
 							id='forIPs'
 							showInDefault='1' showInStore='1' showInWebsite='1'
-							sortOrder='5'
+							sortOrder='6'
 							translate='label'
 							type='select'
 						>
 							<label>Disable 3D Secure validation for particular customer locations (detected by IP Address)?</label>
-							<depends><field id='enabled'>1</field></depends>
+							<depends>
+								<field id='enabled'>1</field>
+								<field id='forAll'>0</field>
+							</depends>
 							<source_model>Df\Config\Source\NoWhiteBlack\Specified</source_model>
 						</field>
 						<field
 							id='forIPs_countries'
 							showInDefault='1' showInStore='1' showInWebsite='1'
-							sortOrder='6'
+							sortOrder='7'
 							translate='label'
 							type='Df\Framework\Form\Element\Multiselect'
 						>
@@ -522,6 +544,7 @@ So the `sortOrder` value is 1920. -->
 							<can_be_empty>1</can_be_empty>
 							<depends>
 								<field id='enabled'>1</field>
+								<field id='forAll'>0</field>
 								<!-- 2016-03-08
 								«The negative syntax for a backend config field <depends> condition»
 								https://mage2.pro/t/329 -->
