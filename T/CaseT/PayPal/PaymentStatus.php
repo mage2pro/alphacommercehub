@@ -24,10 +24,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * since 2017-12-13": https://github.com/mage2pro/alphacommercehub/issues/82
  */
 final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** 2017-12-03 */
+	/** @test 2017-12-03 */
 	function t00() {}
 
-	/** @test 2017-12-02 */
+	/** 2017-12-02 */
 	function t01() {
 		// token=EC-37F54734B9677552F&PayerID=7EY65DU75L82G
 		$r = F::s()->post(['Transaction' => [

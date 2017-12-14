@@ -27,9 +27,9 @@ final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
 		// 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
 			'Transaction' => [
-				'Amount' => '161000'
+				'Amount' => '168950'
 				,'Currency' => 'AUD'
-				,'MerchantTxnID' => '1208L.769'
+				,'MerchantTxnID' => '1208L.781'
 				// 2017-12-08
 				// If this parameter is absent, then AlphaCommerceHub will respond:
 				// «Original transaction not found».

@@ -10,17 +10,17 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * for the PayPal's `RefundPayment` transaction?": https://mage2.pro/t/4993
  */
 final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
-	/** @test 2017-12-11 */
+	/** 2017-12-11 */
 	function t00() {}
 
-	/** 2017-12-11 */
+	/** @test 2017-12-11 */
 	function t01() {
 		// 2017-12-03 token=EC-57L73665MJ662912E&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
 			'Transaction' => [
-				'Amount' => '1000'
+				'Amount' => '168950'
 				,'Currency' => 'AUD'
-				,'MerchantTxnID' => '1208L.775'
+				,'MerchantTxnID' => '1208L.781'
 				// 2017-12-08
 				// If this parameter is absent, then AlphaCommerceHub will respond:
 				// «Original transaction not found».
