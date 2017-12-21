@@ -38,12 +38,16 @@ https://mage2.pro/t/4779
 2017-11-01
 [AlphaCommerceHub] Which characters are considered «special» and «not special»
 for the AlphaHPP's `MerchantTxnID` parameter? https://mage2.pro/t/4842
+2017-12-21
+1) "The module should allow the #.: {}\-/ special characters in a `MerchantTxnID`":
+https://github.com/mage2pro/alphacommercehub/issues/90
+2) «If you want to escape \, you need to escape it as \\\»: https://stackoverflow.com/a/25263627
 -->
 				<identification>increment_id</identification>
 				<identification_rules>
 					<regex>
-						<message><![CDATA[AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>/</code>», «<code>.</code>, and «<code>-</code>» characters in the payment identifiers]]></message>
-						<pattern><![CDATA[#^[a-z0-9./\-]+$#i]]></pattern>
+						<message><![CDATA[AlphaCommerceHub allows only the digits, the Latin letters, and the «<code>#.: {}\-/</code>» characters in the payment identifiers]]></message>
+						<pattern><![CDATA[#^[a-z0-9.:\s{}\-/\#\\\]+$#i]]></pattern>
 					</regex>
 					<max_length>60</max_length>
 				</identification_rules>
