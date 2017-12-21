@@ -110,11 +110,14 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * are related to a shipping address, or to a billing address?» https://mage2.pro/t/4855
 		 * 2017-11-02
 		 * An order/quote can be without a shipping address (consist of the Virtual products).
-		 * In this case $sa is an empty object.
+		 * In this case $a is an empty object.
 		 * https://en.wikipedia.org/wiki/Null_object_pattern
-		 * @var OA $sa
+		 * 2017-12-21
+		 * "The module should use the customer's billing address instead of the shipping address
+		 * to fill the `Street1`, `Street2`, `City`, `Zip`, `Country` parameters for AlphaHPP":
+		 * https://github.com/mage2pro/alphacommercehub/issues/89
 		 */
-		$sa = $this->addressS(true);
+		$a = $this->addressBS(); /** @var OA $a */
 		return df_clean([
 			/**
 			 * 2017-11-02
@@ -139,7 +142,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://github.com/mage2pro/alphacommercehub/issues/7#issuecomment-343819432
 			 */
 			'3DSecureBypass' =>
-				$s->card()->_3ds()->disable_($sa->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
+				$s->card()->_3ds()->disable_($a->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
 			/**
 			 * 2017-11-02
 			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».
@@ -186,9 +189,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
 			 */
-			,'City' => $this->text($sa->getCity(), 25)
+			,'City' => $this->text($a->getCity(), 25)
 			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
-			,'Country' => $sa->getCountryId()
+			,'Country' => $a->getCountryId()
 			/**
 			 * 2017-11-01
 			 * «A customer identifier assigned by the merchant». String(20), optional.
@@ -274,7 +277,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
 			 */
-			,'State' => $this->text($sa->getRegion(), 50)
+			,'State' => $this->text($a->getRegion(), 50)
 			/**
 			 * 2017-11-01 «The first line of the customers street address». String(100), optional.
 			 * 2017-11-13
@@ -288,7 +291,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://github.com/mage2pro/alphacommercehub/issues/37
 			 * @uses textFilterStreet()
 			 */
-			,'Street1' => $this->text($sa->getStreetLine(1), 100, 'textFilterStreet')
+			,'Street1' => $this->text($a->getStreetLine(1), 100, 'textFilterStreet')
 			/**
 			 * 2017-11-01 «The second line of the customers street address». String(100), optional.
 			 * 2017-11-13
@@ -302,7 +305,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://github.com/mage2pro/alphacommercehub/issues/37
 			 * @uses textFilterStreet()
 			 */
-			,'Street2' => $this->text($sa->getStreetLine(2), 100, 'textFilterStreet')
+			,'Street2' => $this->text($a->getStreetLine(2), 100, 'textFilterStreet')
 			/**
 			 * 2017-11-02
 			 * Note 1.
@@ -377,7 +380,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * What about non-English letters?»
 			 * https://mage2.pro/t/4926
 			 */
-			,'Zip' => $this->text($sa->getPostcode())
+			,'Zip' => $this->text($a->getPostcode())
 		]);
 	}
 
