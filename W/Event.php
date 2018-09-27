@@ -1,6 +1,5 @@
 <?php
 namespace Dfe\AlphaCommerceHub\W;
-use Magento\Sales\Model\Order\Payment\Transaction as T;
 /**
  * 2017-11-18
  * «AlphaHPP» → «Paypage Request Reference» → «Response Message»
