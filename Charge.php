@@ -1,7 +1,6 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
 use Df\Payment\Init\Action;
-use Df\Payment\Settings\Options;
 use Dfe\AlphaCommerceHub\Settings as S;
 use Magento\Sales\Model\Order as O;
 use Magento\Sales\Model\Order\Address as OA;
