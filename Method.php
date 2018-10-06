@@ -81,7 +81,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * https://github.com/magento/magento2/blob/2.2.1/app/code/Magento/Sales/Model/Order/Payment/Operations/AbstractOperation.php#L59-L78
 	 * @return bool
 	 */
-	final function canCapture() {return true;}
+	function canCapture() {return true;}
 
 	/**
 	 * 2017-12-06
