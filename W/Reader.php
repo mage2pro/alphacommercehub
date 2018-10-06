@@ -42,7 +42,7 @@ final class Reader extends \Df\Payment\W\Reader {
 	 */
 	protected function reqFilter(array $r) {
 		if (isset($r['token'], $r['PayerID'])) {
-			$tm = df_tm(dfpm(df_checkout_session()->getLastRealOrder())); /** @var TM $tm */
+			$tm = df_tm(dfpm(df_order_last())); /** @var TM $tm */
 			$f = fPayPal::s(); /** @var fPayPal $s */
 			$s = $f->status($tm->req(['MerchantTxnID', 'Amount', 'Currency'])); /** @var Op $s */
 			$c = $f->capture($s); /** @var Op $c */
