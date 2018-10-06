@@ -280,19 +280,6 @@ final class Method extends \Df\PaypalClone\Method {
 	}
 
 	/**
-	 * 2017-12-08
-	 * @used-by _refund()
-	 * @used-by charge()
-	 * @param Operation $r
-	 */
-	private function transInfo(Operation $r) {
-		// 2017-01-12, 2017-12-07
-		// I log the both request and its response to Sentry, but I log only response to the local log.
-		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
-		$this->iiaSetTRR($r->req(), $respA);
-	}
-
-	/**
 	 * 2017-10-27
 	 * «The amount fields are defined as fixed format 14,3 length.
 	 * This allows for three exponent currencies such as OMR (Omani Rial) to be supported
@@ -329,6 +316,19 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @return string[]
 	 */
 	protected function iiaKeys() {return [self::$II_OPTION];}
+
+	/**
+	 * 2017-12-08
+	 * @used-by _refund()
+	 * @used-by charge()
+	 * @param Operation $r
+	 */
+	private function transInfo(Operation $r) {
+		// 2017-01-12, 2017-12-07
+		// I log the both request and its response to Sentry, but I log only response to the local log.
+		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
+		$this->iiaSetTRR($r->req(), $respA);
+	}
 
 	/**
 	 * 2017-11-01 https://github.com/mage2pro/core/blob/2.12.17/Payment/view/frontend/web/withOptions.js#L56-L72
