@@ -433,11 +433,7 @@ So the `sortOrder` value is 1920. -->
 						<comment><![CDATA[Customers from which countries can (or can not) use the bank card payment option?]]></comment>
 						<depends>
 							<field id='enable'>1</field>
-	<!--
-	2016-03-08
-	«The negative syntax for a backend config field <depends> condition»
-	https://mage2.pro/t/329
-	-->
+<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition» https://mage2.pro/t/329 -->
 							<field id='country_restriction' negative='1'>0</field>
 						</depends>
 					</field>
@@ -513,8 +509,7 @@ So the `sortOrder` value is 1920. -->
 							<depends>
 								<field id='enabled'>1</field>
 								<field id='forAll'>0</field>
-								<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition»:
-								https://mage2.pro/t/329 -->
+<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition» https://mage2.pro/t/329 -->
 								<field id='forShippingDestinations' negative='1'>0</field>
 							</depends>
 							<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
@@ -545,9 +540,7 @@ So the `sortOrder` value is 1920. -->
 							<depends>
 								<field id='enabled'>1</field>
 								<field id='forAll'>0</field>
-								<!-- 2016-03-08
-								«The negative syntax for a backend config field <depends> condition»
-								https://mage2.pro/t/329 -->
+<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition» https://mage2.pro/t/329 -->
 								<field id='forIPs' negative='1'>0</field>
 							</depends>
 							<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
@@ -651,11 +644,7 @@ So the `sortOrder` value is 1920. -->
 						<comment><![CDATA[Customers from which countries can (or can not) use the PayPal payment option?]]></comment>
 						<depends>
 							<field id='enable'>1</field>
-	<!--
-	2016-03-08
-	«The negative syntax for a backend config field <depends> condition»
-	https://mage2.pro/t/329
-	-->
+<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition» https://mage2.pro/t/329 -->
 							<field id='country_restriction' negative='1'>0</field>
 						</depends>
 					</field>
@@ -757,11 +746,7 @@ So the `sortOrder` value is 1920. -->
 						<comment><![CDATA[Customers from which countries can (or can not) use the POLi Payments option?]]></comment>
 						<depends>
 							<field id='enable'>1</field>
-	<!--
-	2016-03-08
-	«The negative syntax for a backend config field <depends> condition»
-	https://mage2.pro/t/329
-	-->
+<!-- 2016-03-08 «The negative syntax for a backend config field <depends> condition» https://mage2.pro/t/329 -->
 							<field id='country_restriction' negative='1'>0</field>
 						</depends>
 					</field>
