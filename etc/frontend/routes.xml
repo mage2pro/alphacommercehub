@@ -4,7 +4,7 @@
 	xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd"
 >
 	<router id='standard'>
-		<route id='Dfe_AlphaCommerceHub' frontName='dfe-alphacommercehub'>
+		<route frontName='dfe-alphacommercehub' id='Dfe_AlphaCommerceHub'>
 			<module name='Dfe_AlphaCommerceHub'/>
 		</route>
 	</router>
