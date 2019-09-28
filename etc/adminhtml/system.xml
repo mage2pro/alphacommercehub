@@ -305,7 +305,7 @@ So the `sortOrder` value is 1920. -->
 						type='text'
 					>
 						<label>Dynamic statement descripor</label>
-						<comment><![CDATA[An arbitrary string to be displayed in a customer's payment statement.]]></comment>
+						<comment><![CDATA[An arbitrary string to be shown in a customer's payment statement.]]></comment>
 						<depends><field id='enable'>1</field></depends>
 						<config_path>df_payment/alpha_commerce_hub/dsd</config_path>
 						<validate>validate-length maximum-length-22</validate>
