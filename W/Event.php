@@ -22,11 +22,10 @@ final class Event extends \Df\PaypalClone\W\Event {
 	/**
 	 * 2017-11-22
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
-	 * @param string|null $k
-	 * @param mixed|null $d
-	 * @return string|null|array(string => string)
+	 * @param string $k
+	 * @return string|null
 	 */
-	function providerRespL($k = null, $d = null) {return dfak(df_last($this->providerResps()), $k, $d);}
+	function providerRespL($k) {return dfa(df_last($this->providerResps()), $k);}
 
 	/**
 	 * 2017-12-05

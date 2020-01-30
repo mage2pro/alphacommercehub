@@ -80,10 +80,8 @@ class Info extends \Df\Payment\Block\Info {
 					$this->siEx('POLi Payments ID', $e->providerRespL('ProviderReference'));
 					break;
 				case 'PP':
-					/**
-					 * 2017-12-08
-					 * "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
-					 */
+					// 2017-12-08
+					// "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 					$pd = $e->r('PayerDetails'); /** @var array(string => string) $pd */
 					$this->siEx([
 						/**
