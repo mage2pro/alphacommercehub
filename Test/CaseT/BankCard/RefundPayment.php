@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\BankCard;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -9,7 +9,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * (the `RefundPayment` transaction)": https://github.com/mage2pro/alphacommercehub/issues/61
  * Note 2. "A `RefundPayment` API request, and a response to it" https://mage2.pro/t/5077
  */
-final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-06 */
 	function t00() {}
 

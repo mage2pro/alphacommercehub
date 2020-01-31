@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\BankCard;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -9,7 +9,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * 2) "A `CancelPayment` API request for a preauthorized bank card payment, and a response to it":
  * https://mage2.pro/t/5113
  */
-final class CancelPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class CancelPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-08 */
 	function t00() {}
 

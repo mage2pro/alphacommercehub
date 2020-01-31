@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\PayPal;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\PayPal;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -9,7 +9,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * 2) "Where is the request and response parameters specification
  * for the PayPal's `RefundPayment` transaction?": https://mage2.pro/t/4993
  */
-final class RefundPayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** 2017-12-11 */
 	function t00() {}
 

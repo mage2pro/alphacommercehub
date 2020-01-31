@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\BankCard;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\BankCard;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -20,7 +20,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * 7) "Neither the documentation nor the API Explorer provides a sample of the `CapturePayment` transaction
  * for a bank card payment" https://mage2.pro/t/5075
  */
-final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-06 */
 	function t00() {}
 

@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\PayPal;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\PayPal;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -18,7 +18,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * 2017-12-08 "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
  * https://mage2.pro/t/4985
  */
-final class CapturePayment extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-04 */
 	function t00() {}
 

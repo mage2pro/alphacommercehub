@@ -7,7 +7,7 @@
  * https://github.com/mage2pro/alphacommercehub/issues/86
  * 2) The function transforms «168950.00» to «168950».
  * @used-by \Dfe\AlphaCommerceHub\API\Facade\PayPal::status()
- * @used-by \Dfe\AlphaCommerceHub\T\CaseT\PayPal\PaymentStatus::t01()
+ * @used-by \Dfe\AlphaCommerceHub\Test\CaseT\PayPal\PaymentStatus::t01()
  * @param string $a
  * @return string
  */

@@ -1,5 +1,5 @@
 <?php
-namespace Dfe\AlphaCommerceHub\T\CaseT\PayPal;
+namespace Dfe\AlphaCommerceHub\Test\CaseT\PayPal;
 use Df\API\Operation as Op;
 use Dfe\AlphaCommerceHub\API\Facade as F;
 /**
@@ -23,7 +23,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * "The PayPal's `PaymentStatus` transaction returns wrong `Result.Amount` values (like «186240.00»)
  * since 2017-12-13": https://github.com/mage2pro/alphacommercehub/issues/82
  */
-final class PaymentStatus extends \Dfe\AlphaCommerceHub\T\CaseT {
+final class PaymentStatus extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-03 */
 	function t00() {}
 
