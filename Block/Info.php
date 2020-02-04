@@ -52,11 +52,9 @@ class Info extends \Df\Payment\Block\Info {
 			/** @var string $choiceId */
 			switch ($choiceId = $this->choice()->id()) {
 				case 'CC':
-					/**
-					 * 2017-11-21
-					 * "Show the cardholder and bank card information in the Magento's «Payment Information» blocks
-					 * (backend, frontend, emails)": https://github.com/mage2pro/alphacommercehub/issues/38
-					 */
+					// 2017-11-21
+					// "Show the cardholder and bank card information in the Magento's «Payment Information» blocks
+					// (backend, frontend, emails)": https://github.com/mage2pro/alphacommercehub/issues/38
 					$this->si('Card Number', "{$e->r('PaymentInfo/BIN')} ···· ({$e->r('Result/CardType')})");
 					/**
 					 * 2017-12-14
