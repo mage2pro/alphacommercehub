@@ -325,7 +325,7 @@ final class Method extends \Df\PaypalClone\Method {
 	private function transInfo(Operation $r) {
 		// 2017-01-12, 2017-12-07
 		// I log the both request and its response to Sentry, but I log only response to the local log.
-		dfp_report($this, $respA = $r->a(), df_caller_ff()); /** @var array(string => mixed) $respA */
+		dfp_report($this, $respA = $r->a(), df_caller_f()); /** @var array(string => mixed) $respA */
 		$this->iiaSetTRR($r->req(), $respA);
 	}
 
