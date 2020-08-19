@@ -15,15 +15,15 @@ final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 
 	/** @test 2017-12-11 */
 	function t01() {
-		// 2017-12-03 token=EC-57L73665MJ662912E&PayerID=7EY65DU75L82G
+		# 2017-12-03 token=EC-57L73665MJ662912E&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
 			'Transaction' => [
 				'Amount' => '168950'
 				,'Currency' => 'AUD'
 				,'MerchantTxnID' => '1208L.781'
-				// 2017-12-08
-				// If this parameter is absent, then AlphaCommerceHub will respond:
-				// «Original transaction not found».
+				# 2017-12-08
+				# If this parameter is absent, then AlphaCommerceHub will respond:
+				# «Original transaction not found».
 				,'Method' => 'PP'
 			]
 			//,'Wallet' => ['WalletID' => '7EY65DU75L82G']

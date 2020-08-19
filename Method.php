@@ -7,7 +7,7 @@ use Dfe\AlphaCommerceHub\API\Facade\BankCard as fBankCard;
 use Magento\Sales\Model\Order\Creditmemo as CM;
 use Magento\Sales\Model\Order\Payment as OP;
 use Magento\Sales\Model\Order\Payment\Transaction as T;
-// 2017-10-25
+# 2017-10-25
 /** @method Settings s() */
 final class Method extends \Df\PaypalClone\Method {
 	/**
@@ -171,11 +171,11 @@ final class Method extends \Df\PaypalClone\Method {
 		df_sentry_extra($this, 'Parent Transaction ID', $txnId = $tPrev->getTxnId()); /** @var string $txnId */
 		df_sentry_extra($this, 'Charge ID', $tid = $this->tid()->i2e($txnId, true)); /** @var string $tid */
 		$this->transInfo(fBankCard::s()->capture($a));
-		// 2016-12-16
-		// Система в этом сценарии по-умолчанию формирует идентификатор транзации как
-		// «<идентификатор родительской транзации>-capture».
-		// У нас же идентификатор родительской транзации имеет окончание «-authorize»,
-		// и оно нам реально нужно, поэтому здесь мы окончание «-authorize» вручную подменяем на «-capture».
+		# 2016-12-16
+		# Система в этом сценарии по-умолчанию формирует идентификатор транзации как
+		# «<идентификатор родительской транзации>-capture».
+		# У нас же идентификатор родительской транзации имеет окончание «-authorize»,
+		# и оно нам реально нужно, поэтому здесь мы окончание «-authorize» вручную подменяем на «-capture».
 		$this->ii()->setTransactionId($this->tid()->e2i($tid, Ev::T_CAPTURE));
 	}
 
@@ -323,8 +323,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @param Operation $r
 	 */
 	private function transInfo(Operation $r) {
-		// 2017-01-12, 2017-12-07
-		// I log the both request and its response to Sentry, but I log only response to the local log.
+		# 2017-01-12, 2017-12-07
+		# I log the both request and its response to Sentry, but I log only response to the local log.
 		dfp_report($this, $respA = $r->a(), df_caller_f()); /** @var array(string => mixed) $respA */
 		$this->iiaSetTRR($r->req(), $respA);
 	}

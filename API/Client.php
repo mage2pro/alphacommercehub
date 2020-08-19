@@ -2,7 +2,7 @@
 namespace Dfe\AlphaCommerceHub\API;
 use Dfe\AlphaCommerceHub\Method as M;
 use Dfe\AlphaCommerceHub\Settings as S;
-// 2017-12-02
+# 2017-12-02
 final class Client extends \Df\API\Client {
 	/**
 	 * 2017-12-02
@@ -26,7 +26,7 @@ final class Client extends \Df\API\Client {
 	 * @return array(string => mixed)
 	 */
 	protected function commonParams($path) {/** @var S $s */$s = dfps($this); return [
-		// 2017-12-02 «Component Tag for Message Header», required.
+		# 2017-12-02 «Component Tag for Message Header», required.
 		'Header' => [
 			/**
 			 * 2017-12-02

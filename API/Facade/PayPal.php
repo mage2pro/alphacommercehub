@@ -1,7 +1,7 @@
 <?php
 namespace Dfe\AlphaCommerceHub\API\Facade;
 use Df\API\Operation as Op;
-// 2017-12-08
+# 2017-12-08
 /** @method static $this s() */
 final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 	/**
@@ -15,14 +15,14 @@ final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 			'Amount' => $s->a('Result/Amount')
 			,'Currency' => $s->a('Result/Currency')
 			,'MerchantTxnID' => $s->a('Result/MerchantTxnID')
-			// 2017-12-08
-			// If this parameter is absent, then AlphaCommerceHub will respond:
-			// «Original transaction not found».
+			# 2017-12-08
+			# If this parameter is absent, then AlphaCommerceHub will respond:
+			# «Original transaction not found».
 			,'Method' => 'PP'
 		]
-		// 2017-12-08
-		// If this parameter is absent, then AlphaCommerceHub will respond:
-		// «Wallet is missing or invalid».
+		# 2017-12-08
+		# If this parameter is absent, then AlphaCommerceHub will respond:
+		# «Wallet is missing or invalid».
 		,'Wallet' => ['WalletID' => $s->a('MethodResult/WalletID')]
 	], 'CapturePayment');}
 

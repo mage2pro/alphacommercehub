@@ -24,20 +24,20 @@ final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 
 	/** 2017-12-03 */
 	function t01() {
-		// 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
+		# 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
 			'Transaction' => [
 				'Amount' => '168950'
 				,'Currency' => 'AUD'
 				,'MerchantTxnID' => '1208L.781'
-				// 2017-12-08
-				// If this parameter is absent, then AlphaCommerceHub will respond:
-				// «Original transaction not found».
+				# 2017-12-08
+				# If this parameter is absent, then AlphaCommerceHub will respond:
+				# «Original transaction not found».
 				,'Method' => 'PP'
 			]
-			// 2017-12-08
-			// If this parameter is absent, then AlphaCommerceHub will respond:
-			// «Wallet is missing or invalid».
+			# 2017-12-08
+			# If this parameter is absent, then AlphaCommerceHub will respond:
+			# «Wallet is missing or invalid».
 			,'Wallet' => ['WalletID' => '7EY65DU75L82G']
 		], df_class_l($this)); /** @var Op $r */
 		echo df_json_encode($r->req());

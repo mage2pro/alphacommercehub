@@ -189,7 +189,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * https://mage2.pro/t/4926
 			 */
 			,'City' => $this->text($a->getCity(), 25)
-			// 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
+			# 2017-11-02 «ISO A2 country code e.g. US». String(2), optional.
 			,'Country' => $a->getCountryId()
 			/**
 			 * 2017-11-01
@@ -197,12 +197,12 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Should `CustomerID` be unique or not? https://mage2.pro/t/4854
 			 */
 			,'CustomerID' => $this->customerEmail()
-			// 2017-11-03
-			// «Allows a merchant that is configured for fraud screening
-			// to bypass screening for a particular transaction by passing Y as the value».
-			// String(1), optional, `Y` or `N`.
+			# 2017-11-03
+			# «Allows a merchant that is configured for fraud screening
+			# to bypass screening for a particular transaction by passing Y as the value».
+			# String(1), optional, `Y` or `N`.
 			,'FraudCheckBypass' => 'N'
-			// 2017-11-01 «The customers IP address». String(15), optional.
+			# 2017-11-01 «The customers IP address». String(15), optional.
 			,'IPAddress' => df_visitor_ip()
 			/**
 			 * 2017-11-01
@@ -265,7 +265,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
 			 */
 			,'OrderDetails' => $this->pOrderItems()
-			// 2017-11-01 «A social or tax id for the customer». String(20), optional.
+			# 2017-11-01 «A social or tax id for the customer». String(20), optional.
 			,'SocialID' => $this->customerVAT()
 			/**
 			 * 2017-11-02 «The State/Province element of the customers shipping address». String(50), optional.
@@ -316,7 +316,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 4. "What is «result page» for AlphaHPP?" https://mage2.pro/t/4807
 			 */
 			,'SuccessURL' => $this->callback(null)
-			// 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
+			# 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 			,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 			/**
 			 * 2017-10-27
@@ -430,9 +430,9 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @return array(string => mixed)
 	 */
 	private function pOrderItem($name, $amountF, $qty = 1) {return [
-		// 2017-11-03
-		// «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
-		// Integer, optional.
+		# 2017-11-03
+		# «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
+		# Integer, optional.
 		'ItemAmount' => $amountF
 		//
 		/**
@@ -445,7 +445,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 		 * So I use @uses text() here.
 		 */
 		,'ItemName' => $this->text($name)
-		// 2017-11-03 «The quantity of the product». Integer, optional.
+		# 2017-11-03 «The quantity of the product». Integer, optional.
 		,'ItemQuantity' => $qty
 		/**
 		 * 2017-11-03

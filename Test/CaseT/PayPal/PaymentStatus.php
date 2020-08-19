@@ -29,7 +29,7 @@ final class PaymentStatus extends \Dfe\AlphaCommerceHub\Test\CaseT {
 
 	/** 2017-12-02 */
 	function t01() {
-		// token=EC-37F54734B9677552F&PayerID=7EY65DU75L82G
+		# token=EC-37F54734B9677552F&PayerID=7EY65DU75L82G
 		$r = F::s()->post(['Transaction' => [
 			/**
 			 * 2017-12-11

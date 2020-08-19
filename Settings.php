@@ -1,7 +1,7 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
 use Dfe\AlphaCommerceHub\Settings\Card;
-// 2017-10-25
+# 2017-10-25
 /** @method static Settings s() */
 final class Settings extends \Df\Payment\Settings {
 	/**

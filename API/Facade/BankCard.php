@@ -1,7 +1,7 @@
 <?php
 namespace Dfe\AlphaCommerceHub\API\Facade;
 use Df\API\Operation as Op;
-// 2017-12-08
+# 2017-12-08
 /** @method static $this s() */
 final class BankCard extends \Dfe\AlphaCommerceHub\API\Facade {
 	/**
