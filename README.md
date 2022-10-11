@@ -1,4 +1,5 @@
-This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHub](http://alphacommercehub.com.au)** payment service (Australia).  
+This module integrates a Magento 2 based webstore with the **[AlphaCommerceHub](http://alphacommercehub.com.au)** payment service (Australia).  
+The module is **free** and **open source**.
 
 ## What is AlphaCommerceHub?
 >Australia Post and [Alpha Payments Cloud](https://mage2.pro/t/3218) have launched a joint venture to provide local businesses with access to eCommerce services such as payment processing, anti-fraud technology, loyalty programs, identity management, logistics and consolidated reporting through a single platform.
@@ -23,29 +24,39 @@ This extension integrates a Magento 2 based webstore with the **[AlphaCommerceHu
 ##  [The **pay page** configuration articles](https://mage2.pro/tags/alphacommercehub-pay-page-configuration)
 
 ## How to install
-
-### 1. Free installation service
-Just order my [free installation service](https://mage2.pro/t/3585).
+[Hire me in Upwork](https://www.upwork.com/fl/mage2pro), and I will: 
+- install and configure the module properly on your website
+- answer your questions
+- solve compatiblity problems with third-party checkout, shipping, marketing modules
+- implement new features you need 
 
 ### 2. Self-installation
 ```
+bin/magento maintenance:enable
+rm -f composer.lock
+composer clear-cache
 composer require mage2pro/alphacommercehub:*
 bin/magento setup:upgrade
-rm -rf pub/static/* && bin/magento setup:static-content:deploy en_US <additional locales, e.g.: en_AU>
-rm -rf var/di var/generation generated/code && bin/magento setup:di:compile
+bin/magento cache:enable
+rm -rf var/di var/generation generated/code
+bin/magento setup:di:compile
+rm -rf pub/static/*
+bin/magento setup:static-content:deploy -f en_US <additional locales, e.g.: en_AU>
+bin/magento maintenance:disable
 ```
-If you have problems with these commands, please check the [detailed instruction](https://mage2.pro/t/263).
 
-## Licensing
-The extension is free (the [MIT License](https://en.wikipedia.org/wiki/MIT_License)).
-
-## Support
-- [The extension's **forum** branch](https://mage2.pro/c/extensions/alphacommercehub).
-- [Where and how to report a Mage2.PRO extension's issue?](https://mage2.pro/t/2034)
-- I also provide a **[generic Magento 2 support](https://mage2.pro/t/755)** and [Magento 2 installation service](https://mage2.pro/t/748).
-
-## Want to be notified about the extension's updates?
-- [Subscribe](https://mage2.pro/t/2540) to the extension's [forum branch](https://mage2.pro/c/extensions/alphacommercehub).
-- Subscribe to my [Twitter](https://twitter.com/mage2_pro) and [YouTube](https://www.youtube.com/channel/UCvlDAZuj01_b92pzRi69LeQ) channels.
-
-
+## How to update
+```
+bin/magento maintenance:enable
+composer remove mage2pro/alphacommercehub
+rm -f composer.lock
+composer clear-cache
+composer require mage2pro/alphacommercehub:*
+bin/magento setup:upgrade
+bin/magento cache:enable
+rm -rf var/di var/generation generated/code
+bin/magento setup:di:compile
+rm -rf pub/static/*
+bin/magento setup:static-content:deploy -f en_US <additional locales, e.g.: en_AU>
+bin/magento maintenance:disable
+```
