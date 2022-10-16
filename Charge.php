@@ -404,9 +404,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @param string $s
 	 * @return string
 	 */
-	protected function textFilter($s) {return preg_replace("#[^a-zA-Z0-9\s]+#", '',
-		str_replace('-', ' ', df_translit($s))
-	);}
+	protected function textFilter($s) {return preg_replace("#[^a-zA-Z0-9\s]+#", '', str_replace('-', ' ', df_translit($s)));}
 
 	/**
 	 * 2017-11-22
@@ -416,9 +414,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @param string $s
 	 * @return string
 	 */
-	protected function textFilterStreet($s) {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '',
-		df_translit($s)
-	);}
+	protected function textFilterStreet($s) {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '', df_translit($s));}
 
 	/**
 	 * 2017-11-03
