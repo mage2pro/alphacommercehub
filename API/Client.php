@@ -95,7 +95,6 @@ final class Client extends \Df\API\Client {
 	 * @see \Df\API\Client::urlBase()
 	 * @used-by \Df\API\Client::__construct()
 	 * @used-by url()
-	 * @return string
 	 */
-	protected function urlBase() {$m = dfpm($this); /** @var M $m */ return $m->urlBase(false);}
+	protected function urlBase(): string {$m = dfpm($this); /** @var M $m */ return $m->urlBase(false);}
 }
