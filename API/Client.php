@@ -25,7 +25,7 @@ final class Client extends \Df\API\Client {
 	 * @param string $path
 	 * @return array(string => mixed)
 	 */
-	protected function commonParams($path) {/** @var S $s */$s = dfps($this); return [
+	protected function commonParams($path):array {/** @var S $s */$s = dfps($this); return [
 		# 2017-12-02 «Component Tag for Message Header», required.
 		'Header' => [
 			/**
@@ -69,32 +69,30 @@ final class Client extends \Df\API\Client {
 	 * @used-by \Df\API\Client::_p()
 	 * @return array(string => string)
 	 */
-	protected function headers() {return ['Content-Type' => 'application/json'];}
+	protected function headers():array {return ['Content-Type' => 'application/json'];}
 
 	/**
 	 * 2017-12-02
 	 * @override
 	 * @see \Df\API\Client::responseValidatorC()
 	 * @used-by \Df\API\Client::_p()
-	 * @return string
 	 */
-	protected function responseValidatorC() {return \Dfe\AlphaCommerceHub\API\Validator::class;}
+	protected function responseValidatorC():string {return \Dfe\AlphaCommerceHub\API\Validator::class;}
 
 	/**
 	 * 2017-12-02
 	 * @override
 	 * @see \Df\API\Client::url()
 	 * @used-by \Df\API\Client::_p()
-	 * @return string
 	 */
-	protected function url() {return $this->urlBase();}
+	protected function url():string {return $this->urlBase();}
 
 	/**
 	 * 2017-12-02
 	 * @override
 	 * @see \Df\API\Client::urlBase()
+	 * @used-by self::url()
 	 * @used-by \Df\API\Client::__construct()
-	 * @used-by url()
 	 */
-	protected function urlBase(): string {$m = dfpm($this); /** @var M $m */ return $m->urlBase(false);}
+	protected function urlBase():string {$m = dfpm($this); /** @var M $m */ return $m->urlBase(false);}
 }

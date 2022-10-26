@@ -175,7 +175,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
-	 * @used-by providerRespL()
+	 * @used-by self::providerRespL()
 	 * @return array(array(string => string))
 	 */
 	private function providerResps() {return $this->r('ProviderResps', []);}

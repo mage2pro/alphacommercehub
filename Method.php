@@ -181,8 +181,8 @@ final class Method extends \Df\PaypalClone\Method {
 
 	/**
 	 * 2017-11-01
-	 * @used-by amountFormat()
-	 * @used-by optionTitle()
+	 * @used-by self::amountFormat()
+	 * @used-by self::optionTitle()
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 * @return string|null
 	 */
@@ -190,7 +190,7 @@ final class Method extends \Df\PaypalClone\Method {
 
 	/**
 	 * 2017-12-12
-	 * @used-by titleF()
+	 * @used-by self::titleF()
 	 * @used-by \Dfe\AlphaCommerceHub\Choice::title()
 	 * @used-by \Dfe\AlphaCommerceHub\ConfigProvider::option()
 	 * @param string|null $o [optional]
@@ -318,8 +318,8 @@ final class Method extends \Df\PaypalClone\Method {
 
 	/**
 	 * 2017-12-08
-	 * @used-by _refund()
-	 * @used-by charge()
+	 * @used-by self::_refund()
+	 * @used-by self::charge()
 	 * @param Operation $r
 	 */
 	private function transInfo(Operation $r) {
@@ -331,8 +331,8 @@ final class Method extends \Df\PaypalClone\Method {
 
 	/**
 	 * 2017-11-01 https://github.com/mage2pro/core/blob/2.12.17/Payment/view/frontend/web/withOptions.js#L56-L72
-	 * @used-by iiaKeys()
-	 * @used-by option()
+	 * @used-by self::iiaKeys()
+	 * @used-by self::option()
 	 */
 	private static $II_OPTION = 'option';
 }

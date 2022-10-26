@@ -410,16 +410,15 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * 2017-11-22
 	 * "Allow the «#,.-» characters for the `Street1` and `Street2` request fields":
 	 * https://github.com/mage2pro/alphacommercehub/issues/37
-	 * @used-by pCharge()
+	 * @used-by self::pCharge()
 	 * @param string $s
 	 * @return string
 	 */
 	protected function textFilterStreet($s) {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '', df_translit($s));}
 
 	/**
-	 * 2017-11-03
-	 * http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
-	 * @used-by pOrderItems()
+	 * 2017-11-03 http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
+	 * @used-by self::pOrderItems()
 	 * @param string $name
 	 * @param int $amountF
 	 * @param int $qty [optional]
@@ -470,10 +469,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * How does AlphaHPP handle the situation
 	 * when the `Amount` value differs from the amount calculated from `OrderDetails`?
 	 * https://mage2.pro/t/4869
-	 * Note 4.
-	 * Can an `OrderDetails` → `ItemAmount` be negative?
-	 * https://mage2.pro/t/4870
-	 * @used-by pCharge()
+	 * Note 4. Can an `OrderDetails` → `ItemAmount` be negative? https://mage2.pro/t/4870
+	 * @used-by self::pCharge()
 	 * @return array(array(string => string|int))
 	 */
 	private function pOrderItems() {

@@ -14,8 +14,8 @@ use Magento\Framework\Phrase;
 final class Choice extends \Df\Payment\Choice {
 	/**
 	 * 2017-11-21
+	 * @used-by self::title()
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
-	 * @used-by title()
 	 * @return string
 	 */
 	function id() {return $this->req('Method');}

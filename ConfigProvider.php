@@ -20,7 +20,7 @@ final class ConfigProvider extends \Df\Payment\ConfigProvider {
 
 	/**
 	 * 2017-12-12
-	 * @used-by config()
+	 * @used-by self::config()
 	 * @param string $id
 	 * @return array(string => mixed)
 	 */

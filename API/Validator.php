@@ -12,9 +12,8 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @override
 	 * @see \Df\API\Exception::short()
 	 * @used-by \Df\API\Client::_p()
-	 * @return string
 	 */
-	function short() {
+	function short():string {
 		/** @var string|null $c */  /** @var string $m */
 		list($c, $m) = [$this->code(), $this->result('ResponseMessage')];
 		return !$c ? $m : "[$c] $m";
@@ -25,9 +24,8 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @override
 	 * @see \Df\API\Response\Validator::valid()
 	 * @used-by \Df\API\Client::_p()
-	 * @return bool
 	 */
-	function valid() {return '1000' === strval($this->code());}
+	function valid():bool {return '1000' === strval($this->code());}
 
 	/**
 	 * 2017-12-02
@@ -37,16 +35,16 @@ final class Validator extends \Df\API\Response\Validator {
 	 * to a PayPal's `PaymentStatus` transaction does not contain a `ResponseCode`
 	 * despite the documentation says it is a mandatory parameter":
 	 * https://mage2.pro/t/5041
-	 * @used-by short()
-	 * @used-by valid()
+	 * @used-by self::short()
+	 * @used-by self::valid()
 	 * @return string|null
 	 */
 	private function code() {return $this->result('ResponseCode');}
 
 	/**
 	 * 2017-12-02
-	 * @used-by code()
-	 * @used-by short(
+	 * @used-by self::code()
+	 * @used-by self::short()
 	 * @param string $k
 	 * @return string|null
 	 */

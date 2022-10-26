@@ -37,9 +37,9 @@ final class BankCard extends \Dfe\AlphaCommerceHub\API\Facade {
 	 * 3) `MerchantTxnID`: «Internal ID assigned by the merchant to the transaction», string, conditional.
 	 * «API Integration Guide(Nov 2017)» → «API Reference» → «Request Message»
 	 * http://developer.alphacommercehub.com.au/docs/api-integration-guidenov-2017#request-message-
-	 * @used-by cancel()
-	 * @used-by capture()
-	 * @used-by refund()
+	 * @used-by self::cancel()
+	 * @used-by self::capture()
+	 * @used-by self::refund()
 	 * @param float $a
 	 * @return Op
 	 */
