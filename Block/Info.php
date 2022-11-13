@@ -15,7 +15,7 @@ class Info extends \Df\Payment\Block\Info {
 	 * @see \Df\Payment\Block\Info::prepare()
 	 * @used-by \Df\Payment\Block\Info::prepareToRendering()
 	 */
-	final protected function prepare() {
+	final protected function prepare():void {
 		$e = $this->e(); /** @var Event $e */
 		/**
 		 * 2017-11-18 «The APC ID for the payment». An example: «104543502».
