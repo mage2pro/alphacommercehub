@@ -14,8 +14,7 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @used-by \Df\API\Client::_p()
 	 */
 	function short():string {
-		/** @var string|null $c */  /** @var string $m */
-		list($c, $m) = [$this->code(), $this->result('ResponseMessage')];
+		list($c, $m) = [$this->code(), $this->result('ResponseMessage')]; /** @var string|null $c */  /** @var string $m */
 		return !$c ? $m : "[$c] $m";
 	}
 
