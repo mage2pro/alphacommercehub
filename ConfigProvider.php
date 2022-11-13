@@ -13,7 +13,7 @@ final class ConfigProvider extends \Df\Payment\ConfigProvider {
 	 * @used-by \Df\Payment\ConfigProvider::getConfig()
 	 * @return array(string => mixed)
 	 */
-	protected function config() {return
+	protected function config():array {return
 		$this->option('CC') + $this->option('PP') + $this->option('PO') +
 		['common' => ['isTest' => $this->s()->test(), 'titleBackend' => $this->m()->titleB()]]
 	;}

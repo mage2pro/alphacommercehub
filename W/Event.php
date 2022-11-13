@@ -42,7 +42,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @used-by \Df\Payment\W\Strategy\ConfirmPending::_handle()
 	 * @used-by \Df\PaypalClone\W\Nav::id()
 	 */
-	function ttCurrent() {return !$this->isSuccessful() ? parent::ttCurrent() : (
+	function ttCurrent():string {return !$this->isSuccessful() ? parent::ttCurrent() : (
 		/**
 		 * 2017-12-08
 		 * It correctly works with PayPal and POLi payments,
@@ -64,7 +64,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @see \Df\PaypalClone\W\Event::validate()
 	 * @used-by \Df\Payment\W\Handler::handle()
 	 */
-	function validate() {}
+	function validate():void {}
 
 	/**
 	 * 2017-11-18 «The APC ID for the payment». An example: «104543502».
@@ -100,9 +100,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @override
 	 * @see \Df\Payment\W\Event::k_pid()
 	 * @used-by \Df\Payment\W\Event::pid()
-	 * @return string
 	 */
-	protected function k_pid() {return 'Result/MerchantTxnID';}
+	protected function k_pid():string {return 'Result/MerchantTxnID';}
 
 	/**
 	 * 2017-11-18
@@ -113,7 +112,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * Note 2. This method is never used: @see validate()
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_signature()
-	 * @return string
+	 * @return null
 	 */
 	protected function k_signature() {return null;}
 
@@ -130,9 +129,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_status()
 	 * @used-by \Df\PaypalClone\W\Event::status()
-	 * @return string|null
 	 */
-	protected function k_status() {return 'Result/ResponseCode';}
+	protected function k_status():string {return 'Result/ResponseCode';}
 
 	/**
 	 * 2017-11-19 «The description of the result of the event».
@@ -145,9 +143,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_statusT()
 	 * @used-by \Df\PaypalClone\W\Event::statusT()
-	 * @return string|null
 	 */
-	protected function k_statusT() {return 'Result/ResponseMessage';}
+	protected function k_statusT():string {return 'Result/ResponseMessage';}
 
 	/**
 	 * 2017-11-19 http://developer.alphacommercehub.com.au/docs/alphahpp-#response-codes
@@ -162,7 +159,7 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @used-by \Df\PaypalClone\W\Event::isSuccessful()
 	 * @return int
 	 */
-	protected function statusExpected() {return 1000;}
+	protected function statusExpected():int {return 1000;}
 
 	/**
 	 * 2017-11-22

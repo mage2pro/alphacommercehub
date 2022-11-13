@@ -9,7 +9,7 @@ use Magento\Framework\Phrase;
  * https://mage2.pro/t/4978
  * 3) "What is the recommended way to detect the chosen payment option from a `CancelURL` response?"
  * https://mage2.pro/t/4979
- * @method \Dfe\Moip\Method m()
+ * @method Method m()
  */
 final class Choice extends \Df\Payment\Choice {
 	/**

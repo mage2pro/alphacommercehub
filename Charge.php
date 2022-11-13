@@ -20,9 +20,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Amount()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
 	 */
-	protected function k_Amount() {return 'Amount';}
+	protected function k_Amount():string {return 'Amount';}
 	
 	/**
 	 * 2017-10-27 «The currency of the order. ISO-4217 A3 codes e.g. USD, GBP.», required.
@@ -30,9 +29,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Currency()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
 	 */
-	protected function k_Currency() {return 'Currency';}
+	protected function k_Currency():string {return 'Currency';}
 
 	/**
 	 * 2017-10-27 «The customers email address», String(64), optional.
@@ -42,9 +40,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Email()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
 	 */
-	protected function k_Email() {return 'EmailAddress';}
+	protected function k_Email():string {return 'EmailAddress';}
 
 	/**
 	 * 2017-10-27
@@ -58,9 +55,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_MerchantId()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
 	 */
-	protected function k_MerchantId() {return 'MerchantID';}
+	protected function k_MerchantId():string {return 'MerchantID';}
 	
 	/**
 	 * 2017-10-27
@@ -75,9 +71,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_RequestId()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return string
 	 */
-	protected function k_RequestId() {return 'MerchantTxnID';}
+	protected function k_RequestId():string {return 'MerchantTxnID';}
 
 	/**
 	 * 2017-11-01
@@ -402,9 +397,10 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @see \Df\Payment\Charge::textFilter()
 	 * @used-by \Df\Payment\Charge::text()
 	 * @param string $s
-	 * @return string
 	 */
-	protected function textFilter($s) {return preg_replace("#[^a-zA-Z0-9\s]+#", '', str_replace('-', ' ', df_translit($s)));}
+	protected function textFilter($s):string {return preg_replace(
+		"#[^a-zA-Z0-9\s]+#", '', str_replace('-', ' ', df_translit($s))
+	);}
 
 	/**
 	 * 2017-11-22

@@ -12,7 +12,7 @@ final class Reader extends \Df\Payment\W\Reader {
 	 * @used-by \Df\Payment\W\Reader::__construct()
 	 * @return array(string => mixed)
 	 */
-	protected function http() {
+	protected function http():array {
 		$r = parent::http(); /** @var array(string => string) $r */
 		/**
 		 * 2017-11-21
@@ -40,7 +40,7 @@ final class Reader extends \Df\Payment\W\Reader {
 	 * @param array(string => mixed) $r
 	 * @return array(string => mixed)
 	 */
-	protected function reqFilter(array $r) {
+	protected function reqFilter(array $r):array {
 		if (isset($r['token'], $r['PayerID'])) {
 			$tm = df_tm(dfpm(df_order_last())); /** @var TM $tm */
 			$f = fPayPal::s(); /** @var fPayPal $s */

@@ -79,9 +79,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 *		}
 	 * https://github.com/magento/magento2/blob/2.0.0/app/code/Magento/Sales/Model/Order/Payment/Operations/AbstractOperation.php#L56-L75
 	 * https://github.com/magento/magento2/blob/2.2.1/app/code/Magento/Sales/Model/Order/Payment/Operations/AbstractOperation.php#L59-L78
-	 * @return bool
 	 */
-	function canCapture() {return true;}
+	function canCapture():bool {return true;}
 
 	/**
 	 * 2017-12-06
@@ -112,9 +111,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * 2017-12-07
 	 * @todo "An ability to refund a POLi Payments payment from the Magento 2 backend should be disabled
 	 * because AlphaCommerceHub does not support it": https://github.com/mage2pro/alphacommercehub/issues/58
-	 * @return bool
 	 */
-	function canRefund() {return true;}
+	function canRefund():bool {return true;}
 
 	/**
 	 * 2017-12-08
@@ -133,9 +131,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 *		}
 	 * https://github.com/magento/magento2/blob/2.0.0/app/code/Magento/Sales/Model/Order/Payment.php#L528-L543
 	 * https://github.com/magento/magento2/blob/2.2.1/app/code/Magento/Sales/Model/Order/Payment.php#L562-L578
-	 * @return bool
 	 */
-	function canVoid() {return true;}
+	function canVoid():bool {return true;}
 
 	/**
 	 * 2017-12-07
@@ -147,7 +144,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Df\Payment\Method::capture()
 	 * @param bool|null $capture [optional]
 	 */
-	function charge($capture = true) {
+	function charge($capture = true):void {
 		df_assert($capture);
 		df_sentry_extra($this, 'Amount', $a = dfp_due($this)); /** @var float $a */
 		df_sentry_extra($this, 'Need Capture?', df_bts($capture));
@@ -207,9 +204,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @override
 	 * @see \Df\Payment\Method::requireBillingAddress()
 	 * @used-by \Df\Payment\PlaceOrderInternal::_place()
-	 * @return bool
 	 */
-	function requireBillingAddress() {return $this->s()->b("{$this->option()}/requireBillingAddress");}
+	function requireBillingAddress():bool {return $this->s()->b("{$this->option()}/requireBillingAddress");}
 
 	/**
 	 * 2017-11-02
@@ -254,7 +250,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Df\Payment\Method::refund()
 	 * @param float|null $amt
 	 */
-	protected function _refund($amt) {
+	protected function _refund($amt):void {
 		$ii = $this->ii(); /** @var OP $ii */
 		/**
 		 * 2016-03-17, 2017-11-11, 2017-12-06
@@ -294,9 +290,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @override
 	 * @see \Df\Payment\Method::amountFactor()
 	 * @used-by \Df\Payment\Method::amountParse()
-	 * @return int
 	 */
-	protected function amountFactor() {return 1000;}
+	protected function amountFactor():int {return 1000;}
 
 	/**
 	 * 2017-10-25
@@ -314,7 +309,7 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Df\Payment\Method::assignData()
 	 * @return string[]
 	 */
-	protected function iiaKeys() {return [self::$II_OPTION];}
+	protected function iiaKeys():array {return [self::$II_OPTION];}
 
 	/**
 	 * 2017-12-08
