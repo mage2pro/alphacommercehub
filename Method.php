@@ -8,7 +8,7 @@ use Magento\Sales\Model\Order\Creditmemo as CM;
 use Magento\Sales\Model\Order\Payment as OP;
 use Magento\Sales\Model\Order\Payment\Transaction as T;
 # 2017-10-25
-/** @method Settings s() */
+/** @method Settings s($k = null, $d = null) */
 final class Method extends \Df\PaypalClone\Method {
 	/**
 	 * 2017-11-14
