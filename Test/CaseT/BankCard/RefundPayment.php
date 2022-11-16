@@ -11,12 +11,11 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  */
 final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-06 */
-	function t00() {}
+	function t00():void {}
 
 	/** 2017-12-06 */
-	function t01() {
-		/** @var Op $r */
-		$r = F::s()->post(['Transaction' => ['MerchantTxnID' => '1206L.763']], df_class_l($this));
+	function t01():void {
+		$r = F::s()->post(['Transaction' => ['MerchantTxnID' => '1206L.763']], df_class_l($this)); /** @var Op $r */
 		echo df_json_encode($r->req());
 		echo $r->j();
 	}
