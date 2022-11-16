@@ -34,9 +34,8 @@ final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 	 * https://github.com/mage2pro/alphacommercehub/issues/81
 	 * @used-by \Dfe\AlphaCommerceHub\W\Reader::reqFilter()
 	 * @param array(string => string) $p
-	 * @return Op
 	 */
-	function status(array $p) {
+	function status(array $p):Op {
 		$r = $this->post(['Transaction' => ['Method' => 'PP'] + $p], 'PaymentStatus');
 		$r['Result/Amount'] = dfe_alphacommercehub_fix_amount_bug($r['Result/Amount']);
 		return $r;
