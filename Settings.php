@@ -19,16 +19,18 @@ final class Settings extends \Df\Payment\Settings {
 	function card():Card {return dfc($this, function() {return new Card($this->m());});}
 
 	/**
-	 * 2017-12-09 «Test Pay Page Domain» / «Live Pay Page Domain»
-	 * "Provide an ability to a Magento backend user to choose a different AlphaHPP domain"?
+	 * 2017-12-09
+	 * 1) «Test Pay Page Domain» / «Live Pay Page Domain»
+	 * 2) "Provide an ability to a Magento backend user to choose a different AlphaHPP domain"?
 	 * https://github.com/mage2pro/alphacommercehub/issues/80
 	 * @used-by \Dfe\AlphaCommerceHub\Method::urlBase()
 	 */
 	function payPageDomain():string {return $this->testable();}
 
 	/**
-	 * 2017-11-02 «Test Pay Page Path» / «Live Pay Page Path»
-	 * "[AlphaCommerceHub] What is a «pay page path»"? https://mage2.pro/t/4856
+	 * 2017-11-02
+	 * 1) «Test Pay Page Path» / «Live Pay Page Path»
+	 * 2) "[AlphaCommerceHub] What is a «pay page path»"? https://mage2.pro/t/4856
 	 * @used-by \Dfe\AlphaCommerceHub\Method::urlBase()
 	 */
 	function payPagePath():string {return $this->testable();}
