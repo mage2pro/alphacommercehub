@@ -28,17 +28,13 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Df\StripeClone\Method::_refund()
 	 * @used-by \Df\StripeClone\Method::charge()
 	 * @used-by \Dfe\AlphaCommerceHub\API\Facade\BankCard::op()
-	 * @param float $a
-	 * @return float|int|string
 	 */
-	function amountFormat($a) {
+	function amountFormat(float $a):int {
 		$r = round($a * 1000); /** @var int $r */
-		/**
-		 * 2017-12-13
-		 * "It would be better to always pass `0` as the last digit of a payment
-		 * because otherwise AlphaCommerceHub implicitly makes it `0`":
-		 * https://github.com/mage2pro/alphacommercehub/issues/83
-		 */
+		# 2017-12-13
+		# "It would be better to always pass `0` as the last digit of a payment
+		# because otherwise AlphaCommerceHub implicitly makes it `0`":
+		# https://github.com/mage2pro/alphacommercehub/issues/83
 		$r = 10 * round($r / 10);
 		return !$this->test() || !in_array($this->option(), ['CC', null]) ? $r : 1000 * round($r / 1000);
 	}
