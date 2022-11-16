@@ -15,18 +15,16 @@ final class Settings extends \Df\Payment\Settings {
 	/**
 	 * 2017-12-12
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
-	 * @return Card
 	 */
-	function card() {return dfc($this, function() {return new Card($this->m());});}
+	function card():Card {return dfc($this, function() {return new Card($this->m());});}
 
 	/**
 	 * 2017-12-09 «Test Pay Page Domain» / «Live Pay Page Domain»
 	 * "Provide an ability to a Magento backend user to choose a different AlphaHPP domain"?
 	 * https://github.com/mage2pro/alphacommercehub/issues/80
 	 * @used-by \Dfe\AlphaCommerceHub\Method::urlBase()
-	 * @return string
 	 */
-	function payPageDomain() {return $this->testable();}
+	function payPageDomain():string {return $this->testable();}
 
 	/**
 	 * 2017-11-02 «Test Pay Page Path» / «Live Pay Page Path»
