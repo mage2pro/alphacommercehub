@@ -95,7 +95,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @used-by \Df\PaypalClone\Charge::p()
 	 * @return array(string => mixed)
 	 */
-	protected function pCharge() {
+	protected function pCharge():array {
 		$s = $this->s(); /** @var S $s */
 		/**
 		 * 2017-11-01
