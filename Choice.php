@@ -28,7 +28,6 @@ final class Choice extends \Df\Payment\Choice {
 	 * @see \Dfe\AlphaCommerceHub\Charge::pCharge():
 	 * 		'Method' => $this->m()->option() ?: (!$o->isLimited() ? 'ALL' : df_csv($o->allowed()))
 	 * https://github.com/mage2pro/alphacommercehub/blob/0.3.6/Charge.php#L243-L261
-	 * @return string|null
 	 */
-	function title() {return $this->m()->optionTitle();}
+	function title():string {return $this->m()->optionTitle();}
 }
