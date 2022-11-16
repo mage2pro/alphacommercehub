@@ -411,12 +411,10 @@ final class Charge extends \Df\PaypalClone\Charge {
 	/**
 	 * 2017-11-03 http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
 	 * @used-by self::pOrderItems()
-	 * @param string $name
 	 * @param int $amountF
-	 * @param int $qty [optional]
 	 * @return array(string => mixed)
 	 */
-	private function pOrderItem($name, $amountF, $qty = 1):array {return [
+	private function pOrderItem(string $name, int $amountF, int $qty = 1):array {return [
 		# 2017-11-03
 		# «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
 		# Integer, optional.
