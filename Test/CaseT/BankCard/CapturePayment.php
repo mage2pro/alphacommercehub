@@ -22,10 +22,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-06 */
-	function t00() {}
+	function t00():void {}
 
 	/** 2017-12-06 */
-	function t01() {
+	function t01():void {
 		$r = F::s()->post(['Transaction' => [
 			/**
 			 * 2017-12-06
