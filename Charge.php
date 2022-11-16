@@ -405,10 +405,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * "Allow the «#,.-» characters for the `Street1` and `Street2` request fields":
 	 * https://github.com/mage2pro/alphacommercehub/issues/37
 	 * @used-by self::pCharge()
-	 * @param string $s
-	 * @return string
 	 */
-	protected function textFilterStreet($s) {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '', df_translit($s));}
+	protected function textFilterStreet(string $s):string {return preg_replace("#[^a-zA-Z0-9\s\#,.\-]+#", '', df_translit($s));}
 
 	/**
 	 * 2017-11-03 http://developer.alphacommercehub.com.au/docs/alphahpp-#product-line-information
