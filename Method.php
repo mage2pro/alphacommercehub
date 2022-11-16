@@ -190,9 +190,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @used-by \Dfe\AlphaCommerceHub\Choice::title()
 	 * @used-by \Dfe\AlphaCommerceHub\ConfigProvider::option()
 	 * @param string|null $o [optional]
-	 * @return string|null
 	 */
-	function optionTitle($o = null) {return !($o = ($o ?: $this->option())) ? null : $this->s("$o/title");}
+	function optionTitle($o = null):string {return !($o = ($o ?: $this->option())) ? '' : $this->s("$o/title");}
 
 	/**
 	 * 2017-12-13
