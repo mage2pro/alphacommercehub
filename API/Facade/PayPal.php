@@ -7,10 +7,8 @@ final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 	/**
 	 * 2017-12-08
 	 * @used-by \Dfe\AlphaCommerceHub\W\Reader::reqFilter()
-	 * @param Op $s
-	 * @return Op
 	 */
-	function capture(Op $s) {return $this->post([
+	function capture(Op $s):Op {return $this->post([
 		'Transaction' => [
 			'Amount' => $s->a('Result/Amount')
 			,'Currency' => $s->a('Result/Currency')
