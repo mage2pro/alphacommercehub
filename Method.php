@@ -305,7 +305,6 @@ final class Method extends \Df\PaypalClone\Method {
 	 * 2017-12-08
 	 * @used-by self::_refund()
 	 * @used-by self::charge()
-	 * @param Operation $r
 	 */
 	private function transInfo(Operation $r) {
 		# 2017-01-12, 2017-12-07
