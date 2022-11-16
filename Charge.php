@@ -463,7 +463,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @used-by self::pCharge()
 	 * @return array(array(string => string|int))
 	 */
-	private function pOrderItems() {
+	private function pOrderItems():array {
 		$o = $this->o(); /** @var O $o */
 		$r = array_merge(
 			$this->oiLeafs(function(OI $i) {return $this->pOrderItem(
