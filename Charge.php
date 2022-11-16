@@ -416,7 +416,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @param int $qty [optional]
 	 * @return array(string => mixed)
 	 */
-	private function pOrderItem($name, $amountF, $qty = 1) {return [
+	private function pOrderItem($name, $amountF, $qty = 1):array {return [
 		# 2017-11-03
 		# «The product line price expressed with 3 virtual decimal places e.g. $1 is 1000».
 		# Integer, optional.
