@@ -9,9 +9,8 @@ final class Settings extends \Df\Payment\Settings {
 	 * "Provide an ability to a Magento backend user to choose a different AlphaCommerceHub's API domain"?
 	 * https://github.com/mage2pro/alphacommercehub/issues/66
 	 * @used-by \Dfe\AlphaCommerceHub\Method::urlBase()
-	 * @return string
 	 */
-	function apiDomain() {return $this->testable();}
+	function apiDomain():string {return $this->testable();}
 
 	/**
 	 * 2017-12-12
