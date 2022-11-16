@@ -14,7 +14,7 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @used-by \Df\API\Client::_p()
 	 */
 	function short():string {
-		list($c, $m) = [$this->code(), $this->result('ResponseMessage')]; /** @var string|null $c */  /** @var string $m */
+		list($c, $m) = [$this->code(), $this->result('ResponseMessage')]; /** @var string $c */  /** @var string $m */
 		return !$c ? $m : "[$c] $m";
 	}
 
@@ -24,7 +24,7 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @see \Df\API\Response\Validator::valid()
 	 * @used-by \Df\API\Client::_p()
 	 */
-	function valid():bool {return '1000' === strval($this->code());}
+	function valid():bool {return '1000' === $this->code();}
 
 	/**
 	 * 2017-12-02
@@ -36,16 +36,13 @@ final class Validator extends \Df\API\Response\Validator {
 	 * https://mage2.pro/t/5041
 	 * @used-by self::short()
 	 * @used-by self::valid()
-	 * @return string|null
 	 */
-	private function code() {return $this->result('ResponseCode');}
+	private function code():string {return $this->result('ResponseCode');}
 
 	/**
 	 * 2017-12-02
 	 * @used-by self::code()
 	 * @used-by self::short()
-	 * @param string $k
-	 * @return string|null
 	 */
-	private function result($k) {return dfa_deep($this->r(), "Result/$k");}
+	private function result(string $k):string {return strval(dfa_deep($this->r(), "Result/$k"));}
 }
