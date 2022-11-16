@@ -13,18 +13,14 @@ final class BankCard extends \Dfe\AlphaCommerceHub\API\Facade {
 	/**
 	 * 2017-12-08
 	 * @used-by \Dfe\AlphaCommerceHub\Method::charge()
-	 * @param float $a
-	 * @return Op
 	 */
-	function capture($a) {return $this->op($a);}
+	function capture(float $a):Op {return $this->op($a);}
 
 	/**
 	 * 2017-12-08
 	 * @used-by \Dfe\AlphaCommerceHub\Method::_refund()
-	 * @param float $a
-	 * @return Op
 	 */
-	function refund($a) {return $this->op($a);}
+	function refund(float $a):Op {return $this->op($a);}
 
 	/**
 	 * 2017-12-08
