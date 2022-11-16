@@ -16,9 +16,8 @@ final class Choice extends \Df\Payment\Choice {
 	 * 2017-11-21
 	 * @used-by self::title()
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
-	 * @return string
 	 */
-	function id() {return $this->req('Method');}
+	function id():string {return $this->req('Method');}
 
 	/**
 	 * 2017-11-20
