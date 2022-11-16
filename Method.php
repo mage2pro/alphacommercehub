@@ -142,9 +142,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @see \Df\Payment\Method::charge()
 	 * @used-by \Df\Payment\Method::authorize()
 	 * @used-by \Df\Payment\Method::capture()
-	 * @param bool|null $capture [optional]
 	 */
-	function charge($capture = true):void {
+	function charge(bool $capture = true):void {
 		df_assert($capture);
 		df_sentry_extra($this, 'Amount', $a = dfp_due($this)); /** @var float $a */
 		df_sentry_extra($this, 'Need Capture?', df_bts($capture));
@@ -223,10 +222,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * to an unknown `hub.apcld.net` domain?" https://mage2.pro/t/5034
 	 * @used-by \Dfe\AlphaCommerceHub\API\Client::urlBase()
 	 * @used-by \Dfe\AlphaCommerceHub\Init\Action::redirectUrl()
-	 * @param bool $hpp [optional]
-	 * @return string
 	 */
-	function urlBase($hpp) {$s = $this->s(); /** @var Settings $s */ return 'https://' . implode(
+	function urlBase(bool $hpp):string {$s = $this->s(); /** @var Settings $s */ return 'https://' . implode(
 		$hpp ? [$s->payPageDomain(), $s->payPagePath()] : [$s->apiDomain(), '']
 	);}
 
@@ -248,9 +245,8 @@ final class Method extends \Df\PaypalClone\Method {
 	 * @override
 	 * @see \Df\Payment\Method::_refund()
 	 * @used-by \Df\Payment\Method::refund()
-	 * @param float|null $amt
 	 */
-	protected function _refund($amt):void {
+	protected function _refund(float $amt):void {
 		$ii = $this->ii(); /** @var OP $ii */
 		/**
 		 * 2016-03-17, 2017-11-11, 2017-12-06

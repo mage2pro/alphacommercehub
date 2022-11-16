@@ -39,7 +39,6 @@ final class Action extends \Df\PaypalClone\Init\Action {
 	 * @override
 	 * @see \Df\Payment\Init\Action::redirectUrl()
 	 * @used-by \Df\Payment\Init\Action::action()
-	 * @return string
 	 */
-	protected function redirectUrl() {return $this->m()->urlBase(true);}
+	protected function redirectUrl():string {return $this->m()->urlBase(true);}
 }
