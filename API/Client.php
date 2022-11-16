@@ -27,31 +27,23 @@ final class Client extends \Df\API\Client {
 	protected function commonParams(string $path):array {/** @var S $s */$s = dfps($this); return [
 		# 2017-12-02 «Component Tag for Message Header», required.
 		'Header' => [
-			/**
-			 * 2017-12-02
-			 * «Merchant ID assigned by APC».
-			 * String, required.
-			 */
+			# 2017-12-02
+			# «Merchant ID assigned by APC».
+			# String, required.
 			'MerchantID' => $s->merchantID()
-			/**
-			 * 2017-12-02
-			 * «The transaction being executed, for example `AuthPayment` for an Authorization».
-			 * String, required.
-			 */
+			# 2017-12-02
+			# «The transaction being executed, for example `AuthPayment` for an Authorization».
+			# String, required.
 			,'TransactionType' => $this->path()
-			/**
-			 * 2017-12-02
-			 * «The ID for the user making the API request. Assigned by APC.
-			 * A merchant can have different user ids assigned
-			 * if they wish to separate permissions for example for refunds to their backend application.»
-			 * String, required.
-			 */
+			# 2017-12-02
+			# «The ID for the user making the API request. Assigned by APC.
+			# A merchant can have different user ids assigned
+			# if they wish to separate permissions for example for refunds to their backend application.»
+			# String, required.
 			,'UserID' => $s->privateKey()
-			/**
-			 * 2017-12-02
-			 * «Version of the Hub API. Current version is 2.»
-			 * String, required.
-			 */
+			# 2017-12-02
+			# «Version of the Hub API. Current version is 2.»
+			# String, required.
 			,'Version' => '2'
 		]
 	];}
