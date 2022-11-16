@@ -15,9 +15,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
 	 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 	 * @used-by \Dfe\AlphaCommerceHub\Block\Info::prepare()
-	 * @return string
 	 */
-	function currencyName() {return df_currency_name($this->r('Result/Currency'));}
+	function currencyName():string {return df_currency_name($this->r('Result/Currency'));}
 
 	/**
 	 * 2017-11-22
