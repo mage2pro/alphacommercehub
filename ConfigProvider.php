@@ -21,10 +21,9 @@ final class ConfigProvider extends \Df\Payment\ConfigProvider {
 	/**
 	 * 2017-12-12
 	 * @used-by self::config()
-	 * @param string $id
 	 * @return array(string => mixed)
 	 */
-	private function option($id) {$s = $this->s(); return [$id => [
+	private function option(string $id):array {$s = $this->s(); return [$id => [
 		'enable' =>
 			$s->b("$id/enable")
 			&& $s->applicableForQuoteByMinMaxTotal($id)
