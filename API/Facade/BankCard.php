@@ -34,10 +34,8 @@ final class BankCard extends \Dfe\AlphaCommerceHub\API\Facade {
 	 * @used-by self::cancel()
 	 * @used-by self::capture()
 	 * @used-by self::refund()
-	 * @param float $a
-	 * @return Op
 	 */
-	private function op($a) {return $this->post(['Transaction' =>
+	private function op(float $a):Op {return $this->post(['Transaction' =>
 		['Amount' => dfpm($this)->amountFormat($a)] + df_tm($this)->req(['Currency', 'MerchantTxnID'])
 	], ucfirst(df_caller_f()) . 'Payment');}
 }
