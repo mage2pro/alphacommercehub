@@ -22,10 +22,9 @@ final class Client extends \Df\API\Client {
 	 * @override
 	 * @see \Df\API\Client::commonParams()
 	 * @used-by \Df\API\Client::__construct()
-	 * @param string $path
 	 * @return array(string => mixed)
 	 */
-	protected function commonParams($path):array {/** @var S $s */$s = dfps($this); return [
+	protected function commonParams(string $path):array {/** @var S $s */$s = dfps($this); return [
 		# 2017-12-02 «Component Tag for Message Header», required.
 		'Header' => [
 			/**
