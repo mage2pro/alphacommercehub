@@ -30,8 +30,7 @@ final class PayPal extends \Dfe\AlphaCommerceHub\API\Facade {
 	 * 2017-12-11
 	 * From now on, if the `Amount` and `Currency` request parameters are not provided,
 	 * then AlphaCommerceHub responds `1059` / «Internal Processing Error please resend the request»
-	 * to a PayPal's PaymentStatus API request:
-	 * https://github.com/mage2pro/alphacommercehub/issues/81
+	 * to a PayPal's PaymentStatus API request: https://github.com/mage2pro/alphacommercehub/issues/81
 	 * @used-by \Dfe\AlphaCommerceHub\W\Reader::reqFilter()
 	 * @param array(string => string) $p
 	 */
