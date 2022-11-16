@@ -8,7 +8,5 @@
  * 2) The function transforms «168950.00» to «168950».
  * @used-by \Dfe\AlphaCommerceHub\API\Facade\PayPal::status()
  * @used-by \Dfe\AlphaCommerceHub\Test\CaseT\PayPal\PaymentStatus::t01()
- * @param string $a
- * @return string
  */
-function dfe_alphacommercehub_fix_amount_bug($a) {return df_first(explode('.', $a));}
+function dfe_alphacommercehub_fix_amount_bug(string $a):string {return df_first(explode('.', $a));}
