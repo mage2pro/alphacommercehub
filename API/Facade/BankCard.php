@@ -7,10 +7,8 @@ final class BankCard extends \Dfe\AlphaCommerceHub\API\Facade {
 	/**
 	 * 2017-12-08
 	 * @used-by \Dfe\AlphaCommerceHub\Method::_refund()
-	 * @param float $a
-	 * @return Op
 	 */
-	function cancel($a) {return $this->op($a);}
+	function cancel(float $a):Op {return $this->op($a);}
 
 	/**
 	 * 2017-12-08
