@@ -395,9 +395,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\Payment\Charge::textFilter()
 	 * @used-by \Df\Payment\Charge::text()
-	 * @param string $s
 	 */
-	protected function textFilter($s):string {return preg_replace(
+	protected function textFilter(string $s):string {return preg_replace(
 		"#[^a-zA-Z0-9\s]+#", '', str_replace('-', ' ', df_translit($s))
 	);}
 
