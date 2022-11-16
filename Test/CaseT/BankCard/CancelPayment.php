@@ -11,11 +11,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  */
 final class CancelPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-08 */
-	function t00() {}
+	function t00():void {}
 
 	/** 2017-12-08 */
-	function t01() {
-		/** @var Op $r */
+	function t01():void {/** @var Op $r */
 		$r = F::s()->post(['Transaction' => [
 			/**
 			 * 2017-12-06
