@@ -35,8 +35,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 	/**
 	 * 2017-10-27 «The customers email address», String(64), optional.
 	 * 2017-11-13
-	 * "The `EmailAddress` AlphaHPP request field is wrongly marked as «Alpha» («alphanumeric»)"
-	 * https://mage2.pro/t/4925
+	 * "The `EmailAddress` AlphaHPP request field is wrongly marked as «Alpha» («alphanumeric»)" https://mage2.pro/t/4925
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Email()
 	 * @used-by \Df\PaypalClone\Charge::p()
