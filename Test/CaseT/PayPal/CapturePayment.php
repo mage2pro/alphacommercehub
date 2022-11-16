@@ -20,10 +20,10 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** @test 2017-12-04 */
-	function t00() {}
+	function t00():void {}
 
 	/** 2017-12-03 */
-	function t01() {
+	function t01():void {
 		# 2017-12-03 token=EC-3UY10820730337844&PayerID=7EY65DU75L82G
 		$r = F::s()->post([
 			'Transaction' => [
