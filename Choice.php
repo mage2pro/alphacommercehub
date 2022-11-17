@@ -1,6 +1,5 @@
 <?php
 namespace Dfe\AlphaCommerceHub;
-use Magento\Framework\Phrase;
 /**
  * 2017-11-20
  * 1) "Show the chosen payment option in the Magento's «Payment Information» blocks
