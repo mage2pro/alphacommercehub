@@ -173,5 +173,5 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @used-by self::providerRespL()
 	 * @return array(array(string => string))
 	 */
-	private function providerResps() {return $this->r('ProviderResps', []);}
+	private function providerResps():array {return $this->r('ProviderResps', []);}
 }
