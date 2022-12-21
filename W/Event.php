@@ -41,15 +41,13 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @used-by \Df\PaypalClone\W\Nav::id()
 	 */
 	function ttCurrent():string {return !$this->isSuccessful() ? parent::ttCurrent() : (
-		/**
-		 * 2017-12-08
-		 * It correctly works with PayPal and POLi payments,
-		 * because an event's data for them does not contain the «MethodResult/AuthCode» property,
-		 * and we always use self::T_CAPTURE for them.
-		 * *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
-		 * *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
-		 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
-		 */
+		# 2017-12-08
+		# It correctly works with PayPal and POLi payments,
+		# because an event's data for them does not contain the «MethodResult/AuthCode» property,
+		# and we always use self::T_CAPTURE for them.
+		# *) "A `SuccessURL` response to a POLi Payments payment": https://mage2.pro/t/4961
+		# *) "A PayPal's `PaymentStatus` API request, and a response to it": https://mage2.pro/t/5120
+		# *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 		$this->r('MethodResult/AuthCode') ? self::T_AUTHORIZE : self::T_CAPTURE
 	);}
 
