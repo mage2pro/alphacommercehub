@@ -19,5 +19,5 @@ class Facade extends \Df\API\Facade {
 	 * @see \Df\API\Facade::path()
 	 * @used-by \Df\API\Facade::p()
 	 */
-	protected function path(string $id, string $suffix = ''):string {return $suffix;}
+	protected function path(string $id, string $suf = ''):string {return $suf;}
 }
