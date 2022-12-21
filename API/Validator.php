@@ -44,5 +44,5 @@ final class Validator extends \Df\API\Response\Validator {
 	 * @used-by self::code()
 	 * @used-by self::short()
 	 */
-	private function result(string $k):string {return strval(dfa_deep($this->r(), "Result/$k"));}
+	private function result(string $k):string {return strval($this->r("Result/$k"));}
 }

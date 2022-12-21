@@ -10,7 +10,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * Note 2. "A `RefundPayment` API request, and a response to it" https://mage2.pro/t/5077
  */
 final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
-	/** @test 2017-12-06 */
+	/** 2017-12-06 @test */
 	function t00():void {}
 
 	/** 2017-12-06 */

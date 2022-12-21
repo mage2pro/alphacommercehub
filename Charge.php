@@ -84,9 +84,8 @@ final class Charge extends \Df\PaypalClone\Charge {
 	 * @override
 	 * @see \Df\PaypalClone\Charge::k_Signature()
 	 * @used-by \Df\PaypalClone\Charge::p()
-	 * @return null
 	 */
-	protected function k_Signature() {return null;}
+	protected function k_Signature():string {return '';}
 
 	/**
 	 * 2017-10-27

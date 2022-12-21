@@ -32,12 +32,9 @@ class Info extends \Df\Payment\Block\Info {
 		 * *) "A PayPal's `CapturePayment` API request, and a response to it": https://mage2.pro/t/5127
 		 */
 		if ($eId = $e->r('Result/PaymentID')) { /** @var string $eId */
-			/**
-			 * 2017-11-20
-			 * "Show the AlphaCommerceHub's payment ID (`PaymentID`)
-			 * in the Magento's backend «Payment Information» block":
-			 * https://github.com/mage2pro/alphacommercehub/issues/41
-			 */
+			# 2017-11-20
+			# "Show the AlphaCommerceHub's payment ID (`PaymentID`)
+			# in the Magento's backend «Payment Information» block": https://github.com/mage2pro/alphacommercehub/issues/41
 			$this->siEx('AlphaCommerceHub ID', $eId);
 		}
 		/**

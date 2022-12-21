@@ -83,9 +83,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_idE()
 	 * @used-by \Df\PaypalClone\W\Event::idE()
-	 * @return null
 	 */
-	protected function k_idE() {return null;}
+	protected function k_idE():string {return '';}
 
 	/**
 	 * 2017-11-18 «The merchants transaction id».
@@ -110,9 +109,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * Note 2. This method is never used: @see validate()
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::k_signature()
-	 * @return null
 	 */
-	protected function k_signature() {return null;}
+	protected function k_signature():string {return '';}
 
 	/**
 	 * 2017-11-18
@@ -155,9 +153,8 @@ final class Event extends \Df\PaypalClone\W\Event {
 	 * @override
 	 * @see \Df\PaypalClone\W\Event::statusExpected()
 	 * @used-by \Df\PaypalClone\W\Event::isSuccessful()
-	 * @return int
 	 */
-	protected function statusExpected():int {return 1000;}
+	protected function statusExpected():string {return '1000';}
 
 	/**
 	 * 2017-11-22

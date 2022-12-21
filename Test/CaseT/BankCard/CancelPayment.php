@@ -10,7 +10,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/5113
  */
 final class CancelPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
-	/** @test 2017-12-08 */
+	/** 2017-12-08 @test */
 	function t00():void {}
 
 	/** 2017-12-08 */

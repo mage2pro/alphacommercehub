@@ -68,7 +68,7 @@ final class Client extends \Df\API\Client {
 	 * @see \Df\API\Client::responseValidatorC()
 	 * @used-by \Df\API\Client::_p()
 	 */
-	protected function responseValidatorC():string {return \Dfe\AlphaCommerceHub\API\Validator::class;}
+	protected function responseValidatorC():string {return Validator::class;}
 
 	/**
 	 * 2017-12-02

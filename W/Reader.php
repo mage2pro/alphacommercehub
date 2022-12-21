@@ -14,12 +14,10 @@ final class Reader extends \Df\Payment\W\Reader {
 	 */
 	protected function http():array {
 		$r = parent::http(); /** @var array(string => string) $r */
-		/**
-		 * 2017-11-21
-		 * "A `SuccessURL` response to a PayPal payment is not a JSON
-		 * in contrary to other `SuccessURL` responses, so I should handle this special case":
-		 * https://github.com/mage2pro/alphacommercehub/issues/46
-		 */
+		# 2017-11-21
+		# "A `SuccessURL` response to a PayPal payment is not a JSON
+		# in contrary to other `SuccessURL` responses, so I should handle this special case":
+		# https://github.com/mage2pro/alphacommercehub/issues/46
 		return !isset($r['data']) ? $r : df_json_decode($r['data']);
 	}
 

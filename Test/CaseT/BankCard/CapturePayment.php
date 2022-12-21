@@ -21,7 +21,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * for a bank card payment" https://mage2.pro/t/5075
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
-	/** @test 2017-12-06 */
+	/** 2017-12-06 @test */
 	function t00():void {}
 
 	/** 2017-12-06 */

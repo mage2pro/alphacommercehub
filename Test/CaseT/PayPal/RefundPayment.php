@@ -13,7 +13,7 @@ final class RefundPayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
 	/** 2017-12-11 */
 	function t00():void {}
 
-	/** @test 2017-12-11 */
+	/** 2017-12-11 @test */
 	function t01():void {
 		# 2017-12-03 token=EC-57L73665MJ662912E&PayerID=7EY65DU75L82G
 		$r = F::s()->post([

@@ -19,7 +19,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * https://mage2.pro/t/4985
  */
 final class CapturePayment extends \Dfe\AlphaCommerceHub\Test\CaseT {
-	/** @test 2017-12-04 */
+	/** 2017-12-04 @test */
 	function t00():void {}
 
 	/** 2017-12-03 */

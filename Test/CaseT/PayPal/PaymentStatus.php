@@ -24,7 +24,7 @@ use Dfe\AlphaCommerceHub\API\Facade as F;
  * since 2017-12-13": https://github.com/mage2pro/alphacommercehub/issues/82
  */
 final class PaymentStatus extends \Dfe\AlphaCommerceHub\Test\CaseT {
-	/** @test 2017-12-03 */
+	/** 2017-12-03 @test */
 	function t00():void {}
 
 	/** 2017-12-02 */
