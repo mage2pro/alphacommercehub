@@ -11,7 +11,7 @@ final class Card extends \Df\Payment\Settings {
 	 * 2017-11-02
 	 * @used-by \Dfe\AlphaCommerceHub\Charge::pCharge()
 	 */
-	function _3ds():_3DS {return dfc($this, function() {return new _3DS($this);});}
+	function _3ds():_3DS {return dfc($this, function():_3DS {return new _3DS($this);});}
 
 	/**
 	 * 2017-12-12
