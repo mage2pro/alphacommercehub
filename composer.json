@@ -1,6 +1,6 @@
 {
 	"name": "mage2pro/alphacommercehub"
-	,"version": "1.1.1"
+	,"version": "1.2.0"
 	,"description": "AlphaCommerceHub integration with Magento 2"
 	,"type": "magento2-module"
 	,"homepage": "https://mage2.pro/c/extensions/alphacommercehub"
@@ -11,7 +11,7 @@
 		"homepage": "https://www.upwork.com/fl/mage2pro",
 		"role": "Developer"
 	}]
-	,"require": {"mage2pro/core": ">=6.7.4"}
+	,"require": {"mage2pro/core": ">=9.0.2"}
 	,"autoload": {"files": ["registration.php"], "psr-4": {"Dfe\\AlphaCommerceHub\\": ""}}
 	,"keywords": [
 		"3D Secure"
