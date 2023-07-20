@@ -133,15 +133,14 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * which I need one of my colleagues in Dublin to get later today.»
 			 * https://github.com/mage2pro/alphacommercehub/issues/7#issuecomment-343819432
 			 */
-			'3DSecureBypass' =>
-				$s->card()->_3ds()->disable_($a->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
+			'3DSecureBypass' => $s->card()->_3ds()->disable_($a->getCountryId(), $this->o()->getCustomerId()) ? 'Y' : null
 			/**
 			 * 2017-11-02
 			 * Note 1. «Allows the merchant to define a URL that is redirected to for unsuccessful transactions».
 			 * String, optional.
 			 * Note 2. "What is `CancelURL` («Cancel URL»)" https://mage2.pro/t/4804
 			 */
-			,'CancelURL' => $this->callback(null)
+			,'CancelURL' => $this->callback('')
 			/**
 			 * 2017-11-01
 			 * «Y/N – Allows a merchant to flag that a transaction should be captured (settled) if the auth is».
@@ -308,7 +307,7 @@ final class Charge extends \Df\PaypalClone\Charge {
 			 * Note 3. "Whether a customer is redirected to `SuccessURL` or not?" https://mage2.pro/t/4805
 			 * Note 4. "What is «result page» for AlphaHPP?" https://mage2.pro/t/4807
 			 */
-			,'SuccessURL' => $this->callback(null)
+			,'SuccessURL' => $this->callback('')
 			# 2017-11-01 «The customers phone number. Numbers only.» Numeric(6-14), optional.
 			,'TelNo' => substr(preg_replace('/\D/', '', $this->customerPhone()), 0, 14)
 			/**
