@@ -44,7 +44,7 @@ final class Reader extends \Df\Payment\W\Reader {
 			$f = fPayPal::s(); /** @var fPayPal $s */
 			$s = $f->status($tm->req(['MerchantTxnID', 'Amount', 'Currency'])); /** @var Op $s */
 			$c = $f->capture($s); /** @var Op $c */
-			$r = $s->a(['MethodResult']) + df_extend($s->a(), $c->a());
+			$r = $s->a(['MethodResult']) + dfa_merge_r($s->a(), $c->a());
 		}
 		return $r;
 	}
